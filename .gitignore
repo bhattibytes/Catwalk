@@ -103,5 +103,5 @@ typings/
 .tern-port
 
 # Bundle files
-dist/bundle.js
-dist/bundle.js.map
+bundle.js
+bundle.js.map
