@@ -4,9 +4,9 @@
   "description": "Selling cat items online",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js",
-    "dev:react": "webpack -w",
-    "dev": "live-server ./client/dist",
+    "start": "node server/index.js",
+    "dev:react": "webpack -w --mode=development",
+    "dev": "nodemon server/index.js dev:react",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
