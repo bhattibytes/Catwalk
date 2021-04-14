@@ -2,6 +2,7 @@ import React from 'react';
 import Products from './Products/Products.js';
 import Related from './Related/Related.js';
 import Reviews from './Reviews/Reviews.js';
+import Navbarheader from './Navbarheader.js';
 
 class App extends React.Component {
   constructor() {
@@ -11,10 +12,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
-        <nav>
-          <h1>Catwalk</h1>
-          <input type = "search" />
-        </nav>
+        <Navbarheader fixed="top" />
         <Products />
         <Related />
         <Reviews />
