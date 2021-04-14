@@ -105,3 +105,5 @@ typings/
 # Bundle files
 bundle.js
 bundle.js.map
+
+package-lock.js
