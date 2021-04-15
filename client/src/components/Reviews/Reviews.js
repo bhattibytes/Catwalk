@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getReviews } from '../../actions/reviews.js';
 
 class Reviews extends React.Component {
   constructor() {
@@ -8,7 +9,10 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-  console.log(this.props)
+    const { dispatch } = this.props;
+    // Get reviews from dummy data
+    dispatch(getReviews());
+    console.log(this.props)
   }
 
 
@@ -24,7 +28,6 @@ class Reviews extends React.Component {
 /**
  * Map state to props for Reviews component
  */
-
  const mapStateToProps = (state) => ({
    reviews: state.reviews
  });
