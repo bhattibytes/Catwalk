@@ -1,10 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Reviews extends React.Component {
   constructor() {
     super();
     this.state = {};
   }
+
+  componentDidMount() {
+  console.log(this.props)
+  }
+
 
   render() {
     return(
@@ -15,4 +21,12 @@ class Reviews extends React.Component {
   }
 };
 
-export default Reviews;
+/**
+ * Map state to props for Reviews component
+ */
+
+ const mapStateToProps = (state) => ({
+   reviews: state.reviews
+ });
+
+export default connect(mapStateToProps)(Reviews);
