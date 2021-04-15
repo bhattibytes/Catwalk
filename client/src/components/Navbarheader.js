@@ -1,14 +1,15 @@
 import React from 'react';
-import { Form, FormControl, Button } from 'react-bootstrap';
 
-const Navbarheader = () => {
+const Navbarheader = (props) => {
 
   return (
   <div>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" />
-      <Button >Search</Button>
-    </Form>
+    <form>
+      <label>
+        <input type="text" name="name" value={props.search} onChange={props.change}/>
+      </label>
+      <input type="submit" value="Search" onClick={props.handleSearch}/>
+    </form>
   </div>
   )
 }
