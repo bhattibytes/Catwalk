@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getReviews } from '../../actions/reviews.js';
+import { getReviews, sortOrder } from '../../actions/reviews.js';
 import { reviewsData } from '../../dummy_data/reviews.js';
 import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
@@ -19,15 +19,21 @@ class Reviews extends React.Component {
 
 
   render() {
-    const { reviews } = this.props;
+    const { reviews, dispatch } = this.props;
+    console.log(this.props)
     const style = {
       display: 'grid',
       gridTemplateColumns: '1fr 3fr'
     }
-    return(
+    return (
       <div>
         <hr />
         <h2>Reviews</h2>
+        <select onChange={(e) => dispatch(sortOrder(e.target.value))}>
+          <option>newest</option>
+          <option>helpful</option>
+          <option>relevance</option>
+        </select>
         <div style={style}>
           <Ratings />
           <ReviewList reviews={reviews.data} />
@@ -40,8 +46,8 @@ class Reviews extends React.Component {
 /**
  * Map state to props for Reviews component
  */
- const mapStateToProps = (state) => ({
-   reviews: state.reviews
- });
+const mapStateToProps = (state) => ({
+  reviews: state.reviews
+});
 
 export default connect(mapStateToProps)(Reviews);
