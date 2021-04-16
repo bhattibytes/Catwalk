@@ -1,6 +1,6 @@
 import React from 'react';
 
- var Gallery = (props) => {
+ var ThumbnailGallery = (props) => {
   return (
     <div className="thumbnail">
       <img src={props.image} width="25" height="50" border="1px" onClick={props.click}/>
@@ -8,4 +8,4 @@ import React from 'react';
   )
 }
 
-export default Gallery;
+export default ThumbnailGallery;

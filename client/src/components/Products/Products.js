@@ -1,5 +1,7 @@
 import React from 'react';
-import Gallery from './Gallery.js';
+import ThumbnailGallery from './ThumbnailGallery.js';
+import MainImageView from './MainImageView.js';
+import ProductInfo from './ProductInfo.js';
 
 class Products extends React.Component {
   constructor() {
@@ -60,16 +62,22 @@ class Products extends React.Component {
   render() {
     return(
       <div className="container" style={{border: "solid"}}>
-          {
-            this.state.images.map(image => {
-              var imgid = image.split('/')[4];
-              return  <Gallery image={image} key={imgid} click={this.show}/>
-            })
-          }
-        <button className="back" onClick={this.backButton}><img src="https://snappygoat.com/b/e47653d751e21b834639d2be360b920104e04584" width="20px" height="20px"/></button>
-        <img className="select" src={this.state.selected} width="200" height="300" border="2px"/>
-        <button className="forward" onClick={this.fowardButton}><img src="https://snappygoat.com/b/0d7b5b00409f0b09fd19713d91dad1faeecdbff3" width="20px" height="20px"/></button>
-
+        <div className="thumbnail-slider">
+          <div className="viewport">
+            {
+              this.state.images.map(image => {
+                var imgid = image.split('/')[4];
+                return  <ThumbnailGallery image={image} key={imgid} click={this.show}/>
+              })
+            }
+          </div>
+        </div>
+        <div className="main-image-container">
+          <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected}/>
+        </div>
+        <div className="product-info-right">
+          <ProductInfo />
+        </div>
       </div>
     );
   }
