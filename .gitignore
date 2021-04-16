@@ -106,4 +106,4 @@ typings/
 bundle.js
 bundle.js.map
 config.js
-package-lock.js
+package-lock.json
