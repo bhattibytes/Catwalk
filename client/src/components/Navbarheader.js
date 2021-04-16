@@ -4,7 +4,7 @@ const Navbarheader = (props) => {
 
   return (
   <div>
-    <form>
+    <form className="search">
       <label>
         <input type="text" name="name" value={props.search} onChange={props.change}/>
       </label>

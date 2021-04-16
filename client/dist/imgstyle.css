@@ -1,0 +1,24 @@
+@import "css-grid";
+
+.container {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.thumbnail {
+  display: grid;
+  grid-column: 1;
+}
+
+.select {
+  display: grid;
+  grid-column: 2;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.search {
+  padding: 10px;
+  margin-bottom: 20px;
+}
