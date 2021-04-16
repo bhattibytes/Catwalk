@@ -3,7 +3,7 @@ import React from 'react';
  var Gallery = (props) => {
   return (
     <div className="thumbnail">
-      <img src={props.image} width="25" height="50" onClick={props.click}/>
+      <img src={props.image} width="25" height="50" border="1px" onClick={props.click}/>
     </div>
   )
 }

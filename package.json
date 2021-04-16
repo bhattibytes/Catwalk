@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/Terrific-Trees/Catwalk#readme",
   "dependencies": {
-    "css-grid": "^1.0.7",
     "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
