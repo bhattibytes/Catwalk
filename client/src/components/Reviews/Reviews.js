@@ -4,7 +4,8 @@ import { getReviews, sortOrder } from '../../actions/reviews.js';
 import { reviewsData } from '../../dummy_data/reviews.js';
 import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
-import './reviews.css';
+import Star from '../Star/Star.js';
+
 
 class Reviews extends React.Component {
   constructor() {
@@ -21,7 +22,6 @@ class Reviews extends React.Component {
 
   render() {
     const { reviews, dispatch } = this.props;
-    console.log(this.props)
     const style = {
       display: 'grid',
       gridTemplateColumns: '1fr 3fr'
@@ -30,6 +30,7 @@ class Reviews extends React.Component {
       <div>
         <hr />
         <h2>Reviews</h2>
+        <Star />
         <select onChange={(e) => dispatch(sortOrder(e.target.value))}>
           <option>newest</option>
           <option>helpful</option>
