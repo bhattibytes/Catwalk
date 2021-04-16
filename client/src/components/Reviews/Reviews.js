@@ -4,6 +4,7 @@ import { getReviews, sortOrder } from '../../actions/reviews.js';
 import { reviewsData } from '../../dummy_data/reviews.js';
 import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
+import './reviews.css';
 
 class Reviews extends React.Component {
   constructor() {
