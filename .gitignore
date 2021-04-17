@@ -107,3 +107,6 @@ bundle.js
 bundle.js.map
 
 package-lock.js
+
+# Configure files
+config.js
