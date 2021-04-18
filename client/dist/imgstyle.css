@@ -2,8 +2,8 @@
 
 .container {
   display: grid;
-  grid-template-columns: 5% 5% 10% 10% 10% 5% 10% 20% 25%;
-  grid-template-rows: 20% 10% 10% 10% 10% 20% 20%;
+  grid-template-columns: 5% 5% 20% 10% 5% 10% 40% 5%;
+  grid-template-rows: 5% 5% 5% 15% 10% 20% 20% 20%;
   border: 1px black;
 }
 
@@ -46,3 +46,39 @@ button {
   grid-column: 6;
   grid-row: 3;
 }
+
+.product-info-right {
+  display: grid;
+  grid-column: 7;
+  grid-row-start: 1;
+  grid-row-end: 9;
+  border: 1px black solid;
+}
+
+.product-info-container {
+  display: grid;
+  grid-column: 7;
+  grid-row: 1;
+  border: 1px blue solid;
+}
+
+.main-header-title {
+  grid-column: 7;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  font-size: .75em;
+  border: 1px yellow solid;
+}
+
+.style-picker {
+  grid-column: 7;
+  grid-row: 3;
+  font-size: .5em;
+  margin-top: 0;
+  border: 1px red solid;
+}
+
+.cat {
+  font-size: .25em;
+}
+
