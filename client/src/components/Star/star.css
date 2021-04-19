@@ -1,6 +1,12 @@
-.filled-star {
-  font-size: 50px;
-  background: linear-gradient(to right, orange 50%, grey 0%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: #cddc3900;
+.star {
+  font-size: 30px;
+  color: orange;
+}
+
+.percentage-star-container {
+  display: inline;
+}
+
+.remove-space {
+  position: absolute;
 }

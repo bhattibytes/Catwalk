@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Star from '../Star/Star.js';
 
 const ReviewListItem = ({review}) => {
   return(
@@ -7,7 +7,7 @@ const ReviewListItem = ({review}) => {
       <div>
         {review.reviewer_name}, {review.date}
       </div>
-      <p>Amount of stars -> {review.rating}</p>
+      <Star rating={review.rating} />
       <h4>{review.body.slice(0, 100)}...</h4>
       <p>{review.summary}</p>
       <p>{(review.recommend)?'check':'no-check'} <i>I recommend this product</i></p>

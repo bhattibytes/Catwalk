@@ -4,6 +4,12 @@ export function getReviews() {
   };
 };
 
+export function getMetaData() {
+  return {
+    type: 'GET_META-DATA'
+  };
+};
+
 /**
  * @param {string} sort
  * sortOrder receives a string of how to sort

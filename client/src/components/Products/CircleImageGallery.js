@@ -1,10 +1,10 @@
 import React from 'react';
 
- var CircleImageGallery = () => {
+ var CircleImageGallery = (props) => {
   return (
-    <div>
-
-    </div>
+    <li className="circleImg">
+      <img src={props.image} width="100px" height="100px"/>
+    </li>
   )
 }
 
