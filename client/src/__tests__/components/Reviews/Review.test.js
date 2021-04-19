@@ -11,7 +11,7 @@ describe('Review Component', () => {
 
   beforeEach(() => {
     wrapper = mount(
-      <Review store={store} reviews={[...reviewsData.results,{name:'sssd'}]} />
+      <Review store={store} />
     );
   });
   /* Check if the Review Component renders */
