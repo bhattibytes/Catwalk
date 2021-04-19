@@ -1,7 +1,9 @@
 import { reviewsData } from '../dummy_data/reviews.js';
+import { metaDataReviews } from '../dummy_data/meta-reviews.js';
 const initialState = {
   sort: 'newest',
-  data: []
+  data: [],
+  meta: {}
 }
 
 function reviewsReducer(state = initialState, action) {
@@ -11,6 +13,12 @@ function reviewsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         ...initialState,
         data: reviewsData.results
+      });
+    // Get meta data for component
+    case 'GET_META-DATA':
+      return Object.assign({}, state, {
+        ...state,
+        meta: metaDataReviews
       });
     // Sort reviews by filter (newest, helpful, relevance)
     case 'SORT_ORDER':

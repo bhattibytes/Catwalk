@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getReviews, sortOrder } from '../../actions/reviews.js';
+import { getReviews, getMetaData, sortOrder } from '../../actions/reviews.js';
 import { reviewsData } from '../../dummy_data/reviews.js';
 import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
@@ -17,11 +17,13 @@ class Reviews extends React.Component {
     const { dispatch } = this.props;
     // Get reviews from dummy data
     dispatch(getReviews());
+    // Get meta data from dummy data
+    dispatch(getMetaData());
   }
 
 
   render() {
-    const { reviews, dispatch } = this.props;
+    const { reviews, meta_data, dispatch } = this.props;
     const style = {
       display: 'grid',
       gridTemplateColumns: '1fr 3fr'

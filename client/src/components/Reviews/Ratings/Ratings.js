@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Ratings = () => (
+const Ratings = ({ meta }) => (
   <div>
     <h3>Ratings & Reviews</h3>
     <div>Average stars</div>
