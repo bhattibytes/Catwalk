@@ -7,7 +7,9 @@
     "start": "node server/index.js",
     "dev:react": "webpack -w --mode=development",
     "dev": "nodemon server/index.js dev:react",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll --verbose",
+    "test:coverage": "jest --verbose --coverage"
   },
   "repository": {
     "type": "git",
