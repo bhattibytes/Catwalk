@@ -4,8 +4,8 @@ import React from 'react';
   return (
     <div className="main-header-title">
       <span className="cat">CATEGORY</span>
-      <p>Expanded Product Name</p>
-      <p>$350</p>
+      <p className="title">Expanded Product Name</p>
+      <p className="price">$350</p>
     </div>
   )
 }

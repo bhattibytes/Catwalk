@@ -1,11 +1,12 @@
 .container {
   display: grid;
-  grid-template-columns: 5% 5% 35% 10% 40% 5%;
+  grid-template-columns: 5% 5% 30% 10% 40% 10%;
   grid-template-rows: 10% 20% 20% 20% 15% 15%;
 }
 
-.viewport {
-  grid-column: 4;
+.thumbnail-slider {
+  margin-left: 50px;
+  grid-column: 1;
 }
 
 .thumbnail {
@@ -28,18 +29,19 @@ button {
   grid-column: 3;
   grid-row-start: 1;
   grid-row-end: 6;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 5% 20% 25% 25% 20% 5%;
   grid-template-rows: 10% 20% 20% 20% 15% 15%;
 }
 
 .select {
   max-width: 100%;
   max-height: 100%;
-  grid-column-start: 1;
+  grid-column-start: 3;
   grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 6;
 }
 
 .back {
@@ -48,7 +50,7 @@ button {
 }
 
 .forward {
-  grid-column: 4;
+  grid-column: 6;
   grid-row: 3;
 }
 
@@ -64,38 +66,85 @@ button {
 
 .product-info-container {
   display: grid;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 7;
+}
+
+.product-star {
+  display: grid;
   grid-column: 1;
-  grid-row: 2;
-  border: 1px blue solid;
+  grid-row: 1;
 }
 
 .main-header-title {
   display: grid;
-  grid-column: 3;
-  grid-row: 3;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row: 2;
   margin: 0;
   padding: 0;
-  border: 1px yellow solid;
 }
 
 .style-picker {
-  display: grid;
-  grid-column: 2;
+  grid-column: 1;
+  grid-row: 3;
   font-size: .5em;
   margin-top: 0;
-  border: 1px red solid;
+  margin-left: 5px;
 }
 
 .cat {
-  font-size: .25em;
+  margin-top: 5px;
+  font-size: .5em;
+  margin-bottom: 5px;
+  margin-left: 5px;
 }
 
-/* .circleImgBox {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-} */
+.title {
+  margin: 5px;
+}
+
+.price {
+  margin: 5px;
+}
+
+.circleImgBox {
+  display: inline;
+  list-style-type: none;
+  margin-right: 0;
+  border-radius: 50%;
+}
 
 .circleImg {
-  border-radius: 75%;
+  border-radius: 50%;
+  display: inline;
+  float: left;
+}
+
+.selQty {
+  margin-left: 5px;
+  grid-column: 1;
+}
+
+.selSize {
+  margin-left: 5px;
+}
+
+.labelAdd {
+  margin: 0;
+}
+
+.zoom {
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  -ms-transform: scale(5);
+  -webkit-transform: scale(5);
+  transform: scale(5);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  cursor: crosshair;
 }
