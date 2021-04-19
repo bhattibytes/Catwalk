@@ -26,7 +26,6 @@ const Star = ({ rating }) => {
   const wholeNumber = Math.floor(rating);
   // Get decimal value
   const decimalValue = getDecimal(rating);
-  console.log(decimalValue,' dec')
   // Difference btwn max and rating star
   const diffOfStars = maxStars - rating;
   // Get unicodes for filled & empty stars

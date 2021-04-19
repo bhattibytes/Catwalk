@@ -30,7 +30,7 @@ class Reviews extends React.Component {
       <div>
         <hr />
         <h2>Reviews</h2>
-        <Star rating={4.5} />
+        <Star rating={3.5} />
         <select onChange={(e) => dispatch(sortOrder(e.target.value))}>
           <option>newest</option>
           <option>helpful</option>
