@@ -2,7 +2,7 @@ import React from 'react';
 
  var Favorite = () => {
   return (
-    <div>
+    <div className="favorite">
 
     </div>
   )
