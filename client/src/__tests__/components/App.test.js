@@ -7,9 +7,7 @@ import { Provider } from 'react-redux';
 describe('App Component', () => {
   test('Renders App Component', () => {
     const wrapper = shallow(
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <App store={store} />
     );
     expect(wrapper.exists()).toBe(true);
   });
