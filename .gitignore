@@ -102,11 +102,8 @@ typings/
 # TernJS port file
 .tern-port
 
-# Bundle files
+# Bundle files, config, and package-lock
 bundle.js
 bundle.js.map
-
-package-lock.js
-
-# Configure files
 config.js
+package-lock.json
