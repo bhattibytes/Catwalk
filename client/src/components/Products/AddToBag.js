@@ -2,8 +2,8 @@ import React from 'react';
 
  var AddToBag = () => {
   return (
-    <div>
-
+    <div className="AddToBag">
+      <button>Add To Bag    +</button>
     </div>
   )
 }
