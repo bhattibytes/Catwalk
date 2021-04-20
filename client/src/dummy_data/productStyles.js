@@ -1,4 +1,4 @@
-var productStyles = [
+export const productStyles = [
   {
     "product_id": "1",
     "results": [
