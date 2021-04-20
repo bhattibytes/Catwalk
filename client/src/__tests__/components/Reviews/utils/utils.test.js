@@ -15,7 +15,7 @@ describe('Utils helper functions', () => {
    * recommend -> "false": "1", "true": "1" => 1 + 1 = 2
    * 2 (amount of total recommends) / 1 (amount of true)= 0.5 (50%)
    */
-  it('findAverageReviews Should find the average amount of recommendations', () => {
+  it('findAverageRecommendations Should find the average amount of recommendations', () => {
     const { recommended } = metaDataReviews;
     const expectedRecommend = .50;
     expect(findAverageRecommend(recommended)).toBe(expectedRecommend);
