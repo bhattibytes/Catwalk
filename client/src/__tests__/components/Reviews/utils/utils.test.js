@@ -1,4 +1,4 @@
-import { findAverageStars, findAverageRecommend } from '../../../../components/Reviews/Ratings/utils';
+import { findAverageStars, findAverageRecommend, createRatingBar } from '../../../../components/Reviews/Ratings/utils';
 import { metaDataReviews } from '../../../../dummy_data/meta-reviews.js';
 
 describe('Utils helper functions', () => {
@@ -19,5 +19,18 @@ describe('Utils helper functions', () => {
     const { recommended } = metaDataReviews;
     const expectedRecommend = .50;
     expect(findAverageRecommend(recommended)).toBe(expectedRecommend);
+  });
+
+  it('creatRatingBar Should create rating bar styles for each rating', () => {
+    const { ratings } = metaDataReviews;
+    const expectedObject = {
+      rating: "5",
+      style: {
+        background: `linear-gradient(to right, orange 50%, #80808030 0%)`
+      }
+    };
+    // createRatingBar returns an array, grab the last item (object of 5th rating)
+    const actualObject = createRatingBar(ratings)[0];
+    expect(actualObject).toMatchObject(expectedObject);
   });
 });

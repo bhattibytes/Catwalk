@@ -34,4 +34,39 @@ function findAverageRecommend(recommended) {
 
 };
 
-export { findAverageStars, findAverageRecommend };
+/**
+ * @param {rating} obj
+ * createRatingBar takes in an object of rating and returns an array of
+ * 'styles' for each rating to be transformed into a bar.
+ */
+function createRatingBar(metaRatings) {
+  const results = [];
+  const ratings = Object.assign({}, metaRatings); // Don't mutate the state
+  let totalRatings = 0;
+  // Iterate 1 - 5 for ratings and start inital values if not present
+  // and calculate total ratings
+  for (let i = 1; i < 6; i++) {
+    if (!ratings[i]) {
+      ratings[i] = 0;
+    }
+    totalRatings += (ratings, Number(ratings[i]));
+  }
+  // Iterate thru ratings, calculate the percentage for each rating
+  // against the total number of ratings for linear gradient background
+  // color for bar to fill in
+  const keys = Object.keys(ratings);
+  for (let key of keys) {
+    const ratingWeight = Number(ratings[key]);
+    const percentage = (ratingWeight / totalRatings) * 100;
+    const barObj = {
+      rating: key,
+      style: {
+        background: `linear-gradient(to right, orange ${percentage}%, #80808030 0%)`
+      }
+    }
+    results.unshift(barObj);
+  }
+  return results;
+}
+
+export { findAverageStars, findAverageRecommend, createRatingBar };

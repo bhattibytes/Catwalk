@@ -1,0 +1,10 @@
+.bar-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+}
+
+.bar {
+  width: 60%;
+  height: 10px;
+}
