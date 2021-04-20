@@ -114,11 +114,10 @@ button {
   display: inline;
   list-style-type: none;
   margin-right: 0;
-  border-radius: 50%;
 }
 
-.circleImg {
-  border-radius: 50%;
+.circleImg > img {
+  border-radius: 100px !important;
   display: inline;
   float: left;
 }
