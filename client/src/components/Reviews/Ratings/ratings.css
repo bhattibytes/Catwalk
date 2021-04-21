@@ -1,3 +1,4 @@
+/*      Average Bar Graph     */
 .bar-container {
   display: grid;
   grid-template-columns: 1fr 5fr;
@@ -8,3 +9,67 @@
   width: 60%;
   height: 10px;
 }
+/*      Average Size Column      */
+.average-size {
+  width: 90%;
+}
+
+.empty-slider {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 25.5%;
+  background: rgba(128, 128, 128, 0.19);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.empty-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+}
+/*
+  Triangle slider
+  Overwrite the webkit custom slider into
+  an upside down triangle
+*/
+.slider {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 25.5%;
+  background: rgba(128, 128, 128, 0.19);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: 5px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 16px solid black;
+  transform: rotate(180deg);
+}
+
+.slider::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -13px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 16px solid black;
+  transform: rotate(180deg);
+}
+
+.sizes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: 15px;
+}
+/*      Average Comfort Column      */
