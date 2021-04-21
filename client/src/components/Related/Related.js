@@ -1,4 +1,7 @@
 import React from 'react';
+import ProductCard from './ProductCard.jsx';
+import styles from './relatedItems.module.css';
+import { dummyProductStyles } from '../dummyData.js';g
 
 class Related extends React.Component {
   constructor() {
