@@ -11,7 +11,7 @@ import Star from '../Star/Star.js';
  var ProductInfo = (props) => {
   var images = props.images;
   if (images === undefined) {
-    images = [];
+    images = ['https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg'];
   }
   images = images.slice(0);
   return (
