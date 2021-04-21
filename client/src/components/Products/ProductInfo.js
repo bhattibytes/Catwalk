@@ -9,18 +9,24 @@ import SelectQuantity from './SelectQuantity.js'
 import Star from '../Star/Star.js';
 
  var ProductInfo = (props) => {
+  var images = props.images;
+  if (images === undefined) {
+    images = [];
+  }
+  images = images.slice(0);
   return (
     <div className="product-info-container">
       <div className="product-star">
-        <Star rating={3.5}/>
+        <Star rating={3.7}/>
+        <a href="#bottom">Read all reviews</a>
       </div>
       <ProductTitle />
       <SelectStyle />
       <ol className="circleImgBox">
       {
-        props.images.map(image => {
+        images.map(image => {
           var imgid = image.split('/')[10];
-          return <CircleImageGallery image={image} key={imgid}/>
+          return <CircleImageGallery image={image} key={imgid} show={props.show}/>
         })
       }
       </ol>

@@ -87,7 +87,7 @@ class Products extends React.Component {
         </div>
           <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected}/>
         <div className="product-info-right">
-          <ProductInfo images={this.state.thumbNailImages}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show}/>
         </div>
       </div>
     );
