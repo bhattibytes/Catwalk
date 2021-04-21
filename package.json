@@ -23,6 +23,8 @@
   "homepage": "https://github.com/Terrific-Trees/Catwalk#readme",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
+    "enzyme-to-json": "^3.6.2",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -44,6 +46,11 @@
     "jest-css-modules": "^2.1.0",
     "live-server": "^1.2.1",
     "nodemon": "^2.0.7",
+<<<<<<< HEAD
+=======
+    "redux-devtools": "^3.7.0",
+    "regenerator-runtime": "^0.13.7",
+>>>>>>> 5c0a67e7a1f5da73451968123067de5684e60539
     "style-loader": "^2.0.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.6.0"
@@ -51,6 +58,12 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/node_modules/jest-css-modules"
-    }
+    },
+    "setupFiles": [
+      "./client/src/enzyme.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
