@@ -6,10 +6,11 @@ import { findAverageStars, findAverageRecommend, createRatingBar } from './utils
 import './ratings.css';
 
 const Ratings = ({ meta }) => {
+  console.log('INSIDE RATINGS', meta)
   const averageAmountStars = findAverageStars(meta.ratings);
   const averageRecommendations = findAverageRecommend(meta.recommended);
   const ratingBars = createRatingBar(meta.ratings);
-  const size = meta.characteristics.Fit.value;
+  const size = meta.characteristics.Size.value;
   const comfort = meta.characteristics.Comfort.value;
   return (
     <div>

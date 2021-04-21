@@ -4,7 +4,7 @@ import { getReviews, getMetaData } from '../../actions/reviews.js';
 import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
 import Star from '../Star/Star.js';
-
+import './reviews.css';
 
 class Reviews extends React.Component {
   constructor() {
@@ -14,27 +14,25 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    // Get reviews from dummy data
+    // Get reviews from Atlier api
     dispatch(getReviews());
-    // Get meta data from dummy data
+    // Get meta data from Atlier api
     dispatch(getMetaData());
   }
 
 
   render() {
     const { reviews, dispatch } = this.props;
-    const style = {
-      display: 'grid',
-      gridTemplateColumns: '1fr 4fr'
-    }
+    const { isLoading, meta } = reviews;
+
     return (
       <div>
         <hr />
         {(reviews.isLoading) ? '' :
           <div>
             <h2>Reviews</h2>
-            <div style={style}>
-              <Ratings meta={reviews.meta} />
+            <div className='review-container'>
+              <Ratings meta={meta} />
               <ReviewList reviews={reviews.data} dispatch={dispatch} />
             </div>
           </div>

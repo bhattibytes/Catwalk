@@ -1,5 +1,3 @@
-import { reviewsData } from '../dummy_data/reviews.js';
-import { metaDataReviews } from '../dummy_data/meta-reviews.js';
 const initialState = {
   isLoading: true,
   sort: 'newest',
@@ -12,15 +10,15 @@ function reviewsReducer(state = initialState, action) {
     // Get all reviews based off of product id
     case 'GET_REVIEWS':
       return Object.assign({}, state, {
-        ...initialState,
-        data: reviewsData.results,
-        isLoading: false
+        ...state,
+        data: action.payload
       });
     // Get meta data for component
     case 'GET_META-DATA':
       return Object.assign({}, state, {
         ...state,
-        meta: metaDataReviews
+        meta: action.payload,
+        isLoading: false
       });
     // Sort reviews by filter (newest, helpful, relevance)
     case 'SORT_ORDER':
