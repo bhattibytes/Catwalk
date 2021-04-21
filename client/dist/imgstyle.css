@@ -135,6 +135,10 @@ button {
   margin: 0;
 }
 
+.labelFav {
+  margin: 0;
+}
+
 .zoom {
   transition: transform .2s;
 }
@@ -146,4 +150,15 @@ button {
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   cursor: crosshair;
+}
+
+.addFavOrBag {
+  transition: transform .2s; /* Animation */
+  width: 125px;
+  height: 125px;
+  margin: 0 auto;
+}
+
+.addFavOrBag:hover {
+  transform: scale(2);
 }

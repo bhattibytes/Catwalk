@@ -11,7 +11,7 @@ const productStylesGetThumbnails = (product_id) => {
   })
   .then(data => {
     var thumb = [];
-    //NEED TO SEE THE REAL DATA before this can be mapped!!! ////
+    //NEED TO SEE THE REAL DATA before this can be mapped properly!!! ////
     data.forEach(product => {
       thumb.push(product.results.photos[0].thumbnail_url);
     });

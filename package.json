@@ -51,6 +51,12 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(css|less)$": "<rootDir>/node_modules/jest-css-modules"
-    }
+    },
+    "setupFiles": [
+      "./client/src/enzyme.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
