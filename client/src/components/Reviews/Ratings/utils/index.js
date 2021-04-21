@@ -61,7 +61,7 @@ function createRatingBar(metaRatings) {
     const barObj = {
       rating: key,
       style: {
-        background: `linear-gradient(to right, orange ${percentage}%, #80808030 0%)`
+        background: `linear-gradient(to right, #4d4d4d ${percentage}%, #80808030 0%)`
       }
     }
     results.unshift(barObj);

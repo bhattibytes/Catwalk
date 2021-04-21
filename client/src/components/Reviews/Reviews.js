@@ -25,7 +25,7 @@ class Reviews extends React.Component {
     const { reviews, dispatch } = this.props;
     const style = {
       display: 'grid',
-      gridTemplateColumns: '1fr 3fr'
+      gridTemplateColumns: '1fr 4fr'
     }
     return (
       <div>
