@@ -33,8 +33,15 @@ export function getMetaData() {
  * reviews based off of type
 */
 export function sortOrder(sort) {
-  return {
-    type: 'SORT_ORDER',
-    payload: sort
-  };
+  return async function (dispatch) {
+    const response = await getReviewsReq(undefined, sort);
+    const reviews = response.data.results;
+    dispatch({
+      type: 'SORT_ORDER',
+      payload: {
+        sort: sort,
+        data: reviews
+      }
+    });
+  }
 }

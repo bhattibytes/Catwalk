@@ -24,7 +24,8 @@ function reviewsReducer(state = initialState, action) {
     case 'SORT_ORDER':
       return Object.assign({}, state, {
         ...state,
-        sort: action.payload
+        sort: action.payload.sort,
+        data: action.payload.data
       });
   }
   return state;
