@@ -10,3 +10,10 @@ import React from 'react';
 }
 
 export default SelectQuantity;
+
+// Here in the max=${props.max} we will need to refactor to put the data coming from props attached to state
+
+// <div className='selQty'>
+//       <button type="button" className="adjust-minus-qty"><span>-</span></button>
+//       <input type="text" ></input>
+//     </div>
