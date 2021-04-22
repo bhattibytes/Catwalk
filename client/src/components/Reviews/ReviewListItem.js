@@ -1,13 +1,16 @@
 import React from 'react';
 import Star from '../Star/Star.js';
+import moment from 'moment';
 
 const ReviewListItem = ({ review }) => {
   return (
     <div className='review'>
-      <div>
-        {review.reviewer_name}, {review.date}
+      <div className='review-star-date'>
+        <Star rating={review.rating} />
+        <div>
+          {review.reviewer_name}, {moment(review.date).format('MMMM DD, YYYY')}
+        </div>
       </div>
-      <Star rating={review.rating} />
       <h4>{review.body.slice(0, 100)}...</h4>
       <p>{review.summary}</p>
       <p>{(review.recommend) ? 'check' : 'no-check'} <i>I recommend this product</i></p>
