@@ -73,6 +73,39 @@ button {
   grid-template-rows: 10% 20% 20% 20% 15% 15%;
 }
 
+.fullScreen {
+  height: 350%;
+  width: 100%;
+  background-color: black;
+  display: grid;
+  grid-template-columns: 15% 10% 20% 20% 10% 15%;
+  grid-template-rows: 5% 5% 10% 20% 30% 30%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  scroll-snap-type: disabled;
+}
+
+body.bodyFull {
+  background-color: black;
+}
+
+.full {
+  background-color: grey;
+  grid-column: 6;
+  grid-row: 1;
+  opacity: .7;
+  z-index: 101;
+}
+
+.selectFull {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 6;
+}
+
 .select {
   width: 400px;
   height: 554px;
@@ -91,12 +124,14 @@ button {
   grid-column: 1;
   grid-row: 3;
   opacity: .5;
+  z-index: 101;
 }
 
 .forward {
   grid-column: 8;
   grid-row: 3;
   opacity: .5;
+  z-index: 101;
 }
 
 .product-info-right {
@@ -106,7 +141,7 @@ button {
   grid-column: 5;
   grid-row-start: 1;
   grid-row-end: 9;
-  border: 1px black solid;
+  border: 2px black solid;
 }
 
 .product-info-container {

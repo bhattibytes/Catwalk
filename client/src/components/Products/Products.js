@@ -18,6 +18,7 @@ class Products extends React.Component {
     this.setBorder = this.setBorder.bind(this);
     this.scrollUp = this.scrollUp.bind(this);
     this.scrollDown = this.scrollDown.bind(this);
+    this.showFullScreen = this.showFullScreen.bind(this);
   }
 
   show(e) {
@@ -112,6 +113,18 @@ class Products extends React.Component {
     }, 2000);
   }
 
+  showFullScreen (e) {
+    e.preventDefault();
+    console.log('showFullScreen was clicked');
+    if ($('.main-image-container').hasClass('main-view')) {
+      $('.main-image-container').removeClass('main-view').addClass('fullScreen bodyFull');
+      $('.selected-image-view').removeClass('select zoom').addClass('selectFull');
+    } else {
+      $('.main-image-container').removeClass('fullScreen bodyFull').addClass('main-view');
+      $('.selected-image-view').removeClass('selectFull').addClass('select zoom');
+    }
+  }
+
   componentDidMount () {
     this.setState({
       selected: this.state.fullSizeImage[0]
@@ -123,6 +136,7 @@ class Products extends React.Component {
   render() {
     return(
       <div className="container" style={{border: "solid black"}}>
+        <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
         <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>
         <div className="thumbnail-slider">
           <div className="viewport">
@@ -136,7 +150,7 @@ class Products extends React.Component {
         </div>
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
           <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected}/>
-        <div className="product-info-right">
+        <div className="product-info-right" >
           <ProductInfo images={this.state.thumbNailImages} show={this.show}/>
         </div>
       </div>
