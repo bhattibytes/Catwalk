@@ -7,6 +7,7 @@ import AddToBag from './AddToBag.js';
 import Favorite from './Favorite.js';
 import SelectQuantity from './SelectQuantity.js'
 import Star from '../Star/Star.js';
+import $ from 'jquery';
 
  var ProductInfo = (props) => {
   var images = props.images;
@@ -14,6 +15,11 @@ import Star from '../Star/Star.js';
     images = ['https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg'];
   }
   images = images.slice(0);
+
+  $("a[href='#bottom']").click(function() {
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    return false;
+  });
   return (
     <div className="product-info-container">
       <div className="product-star">

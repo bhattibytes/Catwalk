@@ -231,19 +231,4 @@ describe('CircleImageGallery', () => {
     component2.find('img').simulate('click');
     expect(clickFn).toHaveBeenCalled();
   });
-
 });
-
-
-
-{/* <Products />
-  <ThumbnailGallery/>
-  <MainImageView />
-  <ProductInfo />
-    <Star />
-    <ProductTitle />
-    <SelectStyle />
-    <CircleImageGallery />
-    <SelectSize />
-    <AddToBag />
-    <Favorite /> */}
