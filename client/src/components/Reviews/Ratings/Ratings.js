@@ -1,16 +1,15 @@
 import React from 'react';
 import Star from '../../Star/Star.js';
-import Size from './Size.js';
-import Comfort from './Comfort.js';
-import { findAverageStars, findAverageRecommend, createRatingBar } from './utils';
+import Characteristics from './Characteristics/Characteristics.js';
+import { findAverageStars, findAverageRecommend, createRatingBar, createCharacteristics } from './utils';
 import './ratings.css';
 
 const Ratings = ({ meta }) => {
   const averageAmountStars = findAverageStars(meta.ratings);
   const averageRecommendations = findAverageRecommend(meta.recommended);
   const ratingBars = createRatingBar(meta.ratings);
-  const size = meta.characteristics.Size || meta.characteristics.Fit;
-  const comfort = meta.characteristics.Comfort.value;
+  const characteristics = createCharacteristics(meta.characteristics)
+
   return (
     <div>
       <h3>Ratings & Reviews</h3>
@@ -31,12 +30,10 @@ const Ratings = ({ meta }) => {
           )}
         </div>
         <div>
-          {/* Average size review  */}
-          <Size size={size.value} />
-        </div>
-        <div>
-          {/* Average comfort review  */}
-          <Comfort comfort={comfort} />
+          {/* Average characteristics review  */}
+          {characteristics.map((characteristic, idx) =>
+            <Characteristics key={idx} characteristic={characteristic} />
+          )}
         </div>
       </div>
     </div>

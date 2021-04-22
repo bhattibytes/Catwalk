@@ -24,7 +24,7 @@ class Reviews extends React.Component {
   render() {
     const { reviews, dispatch } = this.props;
     const { isLoading, meta } = reviews;
-    console.log(reviews, 'parent review component')
+
     return (
       <div>
         <hr />

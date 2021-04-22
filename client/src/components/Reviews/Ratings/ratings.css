@@ -10,9 +10,9 @@
   width: 75%;
   height: 10px;
 }
-/*      Average Size Column      */
-.average-size {
-  width: 90%;
+/*      Average Characteristic Column      */
+.average-characteristic {
+  width: 95%;
 }
 
 .empty-slider {
@@ -68,81 +68,11 @@
   transform: rotate(180deg);
 }
 
-.sizes {
+.characteristic {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-family: sans-serif;
   font-size: 13px;
   font-weight: 100;
-}
-/*      Average Comfort Column      */
-.average-comfort {
-  width: 90%;
-}
-.empty-slider-comfort {
-  -webkit-appearance: none;
-  height: 10px;
-  width: 20%;
-  background: rgba(128, 128, 128, 0.19);
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-.empty-slider-comfort::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-}
-/*
-  Triangle slider
-  Overwrite the webkit custom slider into
-  an upside down triangle
-*/
-.slider-comfort {
-  -webkit-appearance: none;
-  height: 10px;
-  width: 20%;
-  background: rgba(128, 128, 128, 0.19);
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-}
-.slider-comfort::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: 5px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 16px solid black;
-  transform: rotate(180deg);
-}
-
-.slider-comfort::-moz-range-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: -13px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 16px solid black;
-  transform: rotate(180deg);
-}
-
-.comfort {
-  width: 83%;
-  font-family: sans-serif;
-  font-size: 13px;
-  font-weight: 100;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
+  text-align: -webkit-match-parent;
 }
