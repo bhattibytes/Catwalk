@@ -5,7 +5,7 @@ exports[`Products Component Should render correctly with no props 1`] = `
   className="container"
   style={
     Object {
-      "border": "solid red",
+      "border": "solid black",
     }
   }
 >
@@ -16,21 +16,25 @@ exports[`Products Component Should render correctly with no props 1`] = `
       className="viewport"
     >
       <ThumbnailGallery
+        borderStyle="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg"
         click={[Function]}
         image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg"
         key="13c3447174e077f86b8c140ea9d174f1_180x.jpg"
       />
       <ThumbnailGallery
+        borderStyle="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg"
         click={[Function]}
         image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/a56f2d740fc6595b186b085167b9496e_180x.jpg"
         key="a56f2d740fc6595b186b085167b9496e_180x.jpg"
       />
       <ThumbnailGallery
+        borderStyle="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg"
         click={[Function]}
         image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3eb4ef35474562e5a3eef2dabde35284_180x.jpg"
         key="3eb4ef35474562e5a3eef2dabde35284_180x.jpg"
       />
       <ThumbnailGallery
+        borderStyle="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg"
         click={[Function]}
         image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/132e7bcbb9e4e7ef7241213f588af9a5_180x.jpg"
         key="132e7bcbb9e4e7ef7241213f588af9a5_180x.jpg"

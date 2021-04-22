@@ -6,7 +6,7 @@ import React from 'react';
    }
   return (
     <div className="thumbnail">
-      <img src={props.image} width="50" height="100" onClick={props.click} className={classNm ? classNm : null}/>
+      <img src={props.image} width="95" height="125" onClick={props.click} className={classNm ? classNm +' thumb' : 'thumb'}/>
     </div>
   )
 }
