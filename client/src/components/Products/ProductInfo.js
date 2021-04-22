@@ -24,7 +24,7 @@ import $ from 'jquery';
     <div className="product-info-container">
       <div className="product-star">
         <Star rating={3.7}/>
-        <a href="#bottom">Read all reviews</a>
+        <a href="#bottom" className="read">Read all reviews</a>
       </div>
       <ProductTitle />
       <SelectStyle />

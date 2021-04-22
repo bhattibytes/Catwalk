@@ -74,7 +74,7 @@ class Products extends React.Component {
 
   render() {
     return(
-      <div className="container" style={{border: "solid red"}}>
+      <div className="container" style={{border: "solid black"}}>
         <div className="thumbnail-slider">
           <div className="viewport">
             {

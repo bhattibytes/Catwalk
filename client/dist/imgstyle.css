@@ -14,8 +14,24 @@
   margin-top: 5px;
 }
 
+.logo-img {
+  display: inline-block;
+  max-height: 100px;
+  max-width: 200px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.navBar {
+  background-color: rgb(233, 7, 132);
+  border-radius: 10px 10px 0 0;
+}
+
 .search {
+  display: inline-block;
   margin-bottom: 20px;
+  margin-left: 1000px;
 }
 
 button {
@@ -28,7 +44,7 @@ button {
 .main-view {
   grid-column: 3;
   grid-row-start: 1;
-  grid-row-end: 6;
+  grid-row-end: 7;
   overflow: hidden;
   display: grid;
   grid-template-columns: 5% 20% 25% 25% 20% 5%;
@@ -41,7 +57,7 @@ button {
   grid-column-start: 3;
   grid-column-end: 5;
   grid-row-start: 2;
-  grid-row-end: 6;
+  grid-row-end: 7;
 }
 
 .back {
@@ -72,6 +88,10 @@ button {
   grid-row-end: 7;
 }
 
+.read {
+  margin: 5px;
+}
+
 .product-star {
   display: grid;
   grid-column: 1;
@@ -96,10 +116,8 @@ button {
 }
 
 .cat {
-  margin-top: 5px;
+  margin: 5px;
   font-size: .5em;
-  margin-bottom: 5px;
-  margin-left: 5px;
 }
 
 .title {
@@ -123,15 +141,18 @@ button {
 }
 
 .selQty {
+  display: flexbox;
   margin-left: 5px;
   grid-column: 1;
-  height: 100px;
-  width: 100px;
-  opacity: 1
+  padding: 15px;
+  margin-left: 150px;
 }
 
 .selSize {
-  margin-left: 5px;
+  display: inline-flex;
+  align-self: auto;
+  margin-left: 150px;
+  padding: 15px;
 }
 
 .labelAdd {
@@ -147,11 +168,10 @@ button {
 }
 
 .zoom:hover {
-  -ms-transform: scale(5);
-  -webkit-transform: scale(5);
-  transform: scale(5);
+  -ms-transform: scale(6);
+  -webkit-transform: scale(6);
+  transform: scale(6);
   -webkit-font-smoothing: antialiased;
-  -webkit-text-size-adjust: 100%;
   cursor: crosshair;
 }
 
