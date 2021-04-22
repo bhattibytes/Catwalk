@@ -17,6 +17,15 @@
   width: 90%;
 }
 
+.summary {
+  font-size: 20px;
+}
+
+.more-less {
+  cursor: pointer;
+  color: #0000ffcf;
+}
+
 .thumbnails {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
