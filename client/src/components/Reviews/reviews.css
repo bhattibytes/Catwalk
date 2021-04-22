@@ -7,3 +7,25 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.action-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1em;
+  width: 50%;
+  margin-bottom: 5em;
+}
+
+.button {
+  border: 1px solid black;
+  padding: 12px;
+  font-family: sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  width: fit-content;
+}

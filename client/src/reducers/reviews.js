@@ -27,6 +27,12 @@ function reviewsReducer(state = initialState, action) {
         sort: action.payload.sort,
         data: action.payload.data
       });
+    // Load more reviews
+    case 'MORE_REVIEWS':
+      return state
+    // Add a review
+    case 'ADD_REVIEW':
+      return state
   }
   return state;
 }
