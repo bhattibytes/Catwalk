@@ -1,19 +1,32 @@
 .container {
   display: grid;
   grid-template-columns: 5% 5% 30% 10% 40% 10%;
-  grid-template-rows: 10% 20% 20% 20% 15% 15%;
+  grid-template-rows: 5% 5% 20% 20% 20% 15% 15%;
 }
 
 .thumbnail-slider {
   margin-left: 25px;
   grid-column: 1;
+  grid-row: 2;
+}
+
+.slide-up {
+  margin-left: 30px;
+  opacity: .7;
 }
 
 .viewport {
   height: 540px;
   width: 125px;
   overflow: scroll;
+  grid-row: 2;
+}
 
+.slide-down {
+  grid-row: 6;
+  margin-left: 30px;
+  margin-top: 30px;
+  opacity: .7;
 }
 
 .thumbnail {
@@ -53,7 +66,7 @@ button {
   max-height: 100%;
   grid-column: 3;
   grid-row-start: 1;
-  grid-row-end: 7;
+  grid-row-end: 8;
   overflow: hidden;
   display: grid;
   grid-template-columns: 5% 5% 20% 20% 20% 20% 5% 5%;

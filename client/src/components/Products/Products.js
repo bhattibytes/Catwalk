@@ -16,6 +16,8 @@ class Products extends React.Component {
     this.fowardButton = this.fowardButton.bind(this);
     this.backButton = this.backButton.bind(this);
     this.setBorder = this.setBorder.bind(this);
+    this.scrollUp = this.scrollUp.bind(this);
+    this.scrollDown = this.scrollDown.bind(this);
   }
 
   show(e) {
@@ -91,16 +93,40 @@ class Products extends React.Component {
     }
   }
 
+  scrollUp (e) {
+    e.preventDefault();
+    $('img.slide-down').show();
+    $('img.slide-up').hide();
+    var viewportHeight = 0;
+
+    $('.viewport').animate({
+      scrollTop: viewportHeight,
+    }, 2000);
+  }
+
+  scrollDown (e) {
+    e.preventDefault();
+    $('img.slide-down').hide();
+    $('img.slide-up').show();
+    var viewportHeight = $('.viewport').height();
+
+    $('.viewport').animate({
+      scrollTop: viewportHeight
+    }, 2000);
+  }
+
   componentDidMount () {
     this.setState({
       selected: this.state.fullSizeImage[0]
     })
     this.setBorder(this.state.thumbNailImages[0]);
+    $('img.slide-up').hide();
   }
 
   render() {
     return(
       <div className="container" style={{border: "solid black"}}>
+        <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>
         <div className="thumbnail-slider">
           <div className="viewport">
             {
@@ -111,6 +137,7 @@ class Products extends React.Component {
             }
           </div>
         </div>
+        <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
           <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected}/>
         <div className="product-info-right">
           <ProductInfo images={this.state.thumbNailImages} show={this.show}/>
