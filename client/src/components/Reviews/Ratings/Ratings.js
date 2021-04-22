@@ -6,11 +6,10 @@ import { findAverageStars, findAverageRecommend, createRatingBar } from './utils
 import './ratings.css';
 
 const Ratings = ({ meta }) => {
-  console.log('INSIDE RATINGS', meta)
   const averageAmountStars = findAverageStars(meta.ratings);
   const averageRecommendations = findAverageRecommend(meta.recommended);
   const ratingBars = createRatingBar(meta.ratings);
-  const size = meta.characteristics.Size.value;
+  const size = meta.characteristics.Size || meta.characteristics.Fit;
   const comfort = meta.characteristics.Comfort.value;
   return (
     <div>
@@ -22,7 +21,7 @@ const Ratings = ({ meta }) => {
       </div>
       {/* Average Meta Data  */}
       <div>
-        <p><b>{averageRecommendations * 100}% </b>of reviews recommend this product</p>
+        <p><b>{(averageRecommendations * 100).toFixed(0)}% </b>of reviews recommend this product</p>
         {/* Average bar graph  */}
         <div>
           {ratingBars.map((obj, idx) =>
@@ -33,7 +32,7 @@ const Ratings = ({ meta }) => {
         </div>
         <div>
           {/* Average size review  */}
-          <Size size={size} />
+          <Size size={size.value} />
         </div>
         <div>
           {/* Average comfort review  */}

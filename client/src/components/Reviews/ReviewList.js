@@ -9,7 +9,7 @@ const ReviewList = ({ reviews, dispatch }) => {
         <select onChange={(e) => dispatch(sortOrder(e.target.value))}>
           <option>newest</option>
           <option>helpful</option>
-          <option>relevance</option>
+          <option>relevant</option>
         </select>
       </div>
       <div>

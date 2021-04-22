@@ -26,7 +26,7 @@ describe('Utils helper functions', () => {
     const expectedObject = {
       rating: "5",
       style: {
-        background: `linear-gradient(to right, orange 50%, #80808030 0%)`
+        background: `linear-gradient(to right, #4d4d4d 50%, #80808030 0%)`
       }
     };
     // createRatingBar returns an array, grab the last item (object of 5th rating)
