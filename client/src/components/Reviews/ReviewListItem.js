@@ -13,7 +13,12 @@ const ReviewListItem = ({ review }) => {
       </div>
       <h4>{review.body.slice(0, 100)}...</h4>
       <p>{review.summary}</p>
-      <p>{(review.recommend) ? 'check' : 'no-check'} <i>I recommend this product</i></p>
+      {(review.recommend) ?
+        <div>
+          <span className='checkmark'>&#10003;</span>
+          <i>I recommend this product</i>
+        </div>
+      : ''}
       <p><b>Response: </b>{review.response}</p>
       <div>
         <p>Helpful? <b>Yes</b>({review.helpfulness}) | <b>Report</b></p>
