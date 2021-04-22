@@ -3,7 +3,7 @@ import ProductInfo from './ProductInfo.js';
 import styles from './relatedItems.module.css'
 
 const ProductCard = ({ product, image }) => {
-  console.log(product);
+
   return (
     <div className={styles.productCard}>
       {/* <button className='action-button' /> */}
