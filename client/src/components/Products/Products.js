@@ -25,9 +25,6 @@ class Products extends React.Component {
     if ($(e.currentTarget).hasClass('thumb')) {
       $(e.currentTarget).addClass('show-border');
     }
-    this.setState({
-      thumbBorder: e.currentTarget
-    });
     var thumb = this.state.thumbNailImages
     for (var i = 0; i < thumb.length; i++) {
       if (thumb[i] === e.currentTarget.src) {
@@ -54,7 +51,7 @@ class Products extends React.Component {
     var current = this.state.selected;
     if (current === fullImg[fullImg.length - 1]) {
       this.setState({
-        selected: fullImg[0],
+        selected: fullImg[0]
       });
       this.setBorder(images[0]);
       return;
@@ -62,7 +59,7 @@ class Products extends React.Component {
     for (var i = 0; i < fullImg.length; i++) {
       if (fullImg[i] === current) {
         this.setState({
-          selected: fullImg[i+1],
+          selected: fullImg[i+1]
         });
         this.setBorder(images[i+1]);
         return;
@@ -118,7 +115,7 @@ class Products extends React.Component {
   componentDidMount () {
     this.setState({
       selected: this.state.fullSizeImage[0]
-    })
+    });
     this.setBorder(this.state.thumbNailImages[0]);
     $('img.slide-up').hide();
   }

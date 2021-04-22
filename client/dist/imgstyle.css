@@ -18,7 +18,7 @@
 .viewport {
   height: 540px;
   width: 125px;
-  overflow: scroll;
+  overflow: hidden;
   grid-row: 2;
 }
 
