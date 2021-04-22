@@ -26,7 +26,7 @@ class ReviewListItem extends React.Component {
         </div>
         {/* Review Body */}
         <b className='summary'>{review.summary.slice(0, 60)}</b>
-        <p>{(!showMore && review.body.length > 250) ?
+        <div>{(!showMore && review.body.length > 250) ?
           <div>
             <p>{review.body.slice(0, 250) + '...'}</p>
             <a className='more-less' onClick={(e) => this.setState({ showMore: !showMore })}>Show More</a>
@@ -46,7 +46,7 @@ class ReviewListItem extends React.Component {
             }
           </div>
         }
-        </p>
+        </div>
         {/* Review's recommend */}
         {(review.recommend) ?
           <div>
