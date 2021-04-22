@@ -26,7 +26,7 @@ class Reviews extends React.Component {
     const { isLoading, meta } = reviews;
 
     return (
-      <div>
+      <div className='review-parent-container'>
         <hr />
         {(reviews.isLoading) ? '' :
           <div>

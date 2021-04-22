@@ -12,7 +12,7 @@ const ReviewListItem = ({ review }) => {
           {review.reviewer_name}, {moment(review.date).format('MMMM DD, YYYY')}
         </div>
       </div>
-      <h4>{review.body.slice(0, 100)}...</h4>
+      <h4>{review.body.slice(0, 60)}...</h4>
       <p>{review.summary}</p>
       {(review.recommend) ?
         <div>
