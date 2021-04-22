@@ -3,6 +3,7 @@ import Star from '../Star/Star.js';
 import moment from 'moment';
 
 const ReviewListItem = ({ review }) => {
+  const photos = review.photos;
   return (
     <div className='review'>
       <div className='review-star-date'>
@@ -20,6 +21,16 @@ const ReviewListItem = ({ review }) => {
         </div>
         : ''}
       <p><b>Response: </b>{review.response}</p>
+      {(photos.length > 0) ?
+        <div className='thumbnails'>
+          {photos.map((obj, idx) =>
+            <img key={idx} src={obj.url} className='thumbnail' />
+          )}
+        </div>
+        :
+        ""
+      }
+      <div></div>
       <div>
         <p>Helpful? <b>Yes</b>({review.helpfulness}) | <b>Report</b></p>
       </div>

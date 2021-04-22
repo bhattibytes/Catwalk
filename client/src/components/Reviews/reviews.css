@@ -1,3 +1,4 @@
+/*    Review Container    */
 .review-container {
   display: grid;
   grid-template-columns: 1fr 4fr;
@@ -8,6 +9,16 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.thumbnail {
+  height: 5em;
+  margin-right: 1%;
+  cursor: pointer;
+}
+
+.thumbnail:hover {
+  filter: opacity(0.5) drop-shadow(0 0 0 black);
+}
+/*    Action buttons for reviews    */
 .action-items {
   display: grid;
   grid-template-columns: 1fr 1fr;
