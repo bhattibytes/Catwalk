@@ -1,8 +1,8 @@
 import React from 'react';
-import StarRating from '../SharedComponents/StarRating.jsx'
+import Star from '../Star/Star.js'
 import styles from './relatedItems.module.css'
 
-const ProductInfo = ({ product }) => {
+const ProductInfo = ({product}) => {
   return (
     <div className={styles.productInfo}>
       <h5 className={styles.productText}>{product.category}</h5>

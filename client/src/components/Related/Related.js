@@ -1,17 +1,18 @@
 import React from 'react';
-import ProductCard from './ProductCard.jsx';
+import RelatedProductCards from './RelatedProductCards.js';
 import styles from './relatedItems.module.css';
-import { dummyProductStyles } from '../dummyData.js';g
+import { dummyProducts, dummyProductStyles } from './dummyData.js';
 
 class Related extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {dummyProducts, dummyProductStyles};
   }
   render() {
     return(
       <div>
-        <h2>Related Products</h2>
+        <h3 id={styles.relatedItemsTitle}>Related Items and Comparisons</h3>
+        <RelatedProductCards products={dummyProducts} />
       </div>
     );
   }
