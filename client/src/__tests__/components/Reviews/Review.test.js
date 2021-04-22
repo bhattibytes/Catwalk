@@ -7,24 +7,28 @@ import store from '../../../store.js';
 import { reviewsData } from '../../../dummy_data/reviews.js';
 
 describe('Review Component', () => {
-  let wrapper;
-
+  let reviewWrapper;
+  let reviewListWrapper;
   beforeEach(() => {
-    wrapper = mount(
-      <Review store={store} />
+    reviewWrapper = mount(
+      <Review store={store}  />
+    );
+    reviewListWrapper = mount(
+      <ReviewList reviews={reviewsData.results} />
     );
   });
   /* Check if the Review Component renders */
   it('Renders Review component', () => {
-    expect(wrapper.exists()).toBe(true);
+    expect(reviewWrapper.exists()).toBe(true);
   });
   /* Check if the ReviewList is being rendered */
   it('Renders ReviewList component', () => {
-    expect(wrapper.find(ReviewList).length).toBe(1);
+    expect(reviewListWrapper.exists()).toBe(true);
+    expect(reviewListWrapper.props().reviews).toEqual(reviewsData.results);
   });
   /* Check if the ReviewListItem is being rendered based off of dummy data */
   it('Renders ReviewListItem components', () => {
     const reviewsLength = reviewsData.results.length
-    expect(wrapper.find(ReviewListItem).length).toBe(reviewsLength);
+    expect(reviewListWrapper.find(ReviewListItem).length).toBe(reviewsLength);
   });
 });
