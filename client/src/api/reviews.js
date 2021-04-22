@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { GITHUB_TOKEN } from '../config.js';
 
-const getReviewsReq = (id = 17070, sort='newest') =>
+const getReviewsReq = (id = 17067, sort='newest') =>
   axios({
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&sort=${sort}`,
@@ -10,7 +10,7 @@ const getReviewsReq = (id = 17070, sort='newest') =>
     }
   });
 
-const getReviewsMetaReq = (id = 17070) =>
+const getReviewsMetaReq = (id = 17067) =>
   axios({
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${id}`,

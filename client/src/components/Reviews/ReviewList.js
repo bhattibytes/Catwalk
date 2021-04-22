@@ -1,6 +1,6 @@
 import React from 'react';
 import ReviewListItem from './ReviewListItem.js';
-import { sortOrder } from '../../actions/reviews.js';
+import { sortOrder, moreReviews, addReview } from '../../actions/reviews.js';
 
 const ReviewList = ({ reviews, dispatch }) => {
   return (
@@ -13,9 +13,21 @@ const ReviewList = ({ reviews, dispatch }) => {
         </select>
       </div>
       <div>
-      {reviews.map((review, idx) =>
-        <ReviewListItem key={idx} review={review} />
-      )}
+        {reviews.map((review, idx) =>
+          <ReviewListItem key={idx} review={review} />
+        )}
+      </div>
+      {/* Action items for Reviews */}
+      <div className='action-items'>
+        <div className='action-buttons'>
+          <div
+            onClick={(e) => dispatch(moreReviews())}
+            className='button'>MORE REVIEWS</div>
+          <div
+            onClick={(e) => dispatch(addReview())}
+            className='button'>ADD A REVIEW +</div>
+        </div>
+        <div></div>
       </div>
     </div>
   )

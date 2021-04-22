@@ -68,5 +68,60 @@ function createRatingBar(metaRatings) {
   }
   return results;
 }
+/**
+ * @param {characteristics} obj
+ * createCharacteristicArr takes in an object of characteristics and returns an
+ * array of objects for each type of characteristic to be rendered in the
+ * Characteristic component
+ */
+function createCharacteristics(characteristics) {
+  const results = new Map();
+  const characteristicsMap = {
+    Size: {
+      type: 'Size',
+      beginning: 'Too tight',
+      middle: 'Perfect',
+      end: 'Too long',
+    },
+    Width: {
+      type: 'Width',
+      beginning: 'Too tight',
+      middle: 'Perfect',
+      end: 'Too long',
+    },
+    Comfort: {
+      type: 'Comfort',
+      beginning: 'Uncomfortable',
+      middle: 'Ok',
+      end: 'Perfect'
+    },
+    Quality: {
+      type: 'Quality',
+      beginning: 'Poor',
+      middle: 'Expected',
+      end: 'Perfect'
+    },
+    Length: {
+      type: 'Length',
+      beginning: 'Too short',
+      middle: 'Perfect',
+      end: 'Too long'
+    },
+    Fit: {
+      type: 'Fit',
+      beginning: 'Too tight',
+      middle: 'Perfect',
+      end: 'Too long',
+    }
+  };
+  const keys = Object.keys(characteristics);
+  for (let key of keys) {
+    // Create a copy of characteristic object
+    const copy = Object.assign({}, characteristics[key]);
+    const characteristic = Object.assign(copy, characteristicsMap[key]);
+    results.set(key, characteristic);
+  }
+  return Array.from(results.values())
+}
 
-export { findAverageStars, findAverageRecommend, createRatingBar };
+export { findAverageStars, findAverageRecommend, createRatingBar, createCharacteristics };
