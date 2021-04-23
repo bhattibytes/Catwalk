@@ -45,3 +45,15 @@ export function sortOrder(sort) {
     });
   }
 }
+
+export function moreReviews() {
+  return {
+    type: 'MORE_REVIEWS'
+  }
+}
+
+export function addReview() {
+  return {
+    type: 'ADD_REVIEW'
+  }
+}
