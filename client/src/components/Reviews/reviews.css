@@ -8,6 +8,15 @@
   grid-template-columns: 1fr 3fr;
 }
 
+.review-items-container {
+  height: 30em;
+  padding: 2%;
+  overflow: scroll;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  border: 1px solid #b3b3b37d;
+}
+
 .review-star-date {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -15,6 +24,7 @@
 
 .review {
   width: 90%;
+  margin-bottom: 1%;
 }
 
 .summary {
@@ -33,12 +43,12 @@
   width: 50%;
 }
 
-.thumbnail {
+.review-thumbnail {
   height: 5em;
   cursor: pointer;
 }
 
-.thumbnail:hover {
+.review-thumbnail:hover {
   filter: opacity(0.5) drop-shadow(0 0 0 black);
 }
 /*    Action buttons for reviews    */

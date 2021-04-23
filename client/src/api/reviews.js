@@ -1,16 +1,16 @@
 import axios from 'axios';
 import { GITHUB_TOKEN } from '../config.js';
 
-const getReviewsReq = (id = 17067, sort='newest') =>
+const getReviewsReq = (id = 17068, sort='relevant', page=1) =>
   axios({
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&sort=${sort}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&page=${page}&sort=${sort}&count=2`,
     headers: {
       Authorization: GITHUB_TOKEN.value
     }
   });
 
-const getReviewsMetaReq = (id = 17067) =>
+const getReviewsMetaReq = (id = 17068) =>
   axios({
     method: 'GET',
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${id}`,
