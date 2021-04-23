@@ -27,7 +27,7 @@ describe('Products Component', () => {
       <Products />
     )
     props = {
-      selected: 'testURL'
+      selected: 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg'
     }
   });
 
@@ -40,7 +40,11 @@ describe('Products Component', () => {
   });
 
   it('Should add an image url to props.selected when ComponentDidMount is called', () => {
-    expect(props.selected).toBe('testURL');
+    expect(typeof props.selected === 'string').toBe(true);
+  });
+
+  it('Should expect the selected prop to be a URL', () => {
+    expect(props.selected.includes('https://cdn.shopify.com')).toBe(true);
   });
 
   it('Should render nested Components', () => {
@@ -190,15 +194,41 @@ describe('ProductInfo', () => {
 
 });
 
+describe('CircleImageGallery', () => {
+  const component = shallow(<CircleImageGallery />);
+  const clickFn = jest.fn();
+  let wrapper;
+  var props;
 
-{/* <Products />
-  <ThumbnailGallery/>
-  <MainImageView />
-  <ProductInfo />
-    <Star />
-    <ProductTitle />
-    <SelectStyle />
-    <CircleImageGallery />
-    <SelectSize />
-    <AddToBag />
-    <Favorite /> */}
+  beforeEach(() => {
+    wrapper = mount(
+      <CircleImageGallery {...props}/>
+    )
+    props = {
+      images: ['https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg'],
+      image: 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg'
+    }
+  });
+
+  it('Renders the CircleImageGallery Component', () => {
+    expect(wrapper.exists()).toBe(true);
+  });
+
+  it('Should expect the images prop to be an Array', () => {
+    expect(Array.isArray(props.images)).toBe(true);
+  });
+
+  it('Should expect the image prop to be a string', () => {
+    expect(typeof props.image === 'string').toBe(true);
+  });
+
+  it('Should expect the image prop to be a URL', () => {
+    expect(props.image.includes('https://cdn.shopify.com')).toBe(true);
+  });
+
+  it('Should show next or previous fullsized image when clicked', () => {
+    const component2 = shallow(<CircleImageGallery show={clickFn} />);
+    component2.find('img').simulate('click');
+    expect(clickFn).toHaveBeenCalled();
+  });
+});

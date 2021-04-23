@@ -7,18 +7,24 @@ import AddToBag from './AddToBag.js';
 import Favorite from './Favorite.js';
 import SelectQuantity from './SelectQuantity.js'
 import Star from '../Star/Star.js';
+import $ from 'jquery';
 
  var ProductInfo = (props) => {
   var images = props.images;
   if (images === undefined) {
-    images = [];
+    images = ['https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg'];
   }
   images = images.slice(0);
+
+  $("a[href='#bottom']").click(function() {
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    return false;
+  });
   return (
     <div className="product-info-container">
       <div className="product-star">
         <Star rating={3.7}/>
-        <a href="#bottom">Read all reviews</a>
+        <a href="#bottom" className="read">Read all reviews</a>
       </div>
       <ProductTitle />
       <SelectStyle />

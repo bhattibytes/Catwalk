@@ -1,4 +1,4 @@
-import { findAverageStars, findAverageRecommend, createRatingBar } from '../../../../components/Reviews/Ratings/utils';
+import { findAverageStars, findAverageRecommend, createRatingBar, createCharacteristics } from '../../../../components/Reviews/Ratings/utils';
 import { metaDataReviews } from '../../../../dummy_data/meta-reviews.js';
 
 describe('Utils helper functions', () => {
@@ -32,5 +32,47 @@ describe('Utils helper functions', () => {
     // createRatingBar returns an array, grab the last item (object of 5th rating)
     const actualObject = createRatingBar(ratings)[0];
     expect(actualObject).toMatchObject(expectedObject);
+  });
+  /**
+   *
+   */
+  it('createCharacteristics should return an array based off each characteristic objects', () => {
+    const { characteristics } = metaDataReviews;
+    const expectedArr = [
+      {
+        id: 57222,
+        value: '4.0000000000000000',
+        type: 'Fit',
+        beginning: 'Too tight',
+        middle: 'Perfect',
+        end: 'Too long'
+      },
+      {
+        id: 57223,
+        value: '3.5000000000000000',
+        type: 'Length',
+        beginning: 'Too short',
+        middle: 'Perfect',
+        end: 'Too long'
+      },
+      {
+        id: 57224,
+        value: '5.0000000000000000',
+        type: 'Comfort',
+        beginning: 'Uncomfortable',
+        middle: 'Ok',
+        end: 'Perfect'
+      },
+      {
+        id: 57225,
+        value: '4.0000000000000000',
+        type: 'Quality',
+        beginning: 'Poor',
+        middle: 'Expected',
+        end: 'Perfect'
+      }
+    ];
+    const actualArr = createCharacteristics(characteristics);
+    expect(actualArr).toMatchObject(expectedArr);
   });
 });

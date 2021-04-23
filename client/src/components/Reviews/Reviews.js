@@ -4,6 +4,7 @@ import { getReviews, getMetaData } from '../../actions/reviews.js';
 import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
 import Star from '../Star/Star.js';
+import Modal from './Modal/Modal.js';
 import './reviews.css';
 
 class Reviews extends React.Component {
@@ -23,10 +24,10 @@ class Reviews extends React.Component {
 
   render() {
     const { reviews, dispatch } = this.props;
-    const { isLoading, meta } = reviews;
-    console.log(reviews, 'parent review component')
+    const { isLoading, isModalOn, meta } = reviews;
+
     return (
-      <div>
+      <div className='review-parent-container'>
         <hr />
         {(reviews.isLoading) ? '' :
           <div>
@@ -36,6 +37,11 @@ class Reviews extends React.Component {
               <ReviewList reviews={reviews.data} dispatch={dispatch} />
             </div>
           </div>
+        }
+        {(isModalOn.value) ?
+          <Modal image={isModalOn.image} dispatch={dispatch} />
+          :
+          ''
         }
       </div>
     );
