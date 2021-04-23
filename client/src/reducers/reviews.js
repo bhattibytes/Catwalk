@@ -1,5 +1,9 @@
 const initialState = {
   isLoading: true,
+  isModalOn: {
+    value: false,
+    image: null
+  },
   sort: 'newest',
   data: [],
   meta: {}
@@ -26,6 +30,15 @@ function reviewsReducer(state = initialState, action) {
         ...state,
         sort: action.payload.sort,
         data: action.payload.data
+      });
+    // Show image via modal
+    case 'TOGGLE_MODAL':
+      return Object.assign({}, state, {
+        ...state,
+        isModalOn: {
+          value: !state.isModalOn.value,
+          image: action.payload
+        }
       });
     // Load more reviews
     case 'MORE_REVIEWS':

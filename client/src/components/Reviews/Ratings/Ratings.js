@@ -15,7 +15,7 @@ const Ratings = ({ meta }) => {
       <h3>Ratings & Reviews</h3>
       {/* Average rating  */}
       <div>
-        <h2>{averageAmountStars.toFixed(1)}</h2>
+        <h2 className='average-rating'>{averageAmountStars.toFixed(1)}</h2>
         <Star rating={averageAmountStars} />
       </div>
       {/* Average Meta Data  */}

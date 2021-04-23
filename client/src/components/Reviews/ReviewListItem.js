@@ -1,5 +1,6 @@
 import React from 'react';
 import Star from '../Star/Star.js';
+import { toggleModal } from '../../actions/reviews.js';
 import moment from 'moment';
 
 class ReviewListItem extends React.Component {
@@ -11,7 +12,7 @@ class ReviewListItem extends React.Component {
   }
 
   render() {
-    const { review } = this.props;
+    const { review, dispatch } = this.props;
     const { photos } = review;
     const { showMore } = this.state;
 
@@ -36,9 +37,13 @@ class ReviewListItem extends React.Component {
             {/* Review's thumbnails (images) */}
             <p>{review.body}</p>
             {(photos.length > 0) ?
-              <div className='thumbnails'>
+              <div className='review-thumbnails'>
                 {photos.map((obj, idx) =>
-                  <img key={idx} src={obj.url} className='thumbnail' />
+                  <img
+                    key={idx}
+                    src={obj.url}
+                    onClick={()=>dispatch(toggleModal(obj.url))}
+                    className='thumbnail' />
                 )}
               </div>
               :

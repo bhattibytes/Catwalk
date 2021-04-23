@@ -46,6 +46,13 @@ export function sortOrder(sort) {
   }
 }
 
+export function toggleModal(image) {
+  return {
+    type: 'TOGGLE_MODAL',
+    payload: image
+  }
+}
+
 export function moreReviews() {
   return {
     type: 'MORE_REVIEWS'

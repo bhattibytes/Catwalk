@@ -14,7 +14,7 @@ const ReviewList = ({ reviews, dispatch }) => {
       </div>
       <div>
         {reviews.map((review, idx) =>
-          <ReviewListItem key={idx} review={review} />
+          <ReviewListItem key={idx} review={review} dispatch={dispatch} />
         )}
       </div>
       {/* Action items for Reviews */}
