@@ -2,7 +2,8 @@ import React from 'react';
 import ProductInfo from './ProductInfo.js';
 import styles from './relatedItems.module.css'
 
-const ProductCard = ({ product, image }) => {
+
+const ProductCard = ({ product, image, feature }) => {
 
   return (
     <div className={styles.productCard}>

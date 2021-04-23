@@ -1,0 +1,21 @@
+
+#relatedItemsTitle {
+  padding: 0px;
+  margin: 20px 48px 5px;
+}
+#outfitTitle {
+  padding: 0px;
+  margin: 20px 48px 5px;
+}
+#relatedProductsContainer {
+
+  width: 800px;
+  height: 700px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 25px 1fr 40px 1fr;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
