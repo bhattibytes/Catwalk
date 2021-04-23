@@ -65,6 +65,47 @@ let dummyRelatedProducts = [
   17071
 ]
 
+let dummyFeature = [
+    {
+        "id": 1,
+        "name": "Air Minis 250",
+        "slogan": "Full court support",
+        "description": "This optimized air cushion pocket reduces impact but keeps a perfect balance underfoot.",
+        "category": "Basketball Shoes",
+        "default_price": "0",
+        "features": [
+        {
+                "feature": "Sole",
+                "value": "Rubber"
+            },
+        {
+                "feature": "Material",
+                "value": "FullControlSkin"
+            },
+        // ...
+        ],
+    },
+    {
+        "id": 11,
+        "name": "Air Minis 250",
+        "slogan": "Full court support",
+        "description": "This optimized air cushion pocket reduces impact but keeps a perfect balance underfoot.",
+        "category": "Basketball Shoes",
+        "default_price": "0",
+        "features": [
+        {
+                "feature": "Test",
+                "value": "Test"
+            },
+        {
+                "feature": "Test",
+                "value": "Test"
+            },
+        // ...
+        ],
+    }
+]
+
 let dummyProductStyles = {
   "product_id": "17071",
   "results": [
@@ -467,4 +508,4 @@ let dummyProductStyles = {
   ]
 }
 
-export {dummyProducts, dummyRelatedProducts, dummyProductStyles};
+export {dummyProducts, dummyRelatedProducts, dummyProductStyles, dummyFeature};

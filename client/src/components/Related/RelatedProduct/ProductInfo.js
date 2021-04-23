@@ -1,5 +1,5 @@
 import React from 'react';
-import Star from '../Star/Star.js'
+import Star from '../../Star/Star.js'
 import styles from './relatedItems.module.css'
 
 const ProductInfo = ({product}) => {
