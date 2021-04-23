@@ -64,6 +64,12 @@ export function toggleModal(image) {
   }
 }
 
+export function toggleFormModal(image) {
+  return {
+    type: 'TOGGLE_FORM_MODAL'
+  }
+}
+
 export function moreReviews() {
   return {
     type: 'MORE_REVIEWS'

@@ -1,17 +1,19 @@
 import React from 'react';
 import ReviewListItem from './ReviewListItem.js';
-import { sortOrder, moreReviews, getReviews, addReview } from '../../actions/reviews.js';
+import { sortOrder, moreReviews, getReviews, toggleFormModal } from '../../actions/reviews.js';
 
 const ReviewList = ({ reviews, dispatch, hasMoreReviews }) => {
   return (
     <div>
       <div>
+        {/* Sort filter */}
         <select onChange={(e) => dispatch(sortOrder(e.target.value))}>
           <option>relevant</option>
           <option>newest</option>
           <option>helpful</option>
         </select>
       </div>
+      {/* Reviews container */}
       <div className='review-items-container'>
         {reviews.map((review, idx) =>
           <ReviewListItem key={idx} review={review} dispatch={dispatch} />
@@ -19,16 +21,16 @@ const ReviewList = ({ reviews, dispatch, hasMoreReviews }) => {
       </div>
       {/* Action items for Reviews */}
       <div className='action-items'>
+        {/* MORE REVIEWS Button */}
         <div className='action-buttons'>
           {(hasMoreReviews) ?
             <div
               onClick={(e) => dispatch(getReviews())}
-              className='button'>MORE REVIEWS</div>
-            :
-            ""
+              className='button'>MORE REVIEWS</div> : ""
           }
+          {/* ADD A REVIEW Button */}
           <div
-            onClick={() => dispatch(addReview())}
+            onClick={() => dispatch(toggleFormModal())}
             className='button'>ADD A REVIEW +</div>
         </div>
         <div></div>

@@ -4,6 +4,7 @@ const initialState = {
     value: false,
     image: null
   },
+  isFormModalOn: false,
   hasMoreReviews: true,
   sort: 'relevant',
   data: [],
@@ -45,7 +46,7 @@ function reviewsReducer(state = initialState, action) {
         hasMoreReviews: true,
         page: 2
       });
-    // Show image via modal
+    // Show thumbnail image via modal
     case 'TOGGLE_MODAL':
       return Object.assign({}, state, {
         ...state,
@@ -53,6 +54,12 @@ function reviewsReducer(state = initialState, action) {
           value: !state.isModalOn.value,
           image: action.payload
         }
+      });
+    // Show form for adding review via modal
+    case 'TOGGLE_FORM_MODAL':
+      return Object.assign({}, state, {
+        ...state,
+        isFormModalOn: !state.isFormModalOn
       });
     // Load more reviews. Increment page counter
     case 'MORE_REVIEWS':

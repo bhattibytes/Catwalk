@@ -5,6 +5,7 @@ import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
 import Star from '../Star/Star.js';
 import Modal from './Modal/Modal.js';
+import FormModal from './Form/FormModal.js';
 import './reviews.css';
 
 class Reviews extends React.Component {
@@ -24,7 +25,7 @@ class Reviews extends React.Component {
 
   render() {
     const { reviews, dispatch } = this.props;
-    const { isLoading, isModalOn, hasMoreReviews, meta } = reviews;
+    const { isLoading, isModalOn, isFormModalOn, hasMoreReviews, meta } = reviews;
     return (
       <div className='review-parent-container'>
         <hr />
@@ -37,10 +38,13 @@ class Reviews extends React.Component {
             </div>
           </div>
         }
+        {/* Modal for thumbnail images */}
         {(isModalOn.value) ?
-          <Modal image={isModalOn.image} dispatch={dispatch} />
-          :
-          ''
+          <Modal image={isModalOn.image} dispatch={dispatch} /> : ''
+        }
+        {/* Modal for adding a review form */}
+        {(isFormModalOn) ?
+          <FormModal dispatch={dispatch} /> : ''
         }
       </div>
     );
