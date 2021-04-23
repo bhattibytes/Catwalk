@@ -42,8 +42,8 @@ class ReviewListItem extends React.Component {
                   <img
                     key={idx}
                     src={obj.url}
-                    onClick={()=>dispatch(toggleModal(obj.url))}
-                    className='thumbnail' />
+                    onClick={() => dispatch(toggleModal(obj.url))}
+                    className='review-thumbnail' />
                 )}
               </div>
               :

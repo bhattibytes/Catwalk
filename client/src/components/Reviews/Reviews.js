@@ -15,7 +15,7 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    // Get reviews from Atlier api
+    // Get reviews from Atlier api (page 1)
     dispatch(getReviews());
     // Get meta data from Atlier api
     dispatch(getMetaData());
@@ -24,8 +24,7 @@ class Reviews extends React.Component {
 
   render() {
     const { reviews, dispatch } = this.props;
-    const { isLoading, isModalOn, meta } = reviews;
-
+    const { isLoading, isModalOn, hasMoreReviews, meta } = reviews;
     return (
       <div className='review-parent-container'>
         <hr />
@@ -34,7 +33,7 @@ class Reviews extends React.Component {
             <h2>Reviews</h2>
             <div className='review-container'>
               <Ratings meta={meta} />
-              <ReviewList reviews={reviews.data} dispatch={dispatch} />
+              <ReviewList reviews={reviews.data} dispatch={dispatch} hasMoreReviews={hasMoreReviews} />
             </div>
           </div>
         }
