@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-columns: 5% 5% 30% 10% 40% 10%;
+  grid-template-columns: 5% 5% 39% 40% 10% 1%;
   grid-template-rows: 5% 5% 20% 20% 20% 15% 15%;
 }
 
@@ -76,7 +76,7 @@ button {
 .fullScreen {
   height: 350%;
   width: 100%;
-  background-color: black;
+  background-color: #000000cd;
   display: grid;
   grid-template-columns: 15% 10% 20% 20% 10% 15%;
   grid-template-rows: 5% 5% 10% 20% 30% 30%;
@@ -93,14 +93,14 @@ body.bodyFull {
 
 .full {
   background-color: grey;
-  grid-column: 6;
+  grid-column: 5;
   grid-row: 1;
-  opacity: .7;
+  opacity: .3;
   z-index: 101;
 }
 
 .selectFull {
-  grid-column-start: 3;
+  grid-column-start: 2;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 6;
@@ -138,7 +138,8 @@ body.bodyFull {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 10% 20% 20% 20% 15% 15%;
-  grid-column: 5;
+  grid-column-start: 4;
+  grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 9;
   border: 2px black solid;
@@ -263,3 +264,25 @@ body.bodyFull {
   height: 100px;
   width: 100px;
 }
+
+
+/* .fullscreen-global {
+  height: 100%;
+  width: 100%;
+  -webkit-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  overflow: auto;
+
+  display: -webkit-flex;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+
+  background-color: white;
+  transition: background-color 1s ease;
+} */
