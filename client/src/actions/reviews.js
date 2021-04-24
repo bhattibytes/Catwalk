@@ -4,12 +4,23 @@ import { getReviewsReq, getReviewsMetaReq } from '../api/reviews.js';
  * from Atlier api
  */
 export function getReviews() {
-  return async function (dispatch) {
-    const response = await getReviewsReq();
-    const reviews = response.data.results;
+  return async function (dispatch, getState) {
+    // Get the current state of reviews
+    const { reviews } = getState('reviews');
+    // Get the page and sort of reviews
+    const { page, sort } = reviews;
+    const response = await getReviewsReq(undefined, sort, page);
+    const reviewsData = response.data.results;
+    // If reviews has less than 2, update hasMoreReviews state to false
+    if (reviewsData.length < 2) {
+      dispatch({
+        type: 'HAS_NO_REVIEWS',
+      });
+    }
+    // Update reviews 2 more items
     dispatch({
       type: 'GET_REVIEWS',
-      payload: reviews
+      payload: reviewsData
     });
   }
 };
@@ -32,17 +43,30 @@ export function getMetaData() {
  * sortOrder receives a string of how to sort
  * reviews based off of type
 */
-export function sortOrder(sort) {
-  return async function (dispatch) {
-    const response = await getReviewsReq(undefined, sort);
-    const reviews = response.data.results;
-    dispatch({
+export function sortOrder(newSort) {
+  return async function (dispatch, getState) {
+    const response = await getReviewsReq(undefined, newSort, 1);
+    const reviewsData = response.data.results;
+    await dispatch({
       type: 'SORT_ORDER',
       payload: {
-        sort: sort,
-        data: reviews
+        sort: newSort,
+        data: reviewsData
       }
     });
+  }
+}
+
+export function toggleModal(image) {
+  return {
+    type: 'TOGGLE_MODAL',
+    payload: image
+  }
+}
+
+export function toggleFormModal(image) {
+  return {
+    type: 'TOGGLE_FORM_MODAL'
   }
 }
 
