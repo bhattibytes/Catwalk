@@ -2,7 +2,6 @@ import React, {useEffect, useContext, useState} from 'react';
 import ProductCard from './ProductCard.js'
 import styles from './relatedItems.module.css'
 import AddOutfit from './AddOutfit.js'
-import { dummyProductStyles, dummyFeature } from './dummyData.js'
 
 const YourOutfitCards = (props) => {
    // track left most card index
@@ -11,7 +10,7 @@ const YourOutfitCards = (props) => {
    // track relative movement of carousel to get true index
    const [movement, setMovement] = useState(0);
 
-   let relatedItems = props.products;
+   let relatedItems = props.dummyData.dummyRelatedProductsId;
    let displayedItems = relatedItems.slice(leftIndex, leftIndex + 3);
 
    // onclick function for right arrow button
@@ -30,8 +29,8 @@ const YourOutfitCards = (props) => {
     <div id={styles.relatedProductsContainer}>
     {leftIndex === 0 ? <div></div> : <button className={styles.carouselButton} onClick={previousItem}><i className="fas fa-angle-double-left"></i></button>}
     <AddOutfit />
-    {displayedItems.map((product, index) => {
-      return <ProductCard product={product} image={dummyProductStyles.results[1].photos[0].thumbnail_url} feature={dummyFeature} key={index} />
+    {displayedItems.map((relatedId, index) => {
+      return <ProductCard relatedId={relatedId} image={props.dummyData.dummyProductStyles.results[1].photos[0].thumbnail_url} data={props.dummyData} movement={movement} key={index} index={index}/>
     })}
     {leftIndex === relatedItems.length - 3 ?
       null : <button className={styles.carouselButton} onClick={nextItem}><i className="fas fa-angle-double-right"></i></button>
