@@ -43,11 +43,12 @@
   margin: 20px 48px 5px;
 }
 .itemCard {
+  margin: 8px;
   margin-left: 3%;
   margin-right: 3%;
   border-width: 1px;
-  border-color: black;
   border-style: solid;
+  border-width: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
