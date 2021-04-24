@@ -1,25 +1,32 @@
 
-#relatedItemsTitle {
-  padding: 0px;
-  margin: 20px 48px 5px;
-}
 #relatedProductsContainer {
   display: grid;
-  grid-template-columns: 250px 250px 250px 250px 250px;
-  grid-template-rows: 320px;
-  gap: 0px 0px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 1fr 1fr 40px;
+}
+.carouselButton {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin: auto;
   padding: 0px;
-  margin: 20px 40px 20px;
+  background-color: rgb(192, 174, 12);
+  border-radius: 50%;
+  border-width: thin;
+  cursor: pointer;
 }
 .productCard {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 65% 35%;
+  grid-template-rows: 3fr 2fr;
   gap: 0px 0px;
-  /* padding: 9px; */
   border-style: solid;
   border-width: 2px;
   margin: 8px;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 .productText {
   margin: 5px;
@@ -51,12 +58,10 @@
   display: block;
   width: 30px;
   height: 30px;
-  background-color: #5fD9BD;
+  background-color: rgb(192, 174, 12);
   border-radius: 50%;
   border-width: thin;
   cursor: pointer;
 }
 
-.addText {
-  font-family: 'Open Sans', sans-serif;
-}
+
