@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getProducts, getImages } from '../../actions/products.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
@@ -8,8 +10,8 @@ class Products extends React.Component {
   constructor() {
     super();
     this.state = {
-      thumbNailImages: ['https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/a56f2d740fc6595b186b085167b9496e_180x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3eb4ef35474562e5a3eef2dabde35284_180x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/132e7bcbb9e4e7ef7241213f588af9a5_180x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3bdc99d04fdd3d9fccd91b45353087da_720x.jpg?v=1618588957'],
-      fullSizeImage: ['https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_2400x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/a56f2d740fc6595b186b085167b9496e_2400x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3eb4ef35474562e5a3eef2dabde35284_2400x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/132e7bcbb9e4e7ef7241213f588af9a5_2400x.jpg', 'https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3bdc99d04fdd3d9fccd91b45353087da_2400x.jpg?v=1618588957'],
+      thumbNailImages: [],
+      fullSizeImage: [],
       selected: null
     };
     this.show = this.show.bind(this);
@@ -19,6 +21,19 @@ class Products extends React.Component {
     this.scrollUp = this.scrollUp.bind(this);
     this.scrollDown = this.scrollDown.bind(this);
     this.showFullScreen = this.showFullScreen.bind(this);
+  }
+
+  async componentDidMount () {
+    const { dispatch } = this.props;
+    // Get reviews from Atlier api
+    await dispatch(getProducts());
+    this.setState({
+      thumbNailImages: this.props.products.thumbNailImages,
+      fullSizeImage: this.props.products.fullSizeImage,
+      selected: this.props.products.fullSizeImage[0]
+    })
+    this.setBorder(this.props.products.thumbNailImages[0]);
+    $('img.slide-up').hide();
   }
 
   show(e) {
@@ -124,15 +139,10 @@ class Products extends React.Component {
     }
   }
 
-  componentDidMount () {
-    this.setState({
-      selected: this.state.fullSizeImage[0]
-    });
-    this.setBorder(this.state.thumbNailImages[0]);
-    $('img.slide-up').hide();
-  }
+
 
   render() {
+
     return(
       <div className="container">
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
@@ -140,9 +150,8 @@ class Products extends React.Component {
         <div className="thumbnail-slider">
           <div className="viewport">
             {
-              this.state.thumbNailImages.map(image => {
-                var imgid = image.split('/')[10];
-                return  <ThumbnailGallery image={image} key={imgid} click={this.show} borderStyle={this.state.thumbBorder}/>
+              this.state.thumbNailImages.map((image, i) => {
+                return  <ThumbnailGallery image={image} key={i} click={this.show}/>
               })
             }
           </div>
@@ -157,4 +166,12 @@ class Products extends React.Component {
   }
 };
 
-export default Products;
+
+/**
+ * Map state to props for Products component
+ */
+ const mapStateToProps = (state) => ({
+  products: state.products
+});
+
+export default connect(mapStateToProps)(Products);

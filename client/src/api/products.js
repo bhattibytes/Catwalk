@@ -1,33 +1,41 @@
 import axios from 'axios';
 import { GITHUB_TOKEN } from '../config.js';
 
-const productStylesGetThumbnails = (product_id) => {
-  axios({
+const productStylesGetImages = (product_id) => {
+  return axios({
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/GET /products/${product_id}/styles`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${product_id}/styles`,
     headers: {
-      Authorization: GITHUB_TOKEN
+      Authorization: GITHUB_TOKEN.value
      }
   })
-  .then(data => {
+  .then(res => {
     var thumb = [];
-    //NEED TO SEE THE REAL DATA before this can be mapped properly!!! ////
-    data.forEach(product => {
-      thumb.push(product.results.photos[0].thumbnail_url);
-    });
-    res.send(thumb)
+    var full = [];
+    var dataArr = res.data.results;
+    for (var i = 0; i < dataArr.length; i++) {
+      var photos = dataArr[i].photos
+      for (var k = 0; k < photos.length; k++) {
+        thumb.push(photos[k].thumbnail_url);
+        full.push(photos[k].url);
+      }
+    }
+    var state = {thumbNailImages: thumb, fullSizeImage: full}
+    return state;
   })
 };
 
-const productStylesGetFullSized = (id) => {
-  axios({
+const getAllProducts = () => {
+  return axios({
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/GET /products/${product_id}/styles`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`,
     headers: {
-      Authorization: GITHUB_TOKEN
+      Authorization: GITHUB_TOKEN.value
      }
-  })
-    .then(data => {
-       //NEED TO SEE THE REAL DATA before this can be mapped!!!
-    })
+  });
+
 };
+
+export { productStylesGetImages, getAllProducts };
+
+

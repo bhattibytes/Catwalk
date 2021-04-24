@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reviewsReducer from './reducers/reviews.js';
+import productsReducer from './reducers/products.js';
 
 /**
  * Redux store is the application's state managed by dispatches, actions, and
@@ -12,6 +13,7 @@ import reviewsReducer from './reducers/reviews.js';
 
 export default configureStore({
   reducer: {
+    products: productsReducer,
     reviews: reviewsReducer
   }
 }, applyMiddleware(thunk));

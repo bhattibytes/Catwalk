@@ -3,11 +3,6 @@
 exports[`Products Component Should render correctly with no props 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "border": "solid black",
-    }
-  }
 >
   <img
     className="full"
