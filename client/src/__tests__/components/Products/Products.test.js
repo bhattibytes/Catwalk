@@ -49,7 +49,7 @@ describe('Products Component', () => {
 
   it('Should render nested Components', () => {
     // how many thumbs are rendered = 4 with hardcoded data
-    expect(component.find('ThumbnailGallery').length).toEqual(4);
+    expect(component.find('ThumbnailGallery').length).toEqual(5);
   });
 
   it('Should render nested Components', () => {

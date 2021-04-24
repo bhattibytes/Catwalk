@@ -50,7 +50,7 @@
 
 .review-thumbnail:hover {
   filter: opacity(0.5) drop-shadow(0 0 0 black);
-}
+} */
 /*    Action buttons for reviews    */
 .action-items {
   display: grid;

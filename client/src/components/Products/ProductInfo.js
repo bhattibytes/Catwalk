@@ -12,7 +12,7 @@ import $ from 'jquery';
  var ProductInfo = (props) => {
   var images = props.images;
   if (images === undefined) {
-    images = ['https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg'];
+    images = [''];
   }
   images = images.slice(0);
 
@@ -30,9 +30,8 @@ import $ from 'jquery';
       <SelectStyle />
       <ol className="circleImgBox">
       {
-        images.map(image => {
-          var imgid = image.split('/')[10];
-          return <CircleImageGallery image={image} key={imgid} show={props.show}/>
+        images.map((image, i) => {
+          return <CircleImageGallery image={image} key={i} show={props.show}/>
         })
       }
       </ol>
