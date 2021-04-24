@@ -1,91 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Products Component Should render correctly with no props 1`] = `
-<div
-  className="container"
+<ContextProvider
+  value={null}
 >
-  <img
-    className="full"
-    height="40px"
-    onClick={[Function]}
-    src="https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png"
-    width="40px"
-  />
-  <button
-    className="slide-up"
-  >
-    <img
-      className="slide-up"
-      height="10px"
-      onClick={[Function]}
-      src="https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png"
-      width="20px"
-    />
-  </button>
-  <div
-    className="thumbnail-slider"
-  >
-    <div
-      className="viewport"
-    >
-      <ThumbnailGallery
-        click={[Function]}
-        image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg"
-        key="13c3447174e077f86b8c140ea9d174f1_180x.jpg"
-      />
-      <ThumbnailGallery
-        click={[Function]}
-        image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/a56f2d740fc6595b186b085167b9496e_180x.jpg"
-        key="a56f2d740fc6595b186b085167b9496e_180x.jpg"
-      />
-      <ThumbnailGallery
-        click={[Function]}
-        image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3eb4ef35474562e5a3eef2dabde35284_180x.jpg"
-        key="3eb4ef35474562e5a3eef2dabde35284_180x.jpg"
-      />
-      <ThumbnailGallery
-        click={[Function]}
-        image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/132e7bcbb9e4e7ef7241213f588af9a5_180x.jpg"
-        key="132e7bcbb9e4e7ef7241213f588af9a5_180x.jpg"
-      />
-      <ThumbnailGallery
-        click={[Function]}
-        image="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3bdc99d04fdd3d9fccd91b45353087da_720x.jpg?v=1618588957"
-        key="3bdc99d04fdd3d9fccd91b45353087da_720x.jpg?v=1618588957"
-      />
-    </div>
-  </div>
-  <button
-    className="slide-down"
-  >
-    <img
-      className="slide-down"
-      height="10px"
-      onClick={[Function]}
-      src="https://www.vhv.rs/file/max/10/100888_down-arrows-png.png"
-      width="20px"
-    />
-  </button>
-  <MainImageView
-    back={[Function]}
-    forward={[Function]}
-    select="https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_2400x.jpg"
-  />
-  <div
-    className="product-info-right"
-  >
-    <ProductInfo
-      images={
-        Array [
-          "https://cdn.shopify.com/s/files/1/0015/6611/3861/products/13c3447174e077f86b8c140ea9d174f1_180x.jpg",
-          "https://cdn.shopify.com/s/files/1/0015/6611/3861/products/a56f2d740fc6595b186b085167b9496e_180x.jpg",
-          "https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3eb4ef35474562e5a3eef2dabde35284_180x.jpg",
-          "https://cdn.shopify.com/s/files/1/0015/6611/3861/products/132e7bcbb9e4e7ef7241213f588af9a5_180x.jpg",
-          "https://cdn.shopify.com/s/files/1/0015/6611/3861/products/3bdc99d04fdd3d9fccd91b45353087da_720x.jpg?v=1618588957",
-        ]
+  <Products
+    dispatch={[Function]}
+    products={
+      Object {
+        "fullSizeImage": Array [],
+        "product": Object {},
+        "products": Array [],
+        "selected": null,
+        "thumbNailImages": Array [],
       }
-      show={[Function]}
-    />
-  </div>
-</div>
+    }
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  />
+</ContextProvider>
 `;

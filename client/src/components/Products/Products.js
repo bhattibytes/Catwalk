@@ -10,8 +10,8 @@ class Products extends React.Component {
   constructor() {
     super();
     this.state = {
-      thumbNailImages: [],
-      fullSizeImage: [],
+      thumbNailImages: ['https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'],
+      fullSizeImage: ['https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'],
       selected: null
     };
     this.show = this.show.bind(this);
@@ -21,6 +21,8 @@ class Products extends React.Component {
     this.scrollUp = this.scrollUp.bind(this);
     this.scrollDown = this.scrollDown.bind(this);
     this.showFullScreen = this.showFullScreen.bind(this);
+    this.onSelectEnter = this.onSelectEnter.bind(this);
+    this.onSelectOut = this.onSelectOut.bind(this);
   }
 
   async componentDidMount () {
@@ -28,8 +30,8 @@ class Products extends React.Component {
     // Get reviews from Atlier api
     await dispatch(getProducts());
     this.setState({
-      thumbNailImages: this.props.products.thumbNailImages,
-      fullSizeImage: this.props.products.fullSizeImage,
+      thumbNailImages: this.props.products.thumbNailImages.slice(0, 8),
+      fullSizeImage: this.props.products.fullSizeImage.slice(0, 8),
       selected: this.props.products.fullSizeImage[0]
     })
     this.setBorder(this.props.products.thumbNailImages[0]);
@@ -132,17 +134,25 @@ class Products extends React.Component {
     e.preventDefault();
     if ($('.main-image-container').hasClass('main-view')) {
       $('.main-image-container').removeClass('main-view').addClass('fullScreen bodyFull');
-      $('.selected-image-view').removeClass('select zoom').addClass('selectFull');
+      $('.selected-image-view').removeClass('select').addClass('selectFull');
     } else {
       $('.main-image-container').removeClass('fullScreen bodyFull').addClass('main-view');
-      $('.selected-image-view').removeClass('selectFull').addClass('select zoom');
+      $('.selected-image-view').removeClass('selectFull').addClass('select');
     }
   }
 
+  onSelectEnter (e) {
+    $('button.forward').hide();
+    $('button.back').hide();
+  }
 
+  onSelectOut () {
+    $('button.forward').show();
+    $('button.back').show();
+  }
 
   render() {
-
+    var thumbs = this.state.thumbNailImages;
     return(
       <div className="container">
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
@@ -150,14 +160,14 @@ class Products extends React.Component {
         <div className="thumbnail-slider">
           <div className="viewport">
             {
-              this.state.thumbNailImages.map((image, i) => {
+              thumbs.map((image, i) => {
                 return  <ThumbnailGallery image={image} key={i} click={this.show}/>
               })
             }
           </div>
         </div>
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
-          <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected}/>
+        <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
         <div className="product-info-right" >
           <ProductInfo images={this.state.thumbNailImages} show={this.show}/>
         </div>
