@@ -59,9 +59,10 @@ let dummyProducts = [
 
 
 let dummyRelatedProducts = [
+  17067,
+  17068,
   17069,
-  17073,
-  17072,
+  17070,
   17071
 ]
 
