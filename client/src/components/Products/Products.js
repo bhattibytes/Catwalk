@@ -10,6 +10,14 @@ class Products extends React.Component {
   constructor() {
     super();
     this.state = {
+      products: [],
+      product: {
+        name: '',
+        default_price: 0,
+        description: '',
+        category: ''
+      },
+      qtyNSize: [{name: '', qty: 0, size: ''}],
       thumbNailImages: ['https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'],
       fullSizeImage: ['https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'],
       selected: null
@@ -30,12 +38,16 @@ class Products extends React.Component {
     // Get reviews from Atlier api
     await dispatch(getProducts());
     this.setState({
+      products: this.props.products,
+      product: this.props.products.product,
       thumbNailImages: this.props.products.thumbNailImages.slice(0, 8),
       fullSizeImage: this.props.products.fullSizeImage.slice(0, 8),
-      selected: this.props.products.fullSizeImage[0]
+      selected: this.props.products.fullSizeImage[0],
+      qtyNSize: this.props.products.qtyNSize
     })
     this.setBorder(this.props.products.thumbNailImages[0]);
     $('img.slide-up').hide();
+    this.render();
   }
 
   show(e) {
@@ -169,7 +181,7 @@ class Products extends React.Component {
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
         <div className="product-info-right" >
-          <ProductInfo images={this.state.thumbNailImages} show={this.show}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show} product={this.state.product} qty={this.state.qtyNSize}/>
         </div>
       </div>
     );

@@ -1,11 +1,11 @@
 import React from 'react';
 
- var ProductTitle = () => {
+ var ProductTitle = (props) => {
   return (
     <div className="main-header-title">
-      <span className="cat">CATEGORY</span>
-      <p className="title">Expanded Product Name</p>
-      <p className="price">$350</p>
+      <span className="cat">{props.cat}</span>
+      <p className="title">{props.title}</p>
+      <p className="price">{props.price}</p>
     </div>
   )
 }
