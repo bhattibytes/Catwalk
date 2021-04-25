@@ -18,8 +18,8 @@ class Products extends React.Component {
         category: ''
       },
       qtyNSize: [{name: '', qty: 0, size: ''}],
-      thumbNailImages: ['https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'],
-      fullSizeImage: ['https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'],
+      thumbNailImages: [],
+      fullSizeImage: [],
       selected: null
     };
     this.show = this.show.bind(this);
@@ -146,10 +146,10 @@ class Products extends React.Component {
     e.preventDefault();
     if ($('.main-image-container').hasClass('main-view')) {
       $('.main-image-container').removeClass('main-view').addClass('fullScreen bodyFull');
-      $('.selected-image-view').removeClass('select').addClass('selectFull');
+      $('.selected-image-view').removeClass('select zoom').addClass('selectFull');
     } else {
       $('.main-image-container').removeClass('fullScreen bodyFull').addClass('main-view');
-      $('.selected-image-view').removeClass('selectFull').addClass('select');
+      $('.selected-image-view').removeClass('selectFull').addClass('select zoom');
     }
   }
 
@@ -164,7 +164,6 @@ class Products extends React.Component {
   }
 
   render() {
-    var thumbs = this.state.thumbNailImages;
     return(
       <div className="container">
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
@@ -172,7 +171,7 @@ class Products extends React.Component {
         <div className="thumbnail-slider">
           <div className="viewport">
             {
-              thumbs.map((image, i) => {
+              this.state.thumbNailImages.map((image, i) => {
                 return  <ThumbnailGallery image={image} key={i} click={this.show}/>
               })
             }

@@ -1,7 +1,6 @@
 import React from 'react';
 
  var SelectQuantity = (props) => {
-   console.log("Here is the props.quanity--->", props.qty)
    for (var i = 0; i < props.qty.length; i++) {
    }
    var qtyMax;

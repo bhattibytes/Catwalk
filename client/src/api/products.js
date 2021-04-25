@@ -15,6 +15,8 @@ const productStylesGetImages = (product_id) => {
     var full = [];
     var qtyNSize = [];
     var dataArr = res.data.results;
+    console.log('The entire Response Object---->', res)
+    console.log('Here is the DataArr---->', dataArr)
 
     for (var i = 0; i < dataArr.length; i++) {
 
