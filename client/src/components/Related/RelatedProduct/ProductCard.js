@@ -1,17 +1,15 @@
 import React from 'react';
 import ProductInfo from './ProductInfo.js';
+import ProductImage from './ProductImage.js';
 import styles from './relatedItems.module.css'
 
 
-const ProductCard = ({ product, image, feature }) => {
+const ProductCard = (props) => {
 
   return (
     <div className={styles.productCard}>
-      {/* <button className='action-button' /> */}
-      <div className={styles.img}>
-        <img src={image} className={styles.img}/>
-      </div>
-      <ProductInfo product={product}/>
+      <ProductImage relatedId={props.relatedId} image={props.image} data={props.data} index={props.index} movement={props.movement} />
+      <ProductInfo relatedId={props.relatedId} image={props.image} data={props.data} index={props.index} movement={props.movement}/>
     </div>
   )
 };
