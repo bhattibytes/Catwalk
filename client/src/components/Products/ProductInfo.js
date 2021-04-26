@@ -10,33 +10,29 @@ import Star from '../Star/Star.js';
 import $ from 'jquery';
 
  var ProductInfo = (props) => {
-  var images = props.images;
-  if (images === undefined) {
-    images = [''];
-  }
-  images = images.slice(0);
-
-  $("a[href='#bottom']").click(function() {
-    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+  $("a[href='#bottom']").click(() => {
+    $("html, body").animate({ scrollTop: $(document).height() }, "normal");
     return false;
   });
+
   return (
+
     <div className="product-info-container">
       <div className="product-star">
         <Star rating={3.7}/>
         <a href="#bottom" className="read">Read all reviews</a>
       </div>
-      <ProductTitle />
-      <SelectStyle />
+      <ProductTitle title={props.product.name} cat={props.product.category} price={props.product.default_price}/>
+      <SelectStyle styles={props.qty}/>
       <ol className="circleImgBox">
       {
-        images.map((image, i) => {
+        props.images.map((image, i) => {
           return <CircleImageGallery image={image} key={i} show={props.show}/>
         })
       }
       </ol>
-      <SelectSize />
-      <SelectQuantity />
+      <SelectSize size={props.qty}/>
+      <SelectQuantity qty={props.qty}/>
       <AddToBag />
       <Favorite />
     </div>

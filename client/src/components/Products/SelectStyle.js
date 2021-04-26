@@ -1,15 +1,20 @@
 import React from 'react';
+import SelectStyleOption from './SelectStyleOption.js';
 
- var SelectStyle = () => {
+ var SelectStyle = (props) => {
   return (
     <div className="style-picker">
-      <label htmlFor="style">STYLE -></label>
-      <select name="style">
-        <option defaultValue="default" disabled>Select Style</option>
-        <option value="Red and Black">Red and Black</option>
-        <option value="Red and Blue">Red and Blue</option>
-        <option value="Blue and Black">Blue and Black</option>
-      </select>
+      <div className="style-picker">
+        <label htmlFor="style">STYLE -></label>
+        <select name="style">
+          <option defaultValue="default" disabled>Select Style</option>
+          {
+            props.styles.map((style, i) => {
+              return <SelectStyleOption name={style.name} key={i}/>
+            })
+          }
+        </select>
+      </div>
     </div>
   )
 }

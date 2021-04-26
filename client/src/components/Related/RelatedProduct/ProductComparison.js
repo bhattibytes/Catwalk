@@ -17,7 +17,6 @@ const ProductComparison = (props) => {
     }
   ];
 
-  console.log(props.data);
   let getComparedFeatures = () => {
     for (let i = 0; i < props.data.dummyRelatedProducts.length; i++) {
       if (props.data.dummyRelatedProducts[i].id === comparedId) {

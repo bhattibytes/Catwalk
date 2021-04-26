@@ -22,7 +22,8 @@ export function getProducts() {
         type: 'GET_IMAGES',
         payload: {
           thumbNailImages: response.thumbNailImages,
-          fullSizeImage: response.fullSizeImage
+          fullSizeImage: response.fullSizeImage,
+          qtyNSize: response.qtyNSize
         }
       });
     }

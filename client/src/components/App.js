@@ -16,7 +16,6 @@ class App extends React.Component {
 
   handleSearch (e) {
     e.preventDefault();
-    console.log('Search was clicked write what to do next')
     this.setState({
       search: ''
     });
