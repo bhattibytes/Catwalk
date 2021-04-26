@@ -26,7 +26,7 @@ class Reviews extends React.Component {
       dispatch(getReviews());
       // Get meta data from Atlier api
       dispatch(getMetaData());
-    }, 500);
+    }, 800);
 
   }
 
