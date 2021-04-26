@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow, render, mount } from '../../../enzyme.js';
 import Related from '../../../components/Related/Related.js';
-import RelatedProductCards from '../../../components/Related/RelatedProductCards.js';
-import ProductCard from '../../../components/Related/ProductCard.js';
-import ProductInfo from '../../../components/Related/ProductInfo.js';
+import RelatedProductCards from '../../../components/Related/RelatedProduct/RelatedProductCards.js';
+import ProductCard from '../../../components/Related/RelatedProduct/ProductCard.js';
+import ProductInfo from '../../../components/Related/RelatedProduct/ProductInfo.js';
 import Star from '../../../components/Star/Star.js';
-import dummyData from '../../../components/Related/dummyData.js';
+import dummyData from '../../../components/Related/RelatedProduct/dummyData.js';
 
 describe('Related Component', () => {
   const component = shallow(<Related />);

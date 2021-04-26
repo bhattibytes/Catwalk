@@ -12,7 +12,7 @@
   text-align: center;
   margin: auto;
   padding: 0px;
-  background-color: rgb(192, 174, 12);
+  background-color: #FFA500;
   border-radius: 50%;
   border-width: thin;
   cursor: pointer;
@@ -59,7 +59,7 @@
   display: block;
   width: 30px;
   height: 30px;
-  background-color: rgb(192, 174, 12);
+  background-color: #FFA500;
   border-radius: 50%;
   border-width: thin;
   cursor: pointer;
