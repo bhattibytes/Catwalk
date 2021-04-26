@@ -16,15 +16,23 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    // Get reviews from Atlier api (page 1)
-    dispatch(getReviews());
-    // Get meta data from Atlier api
-    dispatch(getMetaData());
+    /**
+     * Set timeout to render getReviews/getMetaData dispatches
+     * in order to wait for the product reducer to populate with the right
+     * object
+    */
+    setTimeout(() => {
+      // Get reviews from Atlier api (page 1)
+      dispatch(getReviews());
+      // Get meta data from Atlier api
+      dispatch(getMetaData());
+    }, 500);
+
   }
 
 
   render() {
-    const { reviews, dispatch } = this.props;
+    const { reviews, product, dispatch } = this.props;
     const { isLoading, isModalOn, isFormModalOn, hasMoreReviews, meta } = reviews;
     return (
       <div className='review-parent-container'>
@@ -44,7 +52,7 @@ class Reviews extends React.Component {
         }
         {/* Modal for adding a review form */}
         {(isFormModalOn) ?
-          <FormModal dispatch={dispatch} /> : ''
+          <FormModal dispatch={dispatch} meta={meta} /> : ''
         }
       </div>
     );
@@ -55,6 +63,7 @@ class Reviews extends React.Component {
  * Map state to props for Reviews component
  */
 const mapStateToProps = (state) => ({
+  product: state.products.product,
   reviews: state.reviews
 });
 
