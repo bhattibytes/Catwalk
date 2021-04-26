@@ -36,7 +36,7 @@ export function getMetaData() {
     // Get current state of products
     const { products } = getState('products');
     const { product } = products;
-    const { id } = product
+    const { id } = product;
     const response = await getReviewsMetaReq(id);
     dispatch({
       type: 'GET_META-DATA',
