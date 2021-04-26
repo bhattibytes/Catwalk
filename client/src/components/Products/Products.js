@@ -10,6 +10,14 @@ class Products extends React.Component {
   constructor() {
     super();
     this.state = {
+      products: [],
+      product: {
+        name: '',
+        default_price: 0,
+        description: '',
+        category: ''
+      },
+      qtyNSize: [{name: '', qty: 0, size: ''}],
       thumbNailImages: [],
       fullSizeImage: [],
       selected: null
@@ -21,6 +29,8 @@ class Products extends React.Component {
     this.scrollUp = this.scrollUp.bind(this);
     this.scrollDown = this.scrollDown.bind(this);
     this.showFullScreen = this.showFullScreen.bind(this);
+    this.onSelectEnter = this.onSelectEnter.bind(this);
+    this.onSelectOut = this.onSelectOut.bind(this);
   }
 
   async componentDidMount () {
@@ -28,12 +38,16 @@ class Products extends React.Component {
     // Get reviews from Atlier api
     await dispatch(getProducts());
     this.setState({
-      thumbNailImages: this.props.products.thumbNailImages,
-      fullSizeImage: this.props.products.fullSizeImage,
-      selected: this.props.products.fullSizeImage[0]
+      products: this.props.products,
+      product: this.props.products.product,
+      thumbNailImages: this.props.products.thumbNailImages.slice(0, 8),
+      fullSizeImage: this.props.products.fullSizeImage.slice(0, 8),
+      selected: this.props.products.fullSizeImage[0],
+      qtyNSize: this.props.products.qtyNSize
     })
     this.setBorder(this.props.products.thumbNailImages[0]);
     $('img.slide-up').hide();
+    this.render();
   }
 
   show(e) {
@@ -139,10 +153,17 @@ class Products extends React.Component {
     }
   }
 
+  onSelectEnter (e) {
+    $('button.forward').hide();
+    $('button.back').hide();
+  }
 
+  onSelectOut () {
+    $('button.forward').show();
+    $('button.back').show();
+  }
 
   render() {
-
     return(
       <div className="container">
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
@@ -157,9 +178,9 @@ class Products extends React.Component {
           </div>
         </div>
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
-          <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected}/>
+        <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
         <div className="product-info-right" >
-          <ProductInfo images={this.state.thumbNailImages} show={this.show}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show} product={this.state.product} qty={this.state.qtyNSize}/>
         </div>
       </div>
     );

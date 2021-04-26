@@ -20,7 +20,8 @@ function productsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         ...state,
         thumbNailImages: action.payload.thumbNailImages,
-        fullSizeImage: action.payload.fullSizeImage
+        fullSizeImage: action.payload.fullSizeImage,
+        qtyNSize: action.payload.qtyNSize
       });
   }
   return state;

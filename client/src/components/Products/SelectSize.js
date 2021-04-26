@@ -1,15 +1,17 @@
 import React from 'react';
+import SelectSizeOption from './SelectSizeOption.js';
 
- var SelectSize = () => {
+ var SelectSize = (props) => {
   return (
     <div className="selSize">
-       <label htmlFor="selsize">SIZE -></label>
-      <select name="selsize" defaultValue="default">
+       <label htmlFor="selSize">SIZE -></label>
+       <select name="selSize" defaultValue="default">
         <option defaultValue="default" disabled>Select Size</option>
-        <option value="xs">X-Small</option>
-        <option value="s">Small</option>
-        <option value="m">Medium</option>
-        <option value="L">Large</option>
+        {
+          props.size.map((option, i) => {
+            return <SelectSizeOption option={option.size} key={i} />
+          })
+        }
       </select>
     </div>
   )
