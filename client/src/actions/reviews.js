@@ -32,8 +32,12 @@ export function getReviews() {
  * particular prodcut from Atlier api
  */
 export function getMetaData() {
-  return async function (dispatch) {
-    const response = await getReviewsMetaReq();
+  return async function (dispatch, getState) {
+    // Get current state of products
+    const { products } = getState('products');
+    const { product } = products;
+    const { id } = product
+    const response = await getReviewsMetaReq(id);
     dispatch({
       type: 'GET_META-DATA',
       payload: response.data
