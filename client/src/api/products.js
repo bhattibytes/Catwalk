@@ -52,3 +52,32 @@ const getAllProducts = () => {
 export { productStylesGetImages, getAllProducts };
 
 
+// .then(res => {
+
+    //   var state = {
+    //     thumbNailImages: [],
+    //     fullSizeImage: [],
+    //     qtyNSize: [],
+    //   };
+
+    //   var thumb = [];
+    //   var full =[];
+
+    //   var dataArr = res.data.results;
+
+    //   for (var i = 0; i < dataArr.length; i++) {
+
+
+    //     var name = dataArr[i].name;
+    //     var price = dataArr[i].original_price;
+    //     var arrOfQtyNSizeObjs = Object.values(dataArr[i].skus);
+    //     var qty = arrOfQtyNSizeObjs[i].quantity;
+    //     var size = arrOfQtyNSizeObjs[i].size;
+    //     var element = { name, qty, size, price }
+    //     qtyNSize.push(element);
+
+
+    //     var photos = dataArr[i].photos;
+    //   }
+    //   return state;
+    // })

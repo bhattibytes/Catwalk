@@ -224,7 +224,7 @@ describe('CircleImageGallery', () => {
   });
 
   it('Should expect the image prop to be a URL', () => {
-    expect(props.image.includes('https://cdn.shopify.com')).toBe(true);
+    expect(props.image.includes('https:')).toBe(true);
   });
 
   it('Should show next or previous fullsized image when clicked', () => {
