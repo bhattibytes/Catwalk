@@ -13,7 +13,7 @@
   text-align: center;
   margin: auto;
   padding: 0px;
-  background-color: rgb(192, 174, 12);
+  background-color: #FFA500;
   border-radius: 50%;
   border-width: thin;
   cursor: pointer;
@@ -44,7 +44,7 @@
   width: 20px;
   height: 20px;
   float: right;
-  background-color: rgb(192, 174, 12);
+  background-color: #FFA500;
   border-radius: 50%;
   border-width: thin;
   display: flex;
@@ -92,7 +92,7 @@
   margin-top: 2em;
   margin-bottom: 0;
   padding: 0;
-  color:  rgb(192, 174, 12);
+  color:  #FFA500;
 }
 
 .productNames {
@@ -146,5 +146,5 @@
 }
 
 .bodyRow i {
-  color:  rgb(192, 174, 12);
+  color:  #FFA500;
 }

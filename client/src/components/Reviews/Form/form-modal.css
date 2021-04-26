@@ -1,0 +1,21 @@
+.star-review {
+  font-size: 40px;
+  width: 5em;
+}
+
+.star-review:hover:after {
+  color: 'blue';
+  content: '\2605';
+  cursor: pointer;
+}
+
+/*  Characteristic container  */
+.characteristic-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.character-input-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}

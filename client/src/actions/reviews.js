@@ -7,9 +7,12 @@ export function getReviews() {
   return async function (dispatch, getState) {
     // Get the current state of reviews
     const { reviews } = getState('reviews');
+    // Get current state of products
+    const { products } = getState('products');
+    const { product } = products;
     // Get the page and sort of reviews
     const { page, sort } = reviews;
-    const response = await getReviewsReq(undefined, sort, page);
+    const response = await getReviewsReq(product.id, sort, page);
     const reviewsData = response.data.results;
     // If reviews has less than 2, update hasMoreReviews state to false
     if (reviewsData.length < 2) {
@@ -45,7 +48,10 @@ export function getMetaData() {
 */
 export function sortOrder(newSort) {
   return async function (dispatch, getState) {
-    const response = await getReviewsReq(undefined, newSort, 1);
+    // Get current state of products
+    const { products } = getState('products');
+    const { product } = products;
+    const response = await getReviewsReq(product.id, newSort, 1);
     const reviewsData = response.data.results;
     await dispatch({
       type: 'SORT_ORDER',
