@@ -9,7 +9,8 @@ const initialState = {
   sort: 'relevant',
   data: [],
   page: 1,
-  meta: {}
+  meta: {},
+  savedReview: false
 }
 
 function reviewsReducer(state = initialState, action) {
@@ -67,9 +68,13 @@ function reviewsReducer(state = initialState, action) {
         ...state,
         page: newPage++,
       });
-    // Add a review
+    // Add a review, once done close the modal
     case 'ADD_REVIEW':
-      return state
+      console.log('ADDING REVIEW')
+      return Object.assign({}, state, {
+        ...state,
+        isFormModalOn: false
+      });
   }
   return state;
 }

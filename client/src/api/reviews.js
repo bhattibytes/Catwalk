@@ -19,5 +19,15 @@ const getReviewsMetaReq = (id = 17068) =>
     }
   });
 
+const addReviewReq = (data) =>
+axios({
+  method: 'POST',
+  url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`,
+  headers: {
+    Authorization: GITHUB_TOKEN.value
+  },
+  data: data
+});
 
-export { getReviewsReq, getReviewsMetaReq };
+
+export { getReviewsReq, getReviewsMetaReq, addReviewReq };

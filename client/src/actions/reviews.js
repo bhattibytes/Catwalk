@@ -1,4 +1,4 @@
-import { getReviewsReq, getReviewsMetaReq } from '../api/reviews.js';
+import { getReviewsReq, getReviewsMetaReq, addReviewReq } from '../api/reviews.js';
 /**
  * getReviews is an async function for getting reviews
  * from Atlier api
@@ -82,8 +82,16 @@ export function moreReviews() {
   }
 }
 
-export function addReview() {
-  return {
-    type: 'ADD_REVIEW'
+export function addReview(data) {
+  return async function (dispatch, getState) {
+    const response = await addReviewReq(data);
+    if (response.status === 201) {
+      return {
+        type: 'ADD_REVIEW',
+        payload: response.status
+      }
+    } else {
+      alert('Failed saving review');
+    }
   }
 }

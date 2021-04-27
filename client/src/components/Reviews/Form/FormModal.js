@@ -1,14 +1,15 @@
 import React from 'react';
 import { characteristicMap, starRatingExperience } from './characteristics.js';
-import { toggleFormModal } from '../../../actions/reviews.js';
+import { toggleFormModal, addReview } from '../../../actions/reviews.js';
 import './form-modal.css';
 
 class FormModal extends React.Component {
   constructor() {
     super();
     this.state = {
-      characteristics: [],
-      photos: []
+      characteristicsArray: [],
+      photos: [],
+      errors: {}
     }
     this.handleChange = this.handleChange.bind(this);
     this.handlePhotosChange = this.handlePhotosChange.bind(this);
@@ -23,10 +24,14 @@ class FormModal extends React.Component {
     // to filter out what characteristic is needed for
     // this product
     for (let key in characteristics) {
-      results.push(characteristicMap[key]);
+      const characteristic = characteristicMap[key];
+      characteristic.id = characteristics[key].id;
+
+      results.push(characteristic);
     }
+
     this.setState({
-      characteristics: results
+      characteristicsArray: results
     });
   }
 
@@ -48,40 +53,75 @@ class FormModal extends React.Component {
   }
 
   handleCharacteristicChange(e) {
+    const key = `${e.target.name}`;
+
     this.setState({
-      characteristic: {
-        ...this.state.characteristic,
-        [e.target.name]: e.target.value
+      characteristics: {
+        ...this.state.characteristics,
+        [key]: Number(e.target.value)
       }
     });
   }
 
   submit() {
+    const { dispatch, product } = this.props;
     // Get mandatory inputs
-    const { rating, body, recommend, nickname, email, characteristic } = this.state;
-    const inputs = ['rating', 'body', 'recommend', 'nickname', 'email', 'characteristic'];
+    const inputs = ['rating', 'body', 'recommend', 'name', 'email', 'characteristics'];
     let errorsObj = {}
     for (const input of inputs) {
       // if no value is present
       if (!this.state[input]) {
-        errorsObj[input] = 'please insert value'
+        errorsObj[input] = 'Please insert value'
       }
+    }
+
+    // Check if the body is less than 51 characters
+    const bodyReview = this.state.body || '';
+    if (bodyReview.length < 51) {
+      errorsObj['body']  = 'Please insert more than 50 characters';
+    }
+
+    const characteristics = this.state.characteristics || {};
+    // Get the object keys for current characteristic selected
+    const charKeys = Object.keys(characteristics);
+    // Check if all characteristic qualities have been filled out
+    if (charKeys.length !== this.state.characteristicsArray.length) {
+      errorsObj['characteristics']  = 'Please fill all review characteristic';
     }
     this.setState({
       errors: errorsObj
     });
+
+    // Check to see if there are no errors in the object
+    if (Object.keys(errorsObj).length === 0) {
+      // Submit, make dispatch call
+      // Create a new review object from state
+      const newReview = {
+        product_id: product.data.id,
+        ...this.state
+      }
+      // Remove unwanted properties in new review object
+      delete newReview['characteristicsArray'];
+      delete newReview['errors'];
+      // Convert rating to integer
+      newReview['rating'] = Number(newReview['rating']);
+      // Convert recommend to boolean
+      newReview['recommend'] = Boolean(newReview['recommend']);
+      // Make dispatch to Redux
+      dispatch(addReview(newReview));
+    }
   }
 
   render() {
     const { dispatch, meta } = this.props;
-    const { characteristics, rating, reviewLength } = this.state;
+    const { characteristicsArray, rating, reviewLength } = this.state;
     const emptyStar = String.fromCodePoint(9734);
     const filledStar = String.fromCodePoint(9733);
 
     return (
       <div id="myModal" className="modal">
-        <h2>Write a Review</h2>
         <div className="modal-content">
+          <h2>Write a Review</h2>
           <span className="close" onClick={() => dispatch(toggleFormModal())}>&times;</span>
           <div className='modal-content-container'>
             <div>
@@ -116,28 +156,45 @@ class FormModal extends React.Component {
                   </label>
                   {/* Text rating for each Star */}
                   <b>{starRatingExperience[Number(rating)]}</b>
+                  {/* Error message for rating */}
+                  {(this.state.errors.rating) ? <p className='err-msg'>*Select a rating</p> : ''}
                 </div>
+                {/* Summary review */}
                 <h3>Write a summary for review</h3>
-                <textarea name='summary' maxLength = "60" value={this.state.summary} onChange={(e) => this.handleChange(e)}></textarea>
+                <textarea
+                  name='summary' maxLength="60" value={this.state.summary}
+                  className='summary-textarea ' onChange={(e) => this.handleChange(e)}></textarea>
                 <p>{(this.state.summary) ? this.state.summary.length : 0} / 60</p>
               </div>
+              {/* Body review */}
               <div>
                 <h3>Write review (mandatory)</h3>
-                <textarea name='body' minLength = "50" maxLength = "1000" onChange={(e) => this.handleChange(e)}></textarea>
+                <textarea
+                  name='body' minLength="50" maxLength="1000"
+                  className={(!this.state.errors.body) ? 'body-textarea' : 'body-textarea err-element'}
+                  onChange={(e) => this.handleChange(e)}></textarea>
+                {/* Error message for body */}
+                {(this.state.errors.body) ? <p className='err-msg'>*Insert more than 50 characters</p> : ''}
                 <p>{(this.state.body) ? this.state.body.length : 0} / 1000</p>
               </div>
               <div>
-                <h2>Do you recommend this product ? (mandatory)</h2>
+                <h3>Do you recommend this product ? (mandatory)</h3>
                 <input name='recommend' onChange={(e) => this.handleChange(e)} value={true} type='radio' /> Yes
                 <input name='recommend' onChange={(e) => this.handleChange(e)} value={false} type='radio' /> No
+                {/* Error message for recommend */}
+                {(this.state.errors.recommend) ? <p className='err-msg'>*Select a recommendation</p> : ''}
               </div>
               <div>
-                <h3>Nickname (mandatory)</h3>
-                <input type='text' name='nickname' onChange={(e) => this.handleChange(e)} />
+                <h3>Name (mandatory)</h3>
+                <input type='text' name='name' onChange={(e) => this.handleChange(e)} className={(!this.state.errors.name) ? '' : 'err-element'}/>
+                {/* Error message for name */}
+                {(this.state.errors.name) ? <p className='err-msg'>*Insert name</p> : ''}
               </div>
               <div>
                 <h3>Email (mandatory)</h3>
-                <input type='email' name='email' onChange={(e) => this.handleChange(e)} />
+                <input type='email' name='email' onChange={(e) => this.handleChange(e)} className={(!this.state.errors.email) ? '' : 'err-element'}/>
+                {/* Error message for email */}
+                {(this.state.errors.email) ? <p className='err-msg'>*Insert email</p> : ''}
               </div>
               <div>
                 <h3>Upload a photo</h3>
@@ -147,18 +204,20 @@ class FormModal extends React.Component {
             <div>
               <h2>Characteristics (mandatory)</h2>
               <div className='characteristic-container'>
-                {characteristics.map((characteristic, idx) =>
+                {characteristicsArray.map((characteristic, idx) =>
                   <div key={idx}>
                     <h3>{characteristic.type}</h3>
                     <div className='character-input-container'>
-                      <input type='radio' name={characteristic.id} value={1} onChange={(e) => this.handleCharacteristicChange(e)}/> {characteristic['1']}
-                      <input type='radio' name={characteristic.id} value={2} onChange={(e) => this.handleCharacteristicChange(e)}/> {characteristic['2']}
-                      <input type='radio' name={characteristic.id} value={3} onChange={(e) => this.handleCharacteristicChange(e)}/> {characteristic['3']}
-                      <input type='radio' name={characteristic.id} value={4} onChange={(e) => this.handleCharacteristicChange(e)}/> {characteristic['4']}
-                      <input type='radio' name={characteristic.id} value={5} onChange={(e) => this.handleCharacteristicChange(e)}/> {characteristic['5']}
+                      <input type='radio' name={characteristic.id} value={1} onChange={(e) => this.handleCharacteristicChange(e)} /> {characteristic['1']}
+                      <input type='radio' name={characteristic.id} value={2} onChange={(e) => this.handleCharacteristicChange(e)} /> {characteristic['2']}
+                      <input type='radio' name={characteristic.id} value={3} onChange={(e) => this.handleCharacteristicChange(e)} /> {characteristic['3']}
+                      <input type='radio' name={characteristic.id} value={4} onChange={(e) => this.handleCharacteristicChange(e)} /> {characteristic['4']}
+                      <input type='radio' name={characteristic.id} value={5} onChange={(e) => this.handleCharacteristicChange(e)} /> {characteristic['5']}
                     </div>
                   </div>
                 )}
+                {/* Error message for body */}
+                {(this.state.errors.characteristics) ? <p className='err-msg'>*Fill out characteristic</p> : ''}
               </div>
             </div>
             <button onClick={this.submit}>Add Review</button>
