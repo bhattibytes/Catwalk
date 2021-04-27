@@ -9,13 +9,27 @@
   cursor: pointer;
 }
 
+.stars-review input[type="radio"] {
+  display:none;
+}
+
+.stars-review label {
+  display: inline-block;
+  font-size: 40px;
+}
+
+.modal-content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 /*  Characteristic container  */
 .characteristic-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.character-input-container {
+/* .character-input-container {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-}
+} */

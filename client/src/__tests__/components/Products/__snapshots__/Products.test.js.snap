@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Products Component Should render correctly with no props 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Products
+    dispatch={[Function]}
+    products={
+      Object {
+        "fullSizeImage": Array [],
+        "product": Object {},
+        "products": Array [],
+        "selected": null,
+        "thumbNailImages": Array [],
+      }
+    }
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  />
+</ContextProvider>
+`;

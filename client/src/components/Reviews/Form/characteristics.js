@@ -48,3 +48,11 @@ export const characteristicMap = {
     5: 'Runs long'
   }
 }
+
+export const starRatingExperience = {
+  1: 'Poor',
+  2: 'Fair',
+  3: 'Average',
+  4: 'Good',
+  5: 'Great'
+};

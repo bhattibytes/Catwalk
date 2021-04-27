@@ -16,17 +16,10 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    /**
-     * Set timeout to render getReviews/getMetaData dispatches
-     * in order to wait for the product reducer to populate with the right
-     * object
-    */
-    setTimeout(() => {
-      // Get reviews from Atlier api (page 1)
-      dispatch(getReviews());
-      // Get meta data from Atlier api
-      dispatch(getMetaData());
-    }, 800);
+    // Get reviews from Atlier api (page 1)
+    dispatch(getReviews());
+    // Get meta data from Atlier api
+    dispatch(getMetaData());
 
   }
 
@@ -63,7 +56,7 @@ class Reviews extends React.Component {
  * Map state to props for Reviews component
  */
 const mapStateToProps = (state) => ({
-  product: state.products.product,
+  product: state.product,
   reviews: state.reviews
 });
 
