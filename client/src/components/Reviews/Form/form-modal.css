@@ -9,13 +9,40 @@
   cursor: pointer;
 }
 
+.stars-review input[type="radio"] {
+  display:none;
+}
+
+.stars-review label {
+  display: inline-block;
+  font-size: 40px;
+}
+
+
+.stars-reviews input[type="radio"]:checked+label {
+  display: none;
+  /* background: linear-gradient(to right, orange 100%, transparent 0%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(205, 220, 57, 0); */
+  /* content: '\2605'; */
+}
+
+/* .stars-review  input[type="radio"]:checked+label::after {
+  content: '\2605';
+} */
+
+.modal-content-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 /*  Characteristic container  */
 .characteristic-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.character-input-container {
+/* .character-input-container {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-}
+} */

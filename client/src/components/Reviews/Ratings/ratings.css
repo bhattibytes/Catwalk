@@ -1,3 +1,8 @@
+.average-rating {
+  font-size: 25px;
+  margin: 0;
+  display: grid;
+}
 /*      Average Bar Graph     */
 .bar-container {
   display: grid;
@@ -10,6 +15,7 @@
   width: 75%;
   height: 10px;
 }
+
 /*      Average Characteristic Column      */
 .average-characteristic {
   width: 95%;

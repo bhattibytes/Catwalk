@@ -14,7 +14,7 @@ class Reviews extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { dispatch } = this.props;
     /**
      * Set timeout to render getReviews/getMetaData dispatches
