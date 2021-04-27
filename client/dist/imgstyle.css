@@ -124,6 +124,53 @@ button {
   border-bottom: 2px solid rgb(233, 7, 132);
 }
 
+
+/* -----------------------Description -- Feature -----------------------------  */
+
+.prodDes {
+  display: grid;
+  grid-row: 7;
+  grid-column-end: 4;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 10% 60% 30%;
+}
+
+.prod-slogan {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+}
+
+.description {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  /* grid-row-start: 1; */
+  grid-row-end: 2;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 79% 1% 20%;
+}
+
+.prod-des {
+  grid-column: 1;
+}
+
+.prod-details li:before {
+  content: '✓  ';
+}
+
+.prod-details li {
+  font-style: italic;
+  font-size: x-small;
+}
+
+.prod-details {
+  padding: 0;
+  grid-column: 3;
+  display: grid;
+  border-left: 2px solid black;
+  list-style: none;
+}
+
 /* -----------------------Zoom Feature -----------------------------  */
 .zoom {
   transition: transform .2s;
@@ -229,23 +276,26 @@ body.bodyFull {
 
 .cat {
   margin: 5px;
-  font-size: .5em;
+  font-size: 16px;
 }
 
 .title {
   margin: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: xx-large;
 }
 
 .price {
   margin: 5px;
+  margin-bottom: 20px;
 }
 
 .circleImgBox {
   border-top: 1px black solid;
-  max-height: 130px;
+  max-height: 180px;
   max-width: 300px;
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 33% 33% 33%;
   overflow: hidden;
   list-style-type: none;
   margin-right: 0;

@@ -2,13 +2,20 @@ import React from 'react';
 import SelectSizeOption from './SelectSizeOption.js';
 
  var SelectSize = (props) => {
+  var obj = props.size;
+  var sizeQtyArr = [];
+  for (var option in obj) {
+    var sqObj = obj[option];
+    sizeQtyArr.push(sqObj);
+  }
+
   return (
     <div className="selSize">
        <label htmlFor="selSize">SIZE -></label>
-       <select name="selSize" defaultValue="default">
+       <select name="selSize" defaultValue="default" onChange={props.selectSize}>
         <option defaultValue="default" disabled>Select Size</option>
         {
-          props.size.map((option, i) => {
+           sizeQtyArr.map((option, i) => {
             return <SelectSizeOption option={option.size} key={i} />
           })
         }

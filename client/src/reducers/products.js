@@ -1,14 +1,22 @@
 const initialState = {
   products: [],
-  product: {},
+  product: {
+    name: '',
+    default_price: 0,
+    description: '',
+    category: ''
+  },
+  qtyNSize: [{id: {quantity: 0, size: ''}}],
   thumbNailImages: [],
   fullSizeImage: [],
-  selected: null
+  selected: null,
+  styles: [],
+  styleImageArr: [{name: '', thumbNailImages: [], fullSizeImage: []}],
+  maxQty: 1
 }
 
 function productsReducer(state = initialState, action) {
   switch (action.type) {
-    // Get all thumbnail and fullsize images based off of product id
     case 'GET_PRODUCTS':
       return Object.assign({}, state, {
         ...state,
@@ -16,12 +24,10 @@ function productsReducer(state = initialState, action) {
         product: action.payload[0]
       });
 
-    case 'GET_IMAGES':
+      case 'GET_STYLES':
       return Object.assign({}, state, {
         ...state,
-        thumbNailImages: action.payload.thumbNailImages,
-        fullSizeImage: action.payload.fullSizeImage,
-        qtyNSize: action.payload.qtyNSize
+        styles: action.payload
       });
   }
   return state;

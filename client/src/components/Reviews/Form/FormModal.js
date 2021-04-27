@@ -37,6 +37,7 @@ class FormModal extends React.Component {
     const { characteristics, rating } = this.state;
     const emptyStar = String.fromCodePoint(9734);
     const filledStar = String.fromCodePoint(9733);
+
     return (
       <div id="myModal" className="modal">
         <h2>Write a Review</h2>
