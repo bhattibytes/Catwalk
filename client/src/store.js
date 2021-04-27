@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import productReducer from './reducers/product.js';
 import reviewsReducer from './reducers/reviews.js';
 import productsReducer from './reducers/products.js';
 
@@ -13,6 +14,7 @@ import productsReducer from './reducers/products.js';
 
 export default configureStore({
   reducer: {
+    product: productReducer,
     products: productsReducer,
     reviews: reviewsReducer
   }

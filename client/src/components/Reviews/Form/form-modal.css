@@ -18,19 +18,6 @@
   font-size: 40px;
 }
 
-
-.stars-reviews input[type="radio"]:checked+label {
-  display: none;
-  /* background: linear-gradient(to right, orange 100%, transparent 0%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: rgba(205, 220, 57, 0); */
-  /* content: '\2605'; */
-}
-
-/* .stars-review  input[type="radio"]:checked+label::after {
-  content: '\2605';
-} */
-
 .modal-content-container {
   display: grid;
   grid-template-columns: 1fr 1fr;

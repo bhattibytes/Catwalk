@@ -8,11 +8,10 @@ export function getReviews() {
     // Get the current state of reviews
     const { reviews } = getState('reviews');
     // Get current state of products
-    const { products } = getState('products');
-    const { product } = products;
+    const { product } = getState('product');
     // Get the page and sort of reviews
     const { page, sort } = reviews;
-    const response = await getReviewsReq(product.id, sort, page);
+    const response = await getReviewsReq(product.data.id, sort, page);
     const reviewsData = response.data.results;
     // If reviews has less than 2, update hasMoreReviews state to false
     if (reviewsData.length < 2) {
