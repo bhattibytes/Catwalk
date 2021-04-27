@@ -33,10 +33,8 @@ export function getReviews() {
 export function getMetaData() {
   return async function (dispatch, getState) {
     // Get current state of products
-    const { products } = getState('products');
-    const { product } = products;
-    const { id } = product;
-    const response = await getReviewsMetaReq(id);
+    const { product } = getState('product');
+    const response = await getReviewsMetaReq(product.data.id);
     dispatch({
       type: 'GET_META-DATA',
       payload: response.data
@@ -52,9 +50,8 @@ export function getMetaData() {
 export function sortOrder(newSort) {
   return async function (dispatch, getState) {
     // Get current state of products
-    const { products } = getState('products');
-    const { product } = products;
-    const response = await getReviewsReq(product.id, newSort, 1);
+    const { product } = getState('product');
+    const response = await getReviewsReq(product.data.id, newSort, 1);
     const reviewsData = response.data.results;
     await dispatch({
       type: 'SORT_ORDER',
