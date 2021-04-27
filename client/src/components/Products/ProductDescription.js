@@ -4,8 +4,8 @@ import React from 'react';
   return (
     <div className="description">
       <div className="prod-des">
-        <span className="prod-slogan">Product Slogan. Pithy Description Or CatchPhrase</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+        <span className="prod-slogan">{props.product.slogan}</span>
+        <p>{props.product.description}</p>
       </div>
       <ul className="prod-details">
         <li>GMO and Pesticide-free</li>

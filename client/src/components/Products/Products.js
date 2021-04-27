@@ -16,7 +16,8 @@ class Products extends React.Component {
         name: '',
         default_price: 0,
         description: '',
-        category: ''
+        category: '',
+        slogan: ''
       },
       qtyNSize: [{id: {quantity: 0, size: ''}}],
       thumbNailImages: [],
@@ -54,14 +55,17 @@ class Products extends React.Component {
 
       var styleName = styleData[i].name;
       var allImages = styleData[i].photos;
+      var price = styleData[i].original_price
+      var salePrice = styleData[i].sale_price;
 
       for (var k = 0; k < allImages.length; k++) {
         thumbs.push(allImages[k].thumbnail_url)
         full.push(allImages[k].url)
       }
-      var currentStyle = { name: styleName, thumbNailImages: thumbs, fullSizeImage: full }
+      var currentStyle = { name: styleName, price: price, sale: salePrice, thumbNailImages: thumbs, fullSizeImage: full }
       styleImageArr.push(currentStyle)
     }
+
     var initialThumbs = styleImageArr[0].thumbNailImages;
     var initialFull = styleImageArr[0].fullSizeImage;
 
@@ -238,7 +242,7 @@ class Products extends React.Component {
     return(
       <div className="container">
         <div className="prodDes">
-          <ProductDescription />
+          <ProductDescription product={this.state.product}/>
         </div>
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
         <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>

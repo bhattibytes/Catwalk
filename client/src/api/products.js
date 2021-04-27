@@ -8,7 +8,10 @@ const getAllProducts = () => {
     headers: {
       Authorization: GITHUB_TOKEN.value
      }
-  });
+  }).then(res => {
+    console.log('Here is the response from the getProducts call --->', res)
+    return res;
+  })
 
 };
 
@@ -19,6 +22,9 @@ const getAllProductStyles = (product_id) => {
     headers: {
       Authorization: GITHUB_TOKEN.value
      }
+  }).then(res => {
+    console.log('Here is the response from the getAllProductStyles call --->', res)
+    return res;
   })
 };
 
