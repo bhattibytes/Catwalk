@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Products from './Products/Products.js';
 import Related from './Related/Related.js';
 import Reviews from './Reviews/Reviews.js';
 import Navbarheader from './Navbarheader.js';
+import { getProduct } from '../actions/product.js';
 
 class App extends React.Component {
   constructor() {
@@ -13,8 +15,12 @@ class App extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(getProduct());
+  }
 
-  handleSearch (e) {
+  handleSearch(e) {
     e.preventDefault();
     this.setState({
       search: ''
@@ -28,15 +34,27 @@ class App extends React.Component {
   }
 
   render() {
-    return(
+    const { product, isLoading } = this.props;
+    return (
       <div>
-        <Navbarheader fixed="top" search={this.state.search} handleSearch={this.handleSearch} change={this.handleChange}/>
-        <Products />
-        <Related />
-        <Reviews />
+        <Navbarheader fixed="top" search={this.state.search} handleSearch={this.handleSearch} change={this.handleChange} />
+        { (isLoading) ? '' :
+        <div>
+          <Products />
+          <Related />
+          <Reviews />
+        </div>
+        }
       </div>
     );
   }
 };
 
-export default App;
+/**
+ * Map state to props for App component
+ */
+const mapStateToProps = (state) => ({
+  isLoading: state.product.isLoading,
+});
+
+export default connect(mapStateToProps)(App);
