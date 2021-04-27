@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProducts, getImages } from '../../actions/products.js';
+import { getProducts, getStyles } from '../../actions/products.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
@@ -17,10 +17,13 @@ class Products extends React.Component {
         description: '',
         category: ''
       },
-      qtyNSize: [{name: '', qty: 0, size: ''}],
+      qtyNSize: [{id: {quantity: 0, size: ''}}],
       thumbNailImages: [],
       fullSizeImage: [],
-      selected: null
+      selected: null,
+      styles: [],
+      styleImageArr: [{name: '', thumbNailImages: [], fullSizeImage: []}],
+      maxQty: 1
     };
     this.show = this.show.bind(this);
     this.fowardButton = this.fowardButton.bind(this);
@@ -31,22 +34,51 @@ class Products extends React.Component {
     this.showFullScreen = this.showFullScreen.bind(this);
     this.onSelectEnter = this.onSelectEnter.bind(this);
     this.onSelectOut = this.onSelectOut.bind(this);
+    this.selectStyle = this.selectStyle.bind(this);
+    this.selectSize = this.selectSize.bind(this);
   }
 
   async componentDidMount () {
     const { dispatch } = this.props;
     // Get reviews from Atlier api
     await dispatch(getProducts());
+    await dispatch(getStyles());
+
+    var styleData = this.props.products.styles.results;
+    var styleImageArr = []
+
+    for (var i = 0; i < styleData.length; i++) {
+      var thumbs = [];
+      var full = [];
+
+      var styleName = styleData[i].name;
+      var allImages = styleData[i].photos;
+
+      for (var k = 0; k < allImages.length; k++) {
+        thumbs.push(allImages[k].thumbnail_url)
+        full.push(allImages[k].url)
+      }
+      var currentStyle = { name: styleName, thumbNailImages: thumbs, fullSizeImage: full }
+      styleImageArr.push(currentStyle)
+    }
+    var initialThumbs = styleImageArr[0].thumbNailImages;
+    var initialFull = styleImageArr[0].fullSizeImage;
+
     this.setState({
       products: this.props.products,
       product: this.props.products.product,
-      thumbNailImages: this.props.products.thumbNailImages.slice(0, 8),
-      fullSizeImage: this.props.products.fullSizeImage.slice(0, 8),
-      selected: this.props.products.fullSizeImage[0],
-      qtyNSize: this.props.products.qtyNSize
+      thumbNailImages: initialThumbs,
+      fullSizeImage: initialFull,
+      selected: initialFull[0],
+      qtyNSize: this.props.products.styles.results[0].skus,
+      styles: this.props.products.styles,
+      styleImageArr: styleImageArr,
+      maxQty: this.props.products.styles.results[0].skus.[522040].quantity
     })
-    this.setBorder(this.props.products.thumbNailImages[0]);
+
+    this.setBorder(initialThumbs[0]);
     $('img.slide-up').hide();
+
     this.render();
   }
 
@@ -163,6 +195,42 @@ class Products extends React.Component {
     $('button.back').show();
   }
 
+  selectStyle (e) {
+    e.preventDefault();
+    var selected = e.target.value;
+    var styleArr = this.state.styleImageArr
+    for (var i = 0; i < styleArr.length; i++) {
+      if (styleArr[i].name === selected) {
+        this.setState({
+          thumbNailImages: styleArr[i].thumbNailImages,
+          fullSizeImage: styleArr[i].fullSizeImage,
+          selected: styleArr[i].fullSizeImage[0]
+        })
+      }
+    }
+    var qtySize = this.state.styles.results;
+    for (var i = 0; i < qtySize.length; i++) {
+      if (qtySize[i].name === selected) {
+        this.setState({
+          qtyNSize: qtySize[i].skus
+        })
+      }
+    }
+  }
+
+  selectSize(e) {
+    e.preventDefault();
+    var selected = e.target.value;
+    var currentQty = this.state.qtyNSize;
+    for (var key in currentQty) {
+      if (currentQty[key].size === selected) {
+        this.setState({
+          maxQty: currentQty[key].quantity
+        })
+      }
+    }
+  }
+
   render() {
     return(
       <div className="container">
@@ -180,7 +248,7 @@ class Products extends React.Component {
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
         <div className="product-info-right" >
-          <ProductInfo images={this.state.thumbNailImages} show={this.show} product={this.state.product} qty={this.state.qtyNSize}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty}/>
         </div>
       </div>
     );

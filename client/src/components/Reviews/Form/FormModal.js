@@ -24,7 +24,7 @@ class FormModal extends React.Component {
   render() {
     const { dispatch, meta } = this.props;
     const { characteristics } = this.state;
-    console.log(characteristics)
+    // console.log(characteristics)
     return (
       <div id="myModal" className="modal">
         <div className="modal-content">
