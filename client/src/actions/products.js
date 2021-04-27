@@ -1,8 +1,5 @@
-import { productStylesGetImages, getAllProducts } from '../api/products.js';
-/**
- * productStylesGetImages is an async function for getting Images
- * from Atlier api
- */
+import { getAllProducts, getAllProductStyles } from '../api/products.js';
+
 export function getProducts() {
   return async function (dispatch) {
     const response = await getAllProducts();
@@ -11,21 +8,17 @@ export function getProducts() {
       type: 'GET_PRODUCTS',
       payload: products
     });
-    await dispatch(getImages());
   }
 }
-  export function getImages() {
+
+  export function getStyles() {
     return async function (dispatch, getState) {
-      const products = await getState('products')
-      const response = await productStylesGetImages(products.products.product.id);
+      const products = await getState('products');
+      const response = await getAllProductStyles(products.products.product.id);
+      const styles = response.data;
       await dispatch({
-        type: 'GET_IMAGES',
-        payload: {
-          thumbNailImages: response.thumbNailImages,
-          fullSizeImage: response.fullSizeImage,
-          qtyNSize: response.qtyNSize
-        }
+        type: 'GET_STYLES',
+        payload: styles
       });
     }
   }
-

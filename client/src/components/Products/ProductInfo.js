@@ -23,7 +23,7 @@ import $ from 'jquery';
         <a href="#bottom" className="read">Read all reviews</a>
       </div>
       <ProductTitle title={props.product.name} cat={props.product.category} price={props.product.default_price}/>
-      <SelectStyle styles={props.qty}/>
+      <SelectStyle styles={props.styles} selectStyle={props.selectStyle}/>
       <ol className="circleImgBox">
       {
         props.images.map((image, i) => {
@@ -31,8 +31,8 @@ import $ from 'jquery';
         })
       }
       </ol>
-      <SelectSize size={props.qty}/>
-      <SelectQuantity qty={props.qty}/>
+      <SelectSize size={props.qty} selectSize={props.selectSize}/>
+      <SelectQuantity max={props.max}/>
       <AddToBag />
       <Favorite />
     </div>
