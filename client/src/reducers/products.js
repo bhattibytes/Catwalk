@@ -12,7 +12,10 @@ const initialState = {
   selected: null,
   styles: [],
   styleImageArr: [{name: '', thumbNailImages: [], fullSizeImage: []}],
-  maxQty: 1
+  maxQty: 1,
+  saleOrNot: [{name: '', price: 0, sale: 0}],
+  saleOrDefaultPrice: {name: '', price: 0, sale: 0},
+  meta: {}
 }
 
 function productsReducer(state = initialState, action) {
@@ -24,10 +27,17 @@ function productsReducer(state = initialState, action) {
         product: action.payload[0]
       });
 
-      case 'GET_STYLES':
+    case 'GET_STYLES':
+    return Object.assign({}, state, {
+      ...state,
+      styles: action.payload
+    });
+
+    case 'GET_META-DATA':
       return Object.assign({}, state, {
         ...state,
-        styles: action.payload
+        meta: action.payload,
+        isLoading: false
       });
   }
   return state;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getProducts, getStyles } from '../../actions/products.js';
+import { getMetaData } from '../../actions/reviews.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
@@ -27,7 +28,8 @@ class Products extends React.Component {
       styleImageArr: [{name: '', thumbNailImages: [], fullSizeImage: []}],
       maxQty: 1,
       saleOrNot: [{name: '', price: 0, sale: 0}],
-      saleOrDefaultPrice: {name: '', price: 0, sale: 0}
+      saleOrDefaultPrice: {name: '', price: 0, sale: 0},
+      meta: {}
     };
     this.show = this.show.bind(this);
     this.fowardButton = this.fowardButton.bind(this);
@@ -44,9 +46,10 @@ class Products extends React.Component {
 
   async componentDidMount () {
     const { dispatch } = this.props;
-    // Get reviews from Atlier api
+    // Get products, styles and meta from Atlier api
     await dispatch(getProducts());
     await dispatch(getStyles());
+    await dispatch(getMetaData());
 
     var styleData = this.props.products.styles.results;
     var styleImageArr = [];
@@ -85,7 +88,8 @@ class Products extends React.Component {
       styleImageArr: styleImageArr,
       maxQty: this.props.products.styles.results[0].skus.[522040].quantity,
       saleOrNot: saleOrNot,
-      saleOrDefaultPrice: saleOrNot[0]
+      saleOrDefaultPrice: saleOrNot[0],
+      meta: this.props.products.meta
     })
 
     this.setBorder(initialThumbs[0]);
@@ -274,7 +278,7 @@ class Products extends React.Component {
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
         <div className="product-info-right" >
-          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta}/>
         </div>
       </div>
     );
