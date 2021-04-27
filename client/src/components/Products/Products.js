@@ -189,11 +189,13 @@ class Products extends React.Component {
   onSelectEnter (e) {
     $('button.forward').hide();
     $('button.back').hide();
+    $('.description').hide();
   }
 
   onSelectOut () {
     $('button.forward').show();
     $('button.back').show();
+    $('.description').show();
   }
 
   selectStyle (e) {

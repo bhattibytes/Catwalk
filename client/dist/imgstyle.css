@@ -132,7 +132,12 @@ button {
   grid-row: 7;
   grid-column-end: 4;
   grid-template-rows: 50% 50%;
-  grid-template-columns: 10% 60% 20% 10%;
+  grid-template-columns: 10% 60% 30%;
+}
+
+.prod-slogan {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
 }
 
 .description {
@@ -142,7 +147,7 @@ button {
   grid-row-end: 2;
   display: grid;
   grid-template-rows: 50% 50%;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 79% 1% 20%;
 }
 
 .prod-des {
@@ -150,13 +155,18 @@ button {
 }
 
 .prod-details li:before {
-  content: '✓';
+  content: '✓  ';
+}
+
+.prod-details li {
+  font-style: italic;
+  font-size: x-small;
 }
 
 .prod-details {
+  padding: 0;
+  grid-column: 3;
   display: grid;
-  grid-column-start: 2;
-  margin-left: 10px;
   border-left: 2px solid black;
   list-style: none;
 }
