@@ -22,7 +22,7 @@ import $ from 'jquery';
         <Star rating={3.7}/>
         <a href="#bottom" className="read">Read all reviews</a>
       </div>
-      <ProductTitle title={props.product.name} cat={props.product.category} price={props.product.default_price}/>
+      <ProductTitle title={props.product.name} cat={props.product.category} sale={props.sale}/>
       <SelectStyle styles={props.styles} selectStyle={props.selectStyle}/>
       <ol className="circleImgBox">
       {

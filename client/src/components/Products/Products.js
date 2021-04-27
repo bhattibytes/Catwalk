@@ -25,7 +25,9 @@ class Products extends React.Component {
       selected: null,
       styles: [],
       styleImageArr: [{name: '', thumbNailImages: [], fullSizeImage: []}],
-      maxQty: 1
+      maxQty: 1,
+      saleOrNot: [{name: '', price: 0, sale: 0}],
+      saleOrDefaultPrice: {name: '', price: 0, sale: 0}
     };
     this.show = this.show.bind(this);
     this.fowardButton = this.fowardButton.bind(this);
@@ -47,7 +49,8 @@ class Products extends React.Component {
     await dispatch(getStyles());
 
     var styleData = this.props.products.styles.results;
-    var styleImageArr = []
+    var styleImageArr = [];
+    var saleOrNot = [];
 
     for (var i = 0; i < styleData.length; i++) {
       var thumbs = [];
@@ -62,7 +65,9 @@ class Products extends React.Component {
         thumbs.push(allImages[k].thumbnail_url)
         full.push(allImages[k].url)
       }
-      var currentStyle = { name: styleName, price: price, sale: salePrice, thumbNailImages: thumbs, fullSizeImage: full }
+      var currentPrice = { name: styleName, price: price, sale: salePrice };
+      saleOrNot.push(currentPrice);
+      var currentStyle = { name: styleName, thumbNailImages: thumbs, fullSizeImage: full };
       styleImageArr.push(currentStyle)
     }
 
@@ -78,7 +83,9 @@ class Products extends React.Component {
       qtyNSize: this.props.products.styles.results[0].skus,
       styles: this.props.products.styles,
       styleImageArr: styleImageArr,
-      maxQty: this.props.products.styles.results[0].skus.[522040].quantity
+      maxQty: this.props.products.styles.results[0].skus.[522040].quantity,
+      saleOrNot: saleOrNot,
+      saleOrDefaultPrice: saleOrNot[0]
     })
 
     this.setBorder(initialThumbs[0]);
@@ -205,22 +212,31 @@ class Products extends React.Component {
   selectStyle (e) {
     e.preventDefault();
     var selected = e.target.value;
-    var styleArr = this.state.styleImageArr
-    for (var i = 0; i < styleArr.length; i++) {
+    var styleArr = this.state.styleImageArr;
+
+    for ( var i = 0; i < styleArr.length; i++ ) {
       if (styleArr[i].name === selected) {
         this.setState({
           thumbNailImages: styleArr[i].thumbNailImages,
           fullSizeImage: styleArr[i].fullSizeImage,
           selected: styleArr[i].fullSizeImage[0]
-        })
+        });
       }
     }
     var qtySize = this.state.styles.results;
-    for (var i = 0; i < qtySize.length; i++) {
+    for ( var i = 0; i < qtySize.length; i++ ) {
       if (qtySize[i].name === selected) {
         this.setState({
           qtyNSize: qtySize[i].skus
-        })
+        });
+      }
+    }
+    var salesArr = this.state.saleOrNot;
+    for ( var i = 0; i < salesArr.length; i++ ) {
+      if (salesArr[i].name === selected) {
+        this.setState({
+          saleOrDefaultPrice: salesArr[i]
+        });
       }
     }
   }
@@ -242,7 +258,7 @@ class Products extends React.Component {
     return(
       <div className="container">
         <div className="prodDes">
-          <ProductDescription product={this.state.product}/>
+          <ProductDescription product={this.state.product} />
         </div>
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
         <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>
@@ -258,7 +274,7 @@ class Products extends React.Component {
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
         <div className="product-info-right" >
-          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice}/>
         </div>
       </div>
     );

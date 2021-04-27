@@ -9,9 +9,9 @@ import React from 'react';
       </div>
       <ul className="prod-details">
         <li>GMO and Pesticide-free</li>
-        <li>Made with 100% nothing</li>
+        <li>Made with 100% cotton</li>
         <li>Wash in cold water</li>
-        <li>Super Expensive</li>
+        <li>Super Durable</li>
       </ul>
     </div>
   )

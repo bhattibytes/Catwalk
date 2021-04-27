@@ -265,6 +265,22 @@ body.bodyFull {
   padding: 0;
 }
 
+.strike-through-red {
+  text-decoration: line-through;
+  color: red;
+}
+
+.regular-price {
+  margin: 0;
+}
+
+.sale-price {
+  margin: 0;
+  padding-bottom: 10px;
+  padding-top: 3px;
+}
+
+
 .style-picker {
   grid-column: 1;
   grid-row: 3;
