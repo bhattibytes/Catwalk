@@ -17,16 +17,16 @@ import $ from 'jquery';
 
   var meta = props.meta.ratings;
   var total = 0;
-  var prod = 1;
+  var prod = 0;
   var ratingCalc;
   if (meta !== undefined) {
     for (var rating in meta) {
-      var numOfStars = meta[rating];
-      var starNum = rating;
+      var numOfStars = Number(meta[rating]);
+      var starNum = Number(rating);
       total += numOfStars;
-      prod *= (starNum * numOfStars);
+      prod += (starNum * numOfStars);
     }
-    ratingCalc = prod / total;
+    ratingCalc = (prod / total);
     ratingCalc = ratingCalc.toString().slice(0,3);
     ratingCalc = Number(ratingCalc);
   } else {

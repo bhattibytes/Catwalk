@@ -3,7 +3,8 @@ import React from 'react';
  var CircleImageGallery = (props) => {
   return (
     <li className="circleImg">
-      <img className="unchecked" src={props.image} width="75px" height="75px" onClick={props.show}/>
+      <div className="checkDiv"></div>
+      <img className="circle" src={props.image} width="75px" height="75px" onClick={props.show}/>
     </li>
   )
 }

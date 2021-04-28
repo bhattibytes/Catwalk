@@ -94,15 +94,20 @@ class Products extends React.Component {
 
     this.setBorder(initialThumbs[0]);
     $('img.slide-up').hide();
-
+    var circleBox = $('ol.circleImgBox div:first').addClass('check')
     this.render();
   }
 
   show(e) {
+    var element = $(e.target).siblings()[0];
+
     $('img.thumb').removeClass('show-border');
+    $('.checkDiv').removeClass('check');
+
     if ($(e.currentTarget).hasClass('thumb')) {
       $(e.currentTarget).addClass('show-border');
     }
+
     var thumb = this.state.thumbNailImages
     for (var i = 0; i < thumb.length; i++) {
       if (thumb[i] === e.currentTarget.src) {
@@ -111,6 +116,18 @@ class Products extends React.Component {
         })
       }
     }
+
+    $('img.circle').each((i, elem) => {
+      if ($(elem).attr('src') === e.currentTarget.src) {
+       $(elem).siblings()[0].classList.add('check')
+      }
+    });
+
+    $('img.thumb').each((i, elem) => {
+      if ($(elem).attr('src') === e.currentTarget.src ){
+        $(elem).addClass('show-border');
+      }
+    });
   }
 
   setBorder(thumURL) {
@@ -119,11 +136,19 @@ class Products extends React.Component {
         $(elem).addClass('show-border');
       }
     });
+    $('img.circle').each((i, elem) => {
+      if ($(elem).attr('src') === thumURL) {
+       $(elem).siblings()[0].classList.add('check')
+      }
+    });
+
   }
 
   fowardButton(e) {
     e.preventDefault();
     $('img.thumb').removeClass('show-border');
+    $('.checkDiv').removeClass('check');
+
     var images = this.state.thumbNailImages;
     var fullImg = this.state.fullSizeImage;
     var current = this.state.selected;
@@ -148,6 +173,8 @@ class Products extends React.Component {
   backButton(e) {
     e.preventDefault();
     $('img.thumb').removeClass('show-border');
+    $('.checkDiv').removeClass('check');
+
     var images = this.state.thumbNailImages;
     var fullImg = this.state.fullSizeImage;
     var current = this.state.selected;
