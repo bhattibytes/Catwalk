@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const PORT = 8080;
+const PORT = 3000;
 
 // Initialize dot env
 require('dotenv').config();
@@ -15,5 +15,5 @@ app.use('/', routes);
 
 
 app.listen(PORT, () => {
-  console.log('Catwalk  listening on localhost 8080')
+  console.log('Catwalk  listening on localhost 3000')
 });
