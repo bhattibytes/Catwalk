@@ -1,33 +1,35 @@
 import axios from 'axios';
 import { GITHUB_TOKEN } from '../config.js';
 
-const getReviewsReq = (id = 17068, sort='relevant', page=1) =>
+const getReviewsReq = (id = 17068, sort = 'relevant', page = 1, count = 2) =>
   axios({
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/?product_id=${id}&page=${page}&sort=${sort}&count=2`,
-    headers: {
-      Authorization: GITHUB_TOKEN.value
-    }
+    url: `/reviews/?product_id=${id}&page=${page}&sort=${sort}&count=${count}`
   });
 
 const getReviewsMetaReq = (id = 17068) =>
   axios({
     method: 'GET',
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta/?product_id=${id}`,
-    headers: {
-      Authorization: GITHUB_TOKEN.value
-    }
+    url: `/reviews/meta/?product_id=${id}`
   });
 
 const addReviewReq = (data) =>
-axios({
-  method: 'POST',
-  url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`,
-  headers: {
-    Authorization: GITHUB_TOKEN.value
-  },
-  data: data
-});
+  axios({
+    method: 'POST',
+    url: `/reviews/`,
+    data: data
+  });
 
+const helpfulReviewReq = (id) =>
+  axios({
+    method: 'PUT',
+    url: `/reviews/${id}/helpful`
+  });
 
-export { getReviewsReq, getReviewsMetaReq, addReviewReq };
+const reportReviewReq = (id) =>
+  axios({
+    method: 'PUT',
+    url: `/reviews/${id}/report`
+  });
+
+export { getReviewsReq, getReviewsMetaReq, addReviewReq, helpfulReviewReq, reportReviewReq };
