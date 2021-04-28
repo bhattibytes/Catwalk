@@ -274,12 +274,6 @@ body.bodyFull {
   color: red;
 }
 
-.no-margin {
-  margin: 0 !important;
-  padding-top: 11px;
-  padding-bottom: 11px;
-}
-
 .style-picker {
   grid-column: 1;
   grid-row: 3;
@@ -302,10 +296,11 @@ body.bodyFull {
   font-size: xx-large;
 }
 
-.price {
-  margin: 5px;
-  margin-bottom: 20px;
+.placeholder {
+  color: white;
 }
+
+/* -----------------------Circle Thumbnail Carousel Container-----------------------------  */
 
 .circleImgBox {
   border-top: 1px black solid;
@@ -332,7 +327,7 @@ body.bodyFull {
   display: inline-block;
 }
 
-
+/* -----------------------CheckMark-----------------------------  */
 :root {
   position: absolute;
   --borderWidth: 7px;
@@ -374,6 +369,8 @@ body:root {
   padding: 15px;
 }
 
+/* -----------------------AddToBag-----------------------------  */
+
 /* .labelAdd {
   margin: 0;
 } */
@@ -411,41 +408,8 @@ button.AddToBagBtn {
   height: 100px;
   width: 100px;
 }
+
 .favorite {
   margin-top: 20px;
   margin-left: 70px;
-}
-
-
-/* .fullscreen-global {
-  height: 100%;
-  width: 100%;
-  -webkit-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  overflow: auto;
-
-  display: -webkit-flex;
-
-  display: -ms-flexbox;
-
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-
-  background-color: white;
-  transition: background-color 1s ease;
-} */
-
-
-/*
-<<<---------------------------QUESTIONS & ANSWERS CSS ------------------->>>
-*/
-
-.ques-main-container {
-  display: grid;
-  grid-template-rows: 15% 15% 20% 20% 15% 15%;
-  grid-template-columns: 20% 60% 10% 10%;
-  border: 10px solid black;
 }
