@@ -1,4 +1,4 @@
-import { getReviewsReq, getReviewsMetaReq, addReviewReq } from '../api/reviews.js';
+import { getReviewsReq, getReviewsMetaReq, addReviewReq, helpfulReviewReq, reportReviewReq } from '../api/reviews.js';
 /**
  * getReviews is an async function for getting reviews
  * from Atlier api
@@ -13,6 +13,7 @@ export function getReviews() {
     const { page, sort } = reviews;
     const response = await getReviewsReq(product.data.id, sort, page);
     const reviewsData = response.data.results;
+    console.log(reviewsData)
     // If reviews has less than 2, update hasMoreReviews state to false
     if (reviewsData.length < 2) {
       dispatch({
@@ -28,7 +29,7 @@ export function getReviews() {
 };
 /**
  * getMetaData is an async function for getting meta data of
- * particular prodcut from Atlier api
+ * particular product from Atlier api
  */
 export function getMetaData() {
   return async function (dispatch, getState) {
@@ -51,7 +52,8 @@ export function sortOrder(newSort) {
   return async function (dispatch, getState) {
     // Get current state of products
     const { product } = getState('product');
-    const response = await getReviewsReq(product.data.id, newSort, 1);
+    const { reviews } = getState('reviews');
+    const response = await getReviewsReq(product.data.id, newSort, 1, reviews.data.length);
     const reviewsData = response.data.results;
     await dispatch({
       type: 'SORT_ORDER',
@@ -60,6 +62,60 @@ export function sortOrder(newSort) {
         data: reviewsData
       }
     });
+  }
+}
+/**
+ * @param {object} data
+ * addReview receives an object of the user's review
+ * to be saved.
+*/
+export function addReview(data) {
+  return async function (dispatch, getState) {
+    const response = await addReviewReq(data);
+    if (response.status === 201) {
+      return {
+        type: 'ADD_REVIEW',
+        payload: response.status
+      }
+      alert('Saved review.')
+    } else {
+      alert('Failed saving review');
+    }
+  }
+}
+/**
+ * @param {integer} id
+ * helpfulReview receives an integer of the review's id
+*/
+export function helpfulReview(id) {
+  return async function(dispatch, getState) {
+    const response = await helpfulReviewReq(id);
+    if (response.status === 204) {
+      await dispatch({
+        type: 'HELPFUL_REVIEW',
+        payload: id
+      });
+    } else {
+      alert('Failed marking review helpful.');
+    }
+  }
+}
+/**
+ * @param {integer} id
+ * reportReview receives an integer of the review's id
+*/
+export function reportReview(id) {
+  return async function(dispatch, getState) {
+    const response = await reportReviewReq(id);
+    if (response.status === 204) {
+      await dispatch({
+        type: 'REPORT_REVIEW',
+        payload: id
+      });
+      alert('Reported review.')
+    } else {
+      alert('Failed reporting review.');
+    }
   }
 }
 
@@ -79,19 +135,5 @@ export function toggleFormModal(image) {
 export function moreReviews() {
   return {
     type: 'MORE_REVIEWS'
-  }
-}
-
-export function addReview(data) {
-  return async function (dispatch, getState) {
-    const response = await addReviewReq(data);
-    if (response.status === 201) {
-      return {
-        type: 'ADD_REVIEW',
-        payload: response.status
-      }
-    } else {
-      alert('Failed saving review');
-    }
   }
 }
