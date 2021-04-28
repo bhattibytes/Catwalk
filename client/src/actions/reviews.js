@@ -13,7 +13,6 @@ export function getReviews() {
     const { page, sort } = reviews;
     const response = await getReviewsReq(product.data.id, sort, page);
     const reviewsData = response.data.results;
-    console.log(reviewsData)
     // If reviews has less than 2, update hasMoreReviews state to false
     if (reviewsData.length < 2) {
       dispatch({
@@ -38,7 +37,7 @@ export function getMetaData() {
     const response = await getReviewsMetaReq(product.data.id);
     dispatch({
       type: 'GET_META-DATA',
-      payload: response.data
+      payload: response.data.meta
     });
   }
 };
