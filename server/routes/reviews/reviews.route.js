@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json({ success: true, results: atelierResponse.data.results });
   } catch (err) {
-    console.log(err)
     res.status(500).json({ success: false, message: `Failed getting reviews for product id ${product_id}` });
   }
 });

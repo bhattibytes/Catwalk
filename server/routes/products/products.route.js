@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json({ success: true, results: atelierResponse.data });
   } catch (err) {
-    console.log(err)
     res.status(500).json({ success: false, message: 'Failed getting products.' });
   }
 });
