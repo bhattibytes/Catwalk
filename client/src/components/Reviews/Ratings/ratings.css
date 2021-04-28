@@ -1,7 +1,12 @@
 .average-rating {
-  font-size: 25px;
+  font-size: 40px;
   margin: 0;
   display: grid;
+}
+
+.average-star-rating {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
 }
 /*      Average Bar Graph     */
 .bar-container {

@@ -9,7 +9,8 @@ const initialState = {
   sort: 'relevant',
   data: [],
   page: 1,
-  meta: {}
+  meta: {},
+  savedReview: false
 }
 
 function reviewsReducer(state = initialState, action) {
@@ -43,8 +44,6 @@ function reviewsReducer(state = initialState, action) {
         ...state,
         sort: action.payload.sort,
         data: action.payload.data,
-        hasMoreReviews: true,
-        page: 2
       });
     // Show thumbnail image via modal
     case 'TOGGLE_MODAL':
@@ -67,9 +66,39 @@ function reviewsReducer(state = initialState, action) {
         ...state,
         page: newPage++,
       });
-    // Add a review
+    // Add a review, once done close the modal
     case 'ADD_REVIEW':
-      return state
+      return Object.assign({}, state, {
+        ...state,
+        isFormModalOn: false
+      });
+    // Add a review, once done close the modal
+    case 'HELPFUL_REVIEW':
+      // Create a copy array of reviews
+      const updatedReviews = state.data.map(review => {
+        // Create a copy of item
+        const item = { ...review };
+        // Increment helpfulness to particular item (review)
+        // action.payload is review's id
+        if (item.review_id === action.payload) {
+          item.helpfulness++;
+        }
+        return item;
+      });
+
+      return Object.assign({}, state, {
+        ...state,
+        data: updatedReviews,
+      });
+    // Add a review, once done close the modal
+    case 'REPORT_REVIEW':
+      // Create a copy array of reviews
+      // filter out the review according to payload (payload = review's id)
+      const filteredReviews = state.data.filter(review => review.review_id !== action.payload);
+      return Object.assign({}, state, {
+        ...state,
+        data: filteredReviews,
+      });
   }
   return state;
 }

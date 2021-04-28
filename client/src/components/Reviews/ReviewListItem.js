@@ -1,6 +1,6 @@
 import React from 'react';
 import Star from '../Star/Star.js';
-import { toggleModal } from '../../actions/reviews.js';
+import { toggleModal, helpfulReview, reportReview } from '../../actions/reviews.js';
 import moment from 'moment';
 
 class ReviewListItem extends React.Component {
@@ -13,9 +13,8 @@ class ReviewListItem extends React.Component {
 
   render() {
     const { review, dispatch } = this.props;
-    const { photos } = review;
+    const { review_id, photos } = review;
     const { showMore } = this.state;
-
     return (
       <div className='review'>
         {/* Review Head */}
@@ -64,7 +63,9 @@ class ReviewListItem extends React.Component {
         <div></div>
         {/* Review's helpful */}
         <div>
-          <p>Helpful? <b>Yes</b>({review.helpfulness}) | <b>Report</b></p>
+          <p>Helpful?
+          <b onClick={()=> dispatch(helpfulReview(review_id))} className='action'>Yes</b>({review.helpfulness}) |
+          <b onClick={()=> dispatch(reportReview(review_id))} className='action'>Report</b></p>
         </div>
         <hr />
       </div>

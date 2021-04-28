@@ -45,7 +45,7 @@ class Reviews extends React.Component {
         }
         {/* Modal for adding a review form */}
         {(isFormModalOn) ?
-          <FormModal dispatch={dispatch} meta={meta} /> : ''
+          <FormModal dispatch={dispatch} meta={meta} product={product} /> : ''
         }
       </div>
     );

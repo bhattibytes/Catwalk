@@ -107,3 +107,7 @@ bundle.js
 bundle.js.map
 config.js
 package-lock.json
+
+# AWS key pem
+hr-catwalk.pem
+HR-Catwalk.pem
