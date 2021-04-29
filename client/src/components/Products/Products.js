@@ -51,7 +51,7 @@ class Products extends React.Component {
     await dispatch(getStyles());
     await dispatch(getMetaData());
 
-    var styleData = this.props.products.styles.results;
+    var styleData = this.props.products.styles;
     var styleImageArr = [];
     var saleOrNot = [];
 
@@ -61,7 +61,7 @@ class Products extends React.Component {
 
       var styleName = styleData[i].name;
       var allImages = styleData[i].photos;
-      var price = styleData[i].original_price
+      var price = styleData[i].original_price;
       var salePrice = styleData[i].sale_price;
 
       for (var k = 0; k < allImages.length; k++) {
@@ -83,10 +83,10 @@ class Products extends React.Component {
       thumbNailImages: initialThumbs,
       fullSizeImage: initialFull,
       selected: initialFull[0],
-      qtyNSize: this.props.products.styles.results[0].skus,
+      qtyNSize: this.props.products.styles[0].skus,
       styles: this.props.products.styles,
       styleImageArr: styleImageArr,
-      maxQty: this.props.products.styles.results[0].skus.[522040].quantity,
+      maxQty: this.props.products.styles[0].skus.[522040].quantity,
       saleOrNot: saleOrNot,
       saleOrDefaultPrice: saleOrNot[0],
       meta: this.props.products.meta
@@ -254,7 +254,7 @@ class Products extends React.Component {
         });
       }
     }
-    var qtySize = this.state.styles.results;
+    var qtySize = this.state.styles;
     for ( var i = 0; i < qtySize.length; i++ ) {
       if (qtySize[i].name === selected) {
         this.setState({
@@ -321,3 +321,13 @@ class Products extends React.Component {
 });
 
 export default connect(mapStateToProps)(Products);
+
+
+
+// const handleZoomMove = (e) => {
+//   let zoomDiv = document.getElementById('zoomDiv');
+//   if(zoom) {
+//     zoomDiv.scrollTop = zoomDiv.scrollTop + e.movementY * 2.5;
+//     zoomDiv.scrollLeft = zoomDiv.scrollLeft + e.movementX * 2.5;
+//   }
+// }
