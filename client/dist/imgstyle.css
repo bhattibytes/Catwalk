@@ -423,6 +423,14 @@ button.fav-button {
 .circleImg {
   position: relative;
   display: inline-block;
+  margin: 5px;
+}
+
+.checkDiv {
+  position: absolute;
+  z-index: 102;
+  top: 0;
+  left: 65px;
 }
 
 /* -----------------------CheckMark-----------------------------  */
