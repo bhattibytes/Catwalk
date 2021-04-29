@@ -56,6 +56,7 @@
   grid-row: 1;
   margin-left: 30px;
   opacity: .7;
+  margin-bottom: auto;
 }
 
 .viewport {
@@ -67,7 +68,8 @@
 }
 
 .slide-down {
-  grid-row: 7;
+  grid-row: 6;
+  margin-top: auto;
   margin-left: 30px;
   opacity: .7;
 }
@@ -147,11 +149,12 @@ button {
   grid-row-end: 2;
   display: grid;
   grid-template-rows: 50% 50%;
-  grid-template-columns: 79% 1% 20%;
+  grid-template-columns: 75% 5% 20%;
 }
 
 .prod-des {
   grid-column: 1;
+  text-align: right;
 }
 
 .prod-details li:before {
@@ -245,7 +248,8 @@ body.bodyFull {
 }
 
 .read {
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   padding-top: 5px;
   border-top: 1px solid black;
 }
@@ -265,6 +269,11 @@ body.bodyFull {
   padding: 0;
 }
 
+.strike-through-red {
+  text-decoration: line-through;
+  color: red;
+}
+
 .style-picker {
   grid-column: 1;
   grid-row: 3;
@@ -275,30 +284,34 @@ body.bodyFull {
 }
 
 .cat {
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-size: 16px;
 }
 
 .title {
-  margin: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-family: 'Times New Roman', Times, serif;
   font-size: xx-large;
 }
 
-.price {
-  margin: 5px;
-  margin-bottom: 20px;
+.placeholder {
+  color: white;
 }
+
+/* -----------------------Circle Thumbnail Carousel Container-----------------------------  */
 
 .circleImgBox {
   border-top: 1px black solid;
-  max-height: 180px;
-  max-width: 300px;
+  max-height: 300px;
+  max-width: 400px;
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  overflow: hidden;
+  overflow: show;
   list-style-type: none;
   margin-right: 0;
+  text-align: right;
 }
 
 .circleImg > img {
@@ -306,7 +319,39 @@ body.bodyFull {
   display: inline;
   float: left;
   border: .3px solid black;
-  margin: 8px;
+  /* margin: 8px; */
+}
+
+.circleImg {
+  position: relative;
+  display: inline-block;
+}
+
+/* -----------------------CheckMark-----------------------------  */
+:root {
+  position: absolute;
+  --borderWidth: 7px;
+  --height: 24px;
+  --width: 10px;
+  --borderColor: rgb(233, 7, 132);
+  z-index: 100;
+}
+
+body:root {
+  position: absolute;
+  display: inline;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+}
+
+.check {
+  display: inline-block;
+  transform: rotate(45deg);
+  height: var(--height);
+  width: var(--width);
+  border-bottom: var(--borderWidth) solid var(--borderColor);
+  border-right: var(--borderWidth) solid var(--borderColor);
 }
 
 .selQty {
@@ -323,6 +368,8 @@ body.bodyFull {
   margin-left: 50px;
   padding: 15px;
 }
+
+/* -----------------------AddToBag-----------------------------  */
 
 /* .labelAdd {
   margin: 0;
@@ -361,41 +408,8 @@ button.AddToBagBtn {
   height: 100px;
   width: 100px;
 }
+
 .favorite {
   margin-top: 20px;
   margin-left: 70px;
-}
-
-
-/* .fullscreen-global {
-  height: 100%;
-  width: 100%;
-  -webkit-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  overflow: auto;
-
-  display: -webkit-flex;
-
-  display: -ms-flexbox;
-
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-
-  background-color: white;
-  transition: background-color 1s ease;
-} */
-
-
-/*
-<<<---------------------------QUESTIONS & ANSWERS CSS ------------------->>>
-*/
-
-.ques-main-container {
-  display: grid;
-  grid-template-rows: 15% 15% 20% 20% 15% 15%;
-  grid-template-columns: 20% 60% 10% 10%;
-  border: 10px solid black;
 }

@@ -15,14 +15,31 @@ import $ from 'jquery';
     return false;
   });
 
-  return (
+  var meta = props.meta.ratings;
+  var total = 0;
+  var prod = 0;
+  var ratingCalc;
+  if (meta !== undefined) {
+    for (var rating in meta) {
+      var numOfStars = Number(meta[rating]);
+      var starNum = Number(rating);
+      total += numOfStars;
+      prod += (starNum * numOfStars);
+    }
+    ratingCalc = (prod / total);
+    ratingCalc = ratingCalc.toString().slice(0,3);
+    ratingCalc = Number(ratingCalc);
+  } else {
+    ratingCalc = 0;
+  }
 
+  return (
     <div className="product-info-container">
       <div className="product-star">
-        <Star rating={3.7}/>
+        <Star rating={ratingCalc}/>
         <a href="#bottom" className="read">Read all reviews</a>
       </div>
-      <ProductTitle title={props.product.name} cat={props.product.category} price={props.product.default_price}/>
+      <ProductTitle title={props.product.name} cat={props.product.category} sale={props.sale}/>
       <SelectStyle styles={props.styles} selectStyle={props.selectStyle}/>
       <ol className="circleImgBox">
       {
