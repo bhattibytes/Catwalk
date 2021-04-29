@@ -9,9 +9,44 @@ exports[`Products Component Should render correctly with no props 1`] = `
     products={
       Object {
         "fullSizeImage": Array [],
-        "product": Object {},
+        "maxQty": 1,
+        "meta": Object {},
+        "product": Object {
+          "category": "",
+          "default_price": 0,
+          "description": "",
+          "name": "",
+        },
         "products": Array [],
+        "qtyNSize": Array [
+          Object {
+            "id": Object {
+              "quantity": 0,
+              "size": "",
+            },
+          },
+        ],
+        "saleOrDefaultPrice": Object {
+          "name": "",
+          "price": 0,
+          "sale": 0,
+        },
+        "saleOrNot": Array [
+          Object {
+            "name": "",
+            "price": 0,
+            "sale": 0,
+          },
+        ],
         "selected": null,
+        "styleImageArr": Array [
+          Object {
+            "fullSizeImage": Array [],
+            "name": "",
+            "thumbNailImages": Array [],
+          },
+        ],
+        "styles": Array [],
         "thumbNailImages": Array [],
       }
     }

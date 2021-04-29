@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getProducts, getStyles } from '../../actions/products.js';
+import { getMetaData } from '../../actions/reviews.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
@@ -16,7 +17,8 @@ class Products extends React.Component {
         name: '',
         default_price: 0,
         description: '',
-        category: ''
+        category: '',
+        slogan: ''
       },
       qtyNSize: [{id: {quantity: 0, size: ''}}],
       thumbNailImages: [],
@@ -24,7 +26,10 @@ class Products extends React.Component {
       selected: null,
       styles: [],
       styleImageArr: [{name: '', thumbNailImages: [], fullSizeImage: []}],
-      maxQty: 1
+      maxQty: 1,
+      saleOrNot: [{name: '', price: 0, sale: 0}],
+      saleOrDefaultPrice: {name: '', price: 0, sale: 0},
+      meta: {}
     };
     this.show = this.show.bind(this);
     this.fowardButton = this.fowardButton.bind(this);
@@ -41,12 +46,14 @@ class Products extends React.Component {
 
   async componentDidMount () {
     const { dispatch } = this.props;
-    // Get reviews from Atlier api
+    // Get products, styles and meta from Atlier api
     await dispatch(getProducts());
     await dispatch(getStyles());
+    await dispatch(getMetaData());
 
-    var styleData = this.props.products.styles.results;
-    var styleImageArr = []
+    var styleData = this.props.products.styles;
+    var styleImageArr = [];
+    var saleOrNot = [];
 
     for (var i = 0; i < styleData.length; i++) {
       var thumbs = [];
@@ -54,14 +61,19 @@ class Products extends React.Component {
 
       var styleName = styleData[i].name;
       var allImages = styleData[i].photos;
+      var price = styleData[i].original_price;
+      var salePrice = styleData[i].sale_price;
 
       for (var k = 0; k < allImages.length; k++) {
         thumbs.push(allImages[k].thumbnail_url)
         full.push(allImages[k].url)
       }
-      var currentStyle = { name: styleName, thumbNailImages: thumbs, fullSizeImage: full }
+      var currentPrice = { name: styleName, price: price, sale: salePrice };
+      saleOrNot.push(currentPrice);
+      var currentStyle = { name: styleName, thumbNailImages: thumbs, fullSizeImage: full };
       styleImageArr.push(currentStyle)
     }
+
     var initialThumbs = styleImageArr[0].thumbNailImages;
     var initialFull = styleImageArr[0].fullSizeImage;
 
@@ -71,23 +83,31 @@ class Products extends React.Component {
       thumbNailImages: initialThumbs,
       fullSizeImage: initialFull,
       selected: initialFull[0],
-      qtyNSize: this.props.products.styles.results[0].skus,
+      qtyNSize: this.props.products.styles[0].skus,
       styles: this.props.products.styles,
       styleImageArr: styleImageArr,
-      maxQty: this.props.products.styles.results[0].skus.[522040].quantity
+      maxQty: this.props.products.styles[0].skus.[522040].quantity,
+      saleOrNot: saleOrNot,
+      saleOrDefaultPrice: saleOrNot[0],
+      meta: this.props.products.meta
     })
 
     this.setBorder(initialThumbs[0]);
     $('img.slide-up').hide();
-
+    var circleBox = $('ol.circleImgBox div:first').addClass('check')
     this.render();
   }
 
   show(e) {
+    var element = $(e.target).siblings()[0];
+
     $('img.thumb').removeClass('show-border');
+    $('.checkDiv').removeClass('check');
+
     if ($(e.currentTarget).hasClass('thumb')) {
       $(e.currentTarget).addClass('show-border');
     }
+
     var thumb = this.state.thumbNailImages
     for (var i = 0; i < thumb.length; i++) {
       if (thumb[i] === e.currentTarget.src) {
@@ -96,6 +116,18 @@ class Products extends React.Component {
         })
       }
     }
+
+    $('img.circle').each((i, elem) => {
+      if ($(elem).attr('src') === e.currentTarget.src) {
+       $(elem).siblings()[0].classList.add('check')
+      }
+    });
+
+    $('img.thumb').each((i, elem) => {
+      if ($(elem).attr('src') === e.currentTarget.src ){
+        $(elem).addClass('show-border');
+      }
+    });
   }
 
   setBorder(thumURL) {
@@ -104,11 +136,19 @@ class Products extends React.Component {
         $(elem).addClass('show-border');
       }
     });
+    $('img.circle').each((i, elem) => {
+      if ($(elem).attr('src') === thumURL) {
+       $(elem).siblings()[0].classList.add('check')
+      }
+    });
+
   }
 
   fowardButton(e) {
     e.preventDefault();
     $('img.thumb').removeClass('show-border');
+    $('.checkDiv').removeClass('check');
+
     var images = this.state.thumbNailImages;
     var fullImg = this.state.fullSizeImage;
     var current = this.state.selected;
@@ -133,6 +173,8 @@ class Products extends React.Component {
   backButton(e) {
     e.preventDefault();
     $('img.thumb').removeClass('show-border');
+    $('.checkDiv').removeClass('check');
+
     var images = this.state.thumbNailImages;
     var fullImg = this.state.fullSizeImage;
     var current = this.state.selected;
@@ -201,22 +243,31 @@ class Products extends React.Component {
   selectStyle (e) {
     e.preventDefault();
     var selected = e.target.value;
-    var styleArr = this.state.styleImageArr
-    for (var i = 0; i < styleArr.length; i++) {
+    var styleArr = this.state.styleImageArr;
+
+    for ( var i = 0; i < styleArr.length; i++ ) {
       if (styleArr[i].name === selected) {
         this.setState({
           thumbNailImages: styleArr[i].thumbNailImages,
           fullSizeImage: styleArr[i].fullSizeImage,
           selected: styleArr[i].fullSizeImage[0]
-        })
+        });
       }
     }
-    var qtySize = this.state.styles.results;
-    for (var i = 0; i < qtySize.length; i++) {
+    var qtySize = this.state.styles;
+    for ( var i = 0; i < qtySize.length; i++ ) {
       if (qtySize[i].name === selected) {
         this.setState({
           qtyNSize: qtySize[i].skus
-        })
+        });
+      }
+    }
+    var salesArr = this.state.saleOrNot;
+    for ( var i = 0; i < salesArr.length; i++ ) {
+      if (salesArr[i].name === selected) {
+        this.setState({
+          saleOrDefaultPrice: salesArr[i]
+        });
       }
     }
   }
@@ -238,7 +289,7 @@ class Products extends React.Component {
     return(
       <div className="container">
         <div className="prodDes">
-          <ProductDescription />
+          <ProductDescription product={this.state.product} />
         </div>
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
         <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>
@@ -254,7 +305,7 @@ class Products extends React.Component {
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
         <div className="product-info-right" >
-          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta}/>
         </div>
       </div>
     );
@@ -270,3 +321,13 @@ class Products extends React.Component {
 });
 
 export default connect(mapStateToProps)(Products);
+
+
+
+// const handleZoomMove = (e) => {
+//   let zoomDiv = document.getElementById('zoomDiv');
+//   if(zoom) {
+//     zoomDiv.scrollTop = zoomDiv.scrollTop + e.movementY * 2.5;
+//     zoomDiv.scrollLeft = zoomDiv.scrollLeft + e.movementX * 2.5;
+//   }
+// }
