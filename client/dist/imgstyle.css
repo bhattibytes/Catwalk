@@ -137,6 +137,29 @@ button {
   grid-template-columns: 10% 60% 30%;
 }
 
+.social-shares {
+  grid-row: 2;
+  grid-column: 2;
+  margin: 10px;
+}
+
+.facebook {
+  margin: 10px;
+}
+
+.twitter {
+  margin: 10px;
+}
+
+.pin {
+  margin: 10px;
+}
+
+.social-button {
+  max-width: 40px;
+  max-height: 40px;
+}
+
 .prod-slogan {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
@@ -170,7 +193,6 @@ button {
   padding: 0;
   grid-column: 3;
   display: grid;
-  border-left: 2px solid black;
   list-style: none;
 }
 

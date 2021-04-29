@@ -6,6 +6,7 @@ import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
 import ProductDescription from './ProductDescription.js';
+import ProductSocial from './ProductSocial.js';
 import $ from 'jquery';
 
 class Products extends React.Component {
@@ -290,6 +291,7 @@ class Products extends React.Component {
       <div className="container">
         <div className="prodDes">
           <ProductDescription product={this.state.product} />
+          <ProductSocial />
         </div>
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
         <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>
