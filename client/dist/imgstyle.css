@@ -202,7 +202,7 @@ button {
   /* transform-origin: top left; */
 }
 
-.zoom:hover {
+.zoom.clicked {
   -ms-transform: scale(3.5);
   -webkit-transform: scale(3.5);
   transform: scale(3.5);

@@ -39,7 +39,6 @@ class Products extends React.Component {
     this.scrollUp = this.scrollUp.bind(this);
     this.scrollDown = this.scrollDown.bind(this);
     this.showFullScreen = this.showFullScreen.bind(this);
-    this.onSelectEnter = this.onSelectEnter.bind(this);
     this.onSelectOut = this.onSelectOut.bind(this);
     this.selectStyle = this.selectStyle.bind(this);
     this.selectSize = this.selectSize.bind(this);
@@ -234,16 +233,12 @@ class Products extends React.Component {
     }
   }
 
-  onSelectEnter (e) {
-    $('button.forward').hide();
-    $('button.back').hide();
-    $('.description').hide();
-  }
-
   onSelectOut () {
     $('button.forward').show();
     $('button.back').show();
     $('.description').show();
+    $('img.select').removeClass('clicked');
+    $('.social-shares').show();
   }
 
   selectStyle (e) {
@@ -310,7 +305,7 @@ class Products extends React.Component {
           </div>
         </div>
         <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
-        <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
+        <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} out={this.onSelectOut}/>
         <div className="product-info-right" >
           <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta}/>
         </div>
