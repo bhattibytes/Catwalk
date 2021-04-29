@@ -11,13 +11,13 @@
 /*      Average Bar Graph     */
 .bar-container {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr 4fr 1fr;
   align-items: center;
   width: 95%;
 }
 
 .bar {
-  width: 75%;
+  width: 93%;
   height: 10px;
 }
 
@@ -86,4 +86,21 @@
   font-size: 13px;
   font-weight: 100;
   text-align: -webkit-match-parent;
+}
+
+.selected-rating-filter {
+  color: orange;
+}
+
+.selected-rating-filter:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+.rating-filter {
+  cursor: pointer;
+}
+
+.rating-filter:hover {
+  color: orange;
 }

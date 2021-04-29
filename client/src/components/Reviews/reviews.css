@@ -9,7 +9,7 @@
 }
 
 .review-items-container {
-  height: 45em;
+  max-height: 45em;
   padding: 2%;
   overflow: scroll;
   margin-bottom: 2em;
