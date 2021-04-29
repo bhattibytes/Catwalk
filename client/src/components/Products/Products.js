@@ -223,9 +223,14 @@ class Products extends React.Component {
     if ($('.main-image-container').hasClass('main-view')) {
       $('.main-image-container').removeClass('main-view').addClass('fullScreen bodyFull');
       $('.selected-image-view').removeClass('select zoom').addClass('selectFull');
+      $('button.forward').addClass('forward-full');
+      $('button.back').addClass('back-full');
+
     } else {
       $('.main-image-container').removeClass('fullScreen bodyFull').addClass('main-view');
       $('.selected-image-view').removeClass('selectFull').addClass('select zoom');
+      $('button.forward').removeClass('forward-full');
+      $('button.back').removeClass('back-full');
     }
   }
 

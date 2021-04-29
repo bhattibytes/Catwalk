@@ -228,6 +228,20 @@ button {
   scroll-snap-type: disabled;
 }
 
+.forward-full {
+  grid-column: 7;
+  grid-row: 2 !important;
+  opacity: .5;
+  z-index: 101;
+}
+
+.back-full {
+  grid-column: 2;
+  grid-row: 2 !important;
+  opacity: .5;
+  z-index: 101;
+}
+
 body.bodyFull {
   background-color: black;
 }
