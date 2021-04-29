@@ -263,10 +263,18 @@ body.bodyFull {
 /* Inner */
 .product-info-container {
   display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 20% 5% 25% 10% 10% 10% 10%;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 7;
+}
+
+.product-star {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .read {
@@ -276,12 +284,6 @@ body.bodyFull {
   border-top: 1px solid black;
 }
 
-.product-star {
-  display: grid;
-  grid-column: 1;
-  grid-row: 1;
-}
-
 .main-header-title {
   display: grid;
   grid-column-start: 1;
@@ -289,20 +291,6 @@ body.bodyFull {
   grid-row: 2;
   margin: 0;
   padding: 0;
-}
-
-.strike-through-red {
-  text-decoration: line-through;
-  color: red;
-}
-
-.style-picker {
-  grid-column: 1;
-  grid-row: 3;
-  font-size: .5em;
-  margin-top: 0;
-  margin-left: 5px;
-  padding-bottom: 3px;
 }
 
 .cat {
@@ -318,8 +306,83 @@ body.bodyFull {
   font-size: xx-large;
 }
 
+.strike-through-red {
+  text-decoration: line-through;
+  color: red;
+}
+
 .placeholder {
   color: white;
+}
+
+.style-picker {
+  grid-column: 1;
+  grid-row: 3;
+  font-size: .5em;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding-bottom: 3px;
+}
+
+.selQty {
+  display: flexbox;
+  margin-left: 5px;
+  grid-column: 1;
+  padding: 15px;
+  margin-left: 50px;
+}
+
+.selSize {
+  margin-top: 20px;
+  grid-row: 5;
+  display: inline-flex;
+  align-self: auto;
+  margin-left: 50px;
+  padding: 15px;
+}
+
+.AddToBag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.AddToBagBtn {
+  grid-row: 7;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background:black;
+  border: 1px solid  rgb(233, 7, 132);
+  border-radius: 10px;
+  color: white;
+  width: 75%;
+  table-layout: fixed;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.fav-button {
+  grid-row: 8;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background:black;
+  border: 1px solid  rgb(233, 7, 132);
+  border-radius: 10px;
+  color: white;
+  width: 75%;
+  table-layout: fixed;
+}
+
+.bag-hover {
+  color: rgb(233, 7, 132) !important;
 }
 
 /* -----------------------Circle Thumbnail Carousel Container-----------------------------  */
@@ -341,7 +404,6 @@ body.bodyFull {
   display: inline;
   float: left;
   border: .3px solid black;
-  /* margin: 8px; */
 }
 
 .circleImg {
@@ -376,62 +438,6 @@ body:root {
   border-right: var(--borderWidth) solid var(--borderColor);
 }
 
-.selQty {
-  display: flexbox;
-  margin-left: 5px;
-  grid-column: 1;
-  padding: 15px;
-  margin-left: 50px;
-}
-
-.selSize {
-  display: inline-flex;
-  align-self: auto;
-  margin-left: 50px;
-  padding: 15px;
-}
-
-/* -----------------------AddToBag-----------------------------  */
-
-/* .labelAdd {
-  margin: 0;
-} */
-
-/* .labelFav {
-  margin: 0;
-} */
 
 
-.addFavOrBag {
-  transition: transform .2s; /* Animation */
-  width: 125px;
-  height: 125px;
-  margin: 0 auto;
-}
 
-.addFavOrBag:hover {
-  transform: scale(1.3);
-}
-
-button.AddToBagBtn {
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background:black;
-  border: 2px solid black;
-  color: white
-}
-
-.favAdd {
-  background: rgb(233, 7, 132);
-  border-radius: 50%;
-  background-size: 50%;
-  height: 100px;
-  width: 100px;
-}
-
-.favorite {
-  margin-top: 20px;
-  margin-left: 70px;
-}
