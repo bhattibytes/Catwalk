@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProducts, getStyles } from '../../actions/products.js';
+import { getProducts, getStyles, getCart, postCart} from '../../actions/products.js';
 import { getMetaData } from '../../actions/reviews.js';
+import { tracker } from '../../actions/tracker.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
@@ -30,7 +31,13 @@ class Products extends React.Component {
       maxQty: 1,
       saleOrNot: [{name: '', price: 0, sale: 0}],
       saleOrDefaultPrice: {name: '', price: 0, sale: 0},
-      meta: {}
+      meta: {},
+      cart: [{name: '', skus: {sku_id: {quantity: 0, size: ''}}}],
+      selectedSize: '',
+      selectedQty: 0,
+      selectedStyle: '',
+      selectedName: '',
+      selectedPrice: 0
     };
     this.show = this.show.bind(this);
     this.fowardButton = this.fowardButton.bind(this);
@@ -42,6 +49,9 @@ class Products extends React.Component {
     this.onSelectOut = this.onSelectOut.bind(this);
     this.selectStyle = this.selectStyle.bind(this);
     this.selectSize = this.selectSize.bind(this);
+    this.selectQty = this.selectQty.bind(this);
+    this.postToCart = this.postToCart.bind(this);
+    this.xOut = this.xOut.bind(this);
   }
 
   async componentDidMount () {
@@ -54,25 +64,31 @@ class Products extends React.Component {
     var styleData = this.props.products.styles;
     var styleImageArr = [];
     var saleOrNot = [];
+    var cartArr = [];
 
     for (var i = 0; i < styleData.length; i++) {
       var thumbs = [];
       var full = [];
-
       var styleName = styleData[i].name;
       var allImages = styleData[i].photos;
+      var skus = styleData[i].skus;
       var price = styleData[i].original_price;
       var salePrice = styleData[i].sale_price;
+
+      cartArr.push({name: styleName, skus: skus})
 
       for (var k = 0; k < allImages.length; k++) {
         thumbs.push(allImages[k].thumbnail_url)
         full.push(allImages[k].url)
       }
+
       var currentPrice = { name: styleName, price: price, sale: salePrice };
       saleOrNot.push(currentPrice);
       var currentStyle = { name: styleName, thumbNailImages: thumbs, fullSizeImage: full };
-      styleImageArr.push(currentStyle)
+      styleImageArr.push(currentStyle);
     }
+
+    // console.log('Finding the thing I need--->', this.props.products.styles[0].original_price)
 
     var initialThumbs = styleImageArr[0].thumbNailImages;
     var initialFull = styleImageArr[0].fullSizeImage;
@@ -89,7 +105,13 @@ class Products extends React.Component {
       maxQty: this.props.products.styles[0].skus.[522040].quantity,
       saleOrNot: saleOrNot,
       saleOrDefaultPrice: saleOrNot[0],
-      meta: this.props.products.meta
+      meta: this.props.products.meta,
+      cart: cartArr,
+      selectedSize: this.props.products.styles[0].skus[522040].size,
+      selectedQty: 1,
+      selectedStyle: this.props.products.styles[0].name,
+      selectedName: this.props.products.product.name,
+      selectedPrice: this.props.products.styles[0].original_price
     })
 
     this.setBorder(initialThumbs[0]);
@@ -246,8 +268,26 @@ class Products extends React.Component {
   selectStyle (e) {
     e.preventDefault();
     var selected = e.target.value;
-    var styleArr = this.state.styleImageArr;
+    this.setState({
+      selectedStyle: selected
+    });
 
+    var styleArr = this.state.styleImageArr;
+    var findPrice = this.state.saleOrNot;
+
+    for (var i = 0; i < findPrice.length; i++) {
+      if (findPrice[i].name === selected) {
+        if (findPrice[i].sale !== null) {
+          this.setState({
+            selectedPrice: findPrice[i].sale
+          });
+        } else {
+          this.setState({
+            selectedPrice: findPrice[i].price
+          });
+        }
+      }
+    }
     for ( var i = 0; i < styleArr.length; i++ ) {
       if (styleArr[i].name === selected) {
         this.setState({
@@ -278,6 +318,9 @@ class Products extends React.Component {
   selectSize(e) {
     e.preventDefault();
     var selected = e.target.value;
+    this.setState({
+      selectedSize: selected
+    })
     var currentQty = this.state.qtyNSize;
     for (var key in currentQty) {
       if (currentQty[key].size === selected) {
@@ -288,9 +331,62 @@ class Products extends React.Component {
     }
   }
 
+  selectQty (e) {
+    e.preventDefault();
+    var selected = e.target.value;
+    this.setState({
+      selectedQty: selected
+    })
+  }
+
+  postToCart (e) {
+    e.preventDefault();
+    var size = this.state.selectedSize;
+    var qty = this.state.selectedQty;
+    var style = this.state.selectedStyle;
+    var cart = this.state.cart;
+
+    $(e.target).addClass('added');
+    $(e.target).text('ADDED TO BAG');
+
+    if ($('div.added-overlay').hasClass('hidden')) {
+      $('div.added-overlay').removeClass('hidden');
+      $('div.added-overlay').addClass('active');
+    } else {
+      $('div.added-overlay').removeClass('active');
+      $('div.added-overlay').addClass('hidden');
+    }
+    getCart();
+    for (var i = 0; i < cart.length; i++) {
+      if (cart[i] === style) {
+        for (var sku_id in cart[i]) {
+          if (cart[i][sku_id].size === size) {
+            postCart(sku_id);
+          }
+        }
+      }
+    }
+  }
+
+  xOut(e) {
+    $('button.AddToBagBtn').removeClass('added');
+    $('button.AddToBagBtn').text('ADD TO BAG');
+
+    $('div.added-overlay').removeClass('active');
+    $('div.added-overlay').addClass('hidden');
+  }
+
   render() {
     return(
-      <div className="container">
+      <div className="container" onClick={(e) => {tracker(e, 'Products')}}>
+         <div className="added-overlay hidden">
+           <img className="x-out" src="https://cdn9.pngable.com/t/19/20/25/rpp6g3jpas/x.jpg" onClick={this.xOut}/>
+           <h1 className="product-cart total">Subtotal: ${this.state.selectedPrice}</h1>
+           <h2 className="product-cart name">Name: {this.state.selectedName}</h2>
+           <h4 className="product-cart style">Style: {this.state.selectedStyle}</h4>
+           <span className="product-cart qty">Quantity: {this.state.selectedQty} </span>
+           <span className="product-cart size">Size: {this.state.selectedSize}</span>
+         </div>
         <div className="prodDes">
           <ProductDescription product={this.state.product} />
           <ProductSocial />
@@ -309,7 +405,7 @@ class Products extends React.Component {
         <button className="slide-down"><img src={'https://www.pngfind.com/pngs/m/93-936844_down-arrow-png-image-background-down-arrow-icon.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} out={this.onSelectOut}/>
         <div className="product-info-right" >
-          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta}/>
+          <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} selectQty={this.selectQty}product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta} addToCart={this.postToCart}/>
         </div>
       </div>
     );

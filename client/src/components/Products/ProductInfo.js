@@ -49,8 +49,8 @@ import $ from 'jquery';
       }
       </ol>
       <SelectSize size={props.qty} selectSize={props.selectSize}/>
-      <SelectQuantity max={props.max}/>
-      <AddToBag />
+      <SelectQuantity max={props.max} selectQty={props.selectQty}/>
+      <AddToBag addToCart={props.addToCart}/>
       <Favorite />
     </div>
   )
