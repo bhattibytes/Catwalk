@@ -1,27 +1,6 @@
 
 let dummyRelatedProducts = [
     {
-      "id": 17067,
-      "campus": "hr-rfp",
-      "name": "Camo Onesie",
-      "slogan": "Blend in to your crowd",
-      "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in t  even the wildest surroundings.",
-      "category": "Jackets",
-      "default_price": "140.00",
-      "created_at": "2021-02-23T04:22:44.728Z",
-      "updated_at": "2021-02-23T04:22:44.728Z",
-      "features": [
-        {
-            "feature": "Fabric",
-            "value": "Canvas"
-        },
-        {
-            "feature": "Buttons",
-            "value": "Brass"
-        }
-      ]
-    },
-    {
       "id": 17068,
       "campus": "hr-rfp",
       "name": "Bright Future Sunglasses",
@@ -31,6 +10,7 @@ let dummyRelatedProducts = [
       "default_price": "69.00",
       "created_at": "2021-02-23T04:22:44.728Z",
       "updated_at": "2021-02-23T04:22:44.728Z",
+      "rating": "3",
       "features": [
           {
               "feature": "Lenses",
@@ -44,6 +24,12 @@ let dummyRelatedProducts = [
               "feature": "Frames",
               "value": "LightCompose"
           }
+      ],
+      "photos": [
+        {
+            "thumbnail_url": null,
+            "url": null
+        }
       ]
     },
     {
@@ -56,6 +42,7 @@ let dummyRelatedProducts = [
       "default_price": "40.00",
       "created_at": "2021-02-23T04:22:44.728Z",
       "updated_at": "2021-02-23T04:22:44.728Z",
+      "rating": "2",
       "features": [
           {
               "feature": "Fabric",
@@ -65,6 +52,12 @@ let dummyRelatedProducts = [
               "feature": "Cut",
               "value": "Skinny"
           }
+      ],
+      "photos": [
+        {
+            "thumbnail_url": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            "url": "https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+        }
       ]
     },
     {
@@ -77,6 +70,7 @@ let dummyRelatedProducts = [
       "default_price": "450.00",
       "created_at": "2021-02-23T04:22:44.728Z",
       "updated_at": "2021-02-23T04:22:44.728Z",
+      "rating": "4",
       "features": [
           {
               "feature": "Sole",
@@ -90,6 +84,12 @@ let dummyRelatedProducts = [
               "feature": "Stitching",
               "value": "Double Stitch"
           }
+      ],
+      "photos": [
+        {
+            "thumbnail_url": "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            "url": "https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+        }
       ]
     },
     {
@@ -102,6 +102,7 @@ let dummyRelatedProducts = [
       "default_price": "120.00",
       "created_at": "2021-02-23T04:22:44.728Z",
       "updated_at": "2021-02-23T04:22:44.728Z",
+      "rating": "4.00",
       "features": [
           {
               "feature": "Sole",
@@ -115,17 +116,51 @@ let dummyRelatedProducts = [
               "feature": "Stitching",
               "value": "Double Stitch"
           }
+      ],
+      "photos": [
+        {
+            "thumbnail_url": "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            "url": "https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+        }
       ]
+    },
+    {
+        "id": 17067,
+        "campus": "hr-rfp",
+        "name": "Camo Onesie",
+        "slogan": "Blend in to your crowd",
+        "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+        "category": "Jackets",
+        "default_price": "140.00",
+        "created_at": "2021-02-23T04:22:44.728Z",
+        "updated_at": "2021-02-23T04:22:44.728Z",
+        "rating": "4",
+        "features": [
+            {
+                "feature": "Fabric",
+                "value": "Canvas"
+            },
+            {
+                "feature": "Buttons",
+                "value": "Brass"
+            }
+        ],
+        "photos": [
+            {
+                "thumbnail_url": "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+                "url": "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+            }
+        ]
     }
   ];
 
 
 let dummyRelatedProductsId = [
-  17067,
   17068,
   17069,
   17074,
-  17073
+  17073,
+  17072
 ]
 
 let dummyFeature = [

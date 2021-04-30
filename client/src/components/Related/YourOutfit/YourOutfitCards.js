@@ -26,12 +26,12 @@ const YourOutfitCards = (props) => {
    };
 
   return (
-    <div id={styles.relatedProductsContainer}>
+    <div id={styles.relatedItems}>
     {leftIndex === 0 ? <div></div> : <button className={styles.carouselButton} onClick={previousItem}><i className="fas fa-angle-double-left"></i></button>}
     <AddOutfit />
-    {displayedItems.map((relatedId, index) => {
+    {/* {displayedItems.map((relatedId, index) => {
       return <ProductCard relatedId={relatedId} image={props.dummyData.dummyProductStyles.results[1].photos[0].thumbnail_url} data={props.dummyData} movement={movement} key={index} index={index}/>
-    })}
+    })} */}
     {leftIndex === relatedItems.length - 3 ?
       null : <button className={styles.carouselButton} onClick={nextItem}><i className="fas fa-angle-double-right"></i></button>
     }

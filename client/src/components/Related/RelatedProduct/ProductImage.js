@@ -5,13 +5,15 @@ import ProductComparisonButton from './ProductComparisonButton';
 
 
 const ProductImage = (props) => {
+  let data = props.data;
+  let index = props.index + props.movement;
+
+  let image = data.dummyRelatedProducts[index].photos[0].thumbnail_url;
 
   return (
-      <div className={styles.img}>
-        {/* <img src={props.image} className={styles.img}/> */}
+      <div className={styles.cardPictureArea} style={{ backgroundImage: `url(${image})` }}>
         <ProductComparisonButton relatedId={props.relatedId} data={props.data} index={props.index} movement={props.movement}/>
       </div>
-
   )
 };
 

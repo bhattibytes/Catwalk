@@ -8,8 +8,8 @@ const ProductCard = (props) => {
 
   return (
     <div className={styles.productCard}>
-      <ProductImage relatedId={props.relatedId} image={props.image} data={props.data} index={props.index} movement={props.movement} />
-      <ProductInfo relatedId={props.relatedId} image={props.image} data={props.data} index={props.index} movement={props.movement}/>
+      <ProductImage relatedId={props.relatedId}  data={props.data} index={props.index} movement={props.movement} />
+      <ProductInfo relatedId={props.relatedId}  data={props.data} index={props.index} movement={props.movement}/>
     </div>
   )
 };

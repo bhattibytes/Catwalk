@@ -3,7 +3,7 @@ import RelatedProductCards from './RelatedProduct/RelatedProductCards.js';
 import YourOutfitCards from './YourOutfit/YourOutfitCards.js';
 import styles from './related.module.css';
 import dummyData from './RelatedProduct/dummyData.js';
-import {RootProvider} from './RootContext.js';
+
 
 class Related extends React.Component {
   constructor() {
@@ -13,14 +13,14 @@ class Related extends React.Component {
   render() {
     // debugger;
     return(
-    <RootProvider>
+
     <div className={styles.relatedProductsContainer}>
-      <span className={styles.relatedTitle}><b>Related Items and Comparisons</b></span>
-      <RelatedProductCards  />
-      <span className={styles.outfitTitle}><b>Your Outfit</b></span>
+      <div className={styles.relatedTitle}><h2>Related Items and Comparisons</h2></div>
+      <RelatedProductCards dummyData={dummyData}/>
+      <div className={styles.outfitTitle}><h2>Your Outfit</h2></div>
       <YourOutfitCards dummyData={dummyData} />
     </div>
-    </RootProvider>
+
 
 
     );
