@@ -26,11 +26,13 @@ const ReviewList = ({ reviews, dispatch, hasMoreReviews }) => {
         <div className='action-buttons'>
           {(hasMoreReviews) ?
             <div
+              name='moreReviews'
               onClick={(e) => dispatch(getReviews())}
               className='button'>MORE REVIEWS</div> : ""
           }
           {/* ADD A REVIEW Button */}
           <div
+            name='addReview'
             onClick={() => dispatch(toggleFormModal())}
             className='button'>ADD A REVIEW +</div>
         </div>

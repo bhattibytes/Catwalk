@@ -9,7 +9,8 @@ const initialState = {
   ratingsFilter: [],
   starFilters: [],
   page: 1,
-  sort: 'relevant'
+  sort: 'relevant',
+  widget: 'Reviews'
 }
 
 function reviewsReducer(state = initialState, action) {
