@@ -5,6 +5,7 @@ import styles from './relatedItems.module.css'
 
 
 const ProductCard = (props) => {
+  // console.log(props);
 
   return (
     <div className={styles.productCard}>
