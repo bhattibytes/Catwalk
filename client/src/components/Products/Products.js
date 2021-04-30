@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getProducts, getStyles, getCart, postCart} from '../../actions/products.js';
 import { getMetaData } from '../../actions/reviews.js';
+import { tracker } from '../../actions/tracker.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
@@ -377,7 +378,7 @@ class Products extends React.Component {
 
   render() {
     return(
-      <div className="container">
+      <div className="container" onClick={(e) => {tracker(e, 'Products')}}>
          <div className="added-overlay hidden">
            <img className="x-out" src="https://cdn9.pngable.com/t/19/20/25/rpp6g3jpas/x.jpg" onClick={this.xOut}/>
            <h1 className="product-cart total">Subtotal: ${this.state.selectedPrice}</h1>
