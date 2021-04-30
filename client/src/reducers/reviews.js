@@ -1,16 +1,15 @@
 const initialState = {
   isLoading: true,
-  isModalOn: {
-    value: false,
-    image: null
-  },
+  savedReview: false,
   isFormModalOn: false,
   hasMoreReviews: true,
-  sort: 'relevant',
-  data: [],
-  page: 1,
+  isModalOn: { value: false, image: null },
   meta: {},
-  savedReview: false
+  data: [],
+  ratingsFilter: [],
+  starFilters: [],
+  page: 1,
+  sort: 'relevant'
 }
 
 function reviewsReducer(state = initialState, action) {
@@ -21,7 +20,9 @@ function reviewsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         ...state,
         data: [...state.data, ...action.payload],
-        page: newPage
+        page: newPage,
+        starFilters: [],
+        ratingsFilter: []
       });
     // Get meta data for component
     case 'GET_META-DATA':
@@ -60,12 +61,6 @@ function reviewsReducer(state = initialState, action) {
         ...state,
         isFormModalOn: !state.isFormModalOn
       });
-    // Load more reviews. Increment page counter
-    case 'MORE_REVIEWS':
-      return Object.assign({}, state, {
-        ...state,
-        page: newPage++,
-      });
     // Add a review, once done close the modal
     case 'ADD_REVIEW':
       return Object.assign({}, state, {
@@ -98,6 +93,27 @@ function reviewsReducer(state = initialState, action) {
       return Object.assign({}, state, {
         ...state,
         data: filteredReviews,
+      });
+    // Filter reviews based off of each star
+    case 'FILTER_STARS_BY_RATING':
+      const star = action.payload;
+      const starSet = new Set(state.starFilters);
+      let filteredReviewsByStars = [];
+      const getRatingsForStar = star => state.data.filter(review => review.rating === Number(star));
+      // TOGGLE current star selected
+      if (!starSet.has(star)) {
+        starSet.add(star);
+      } else {
+        starSet.delete(star);
+      }
+      // Filter through each selected star and concat it with the filteredReviews array
+      [...starSet].forEach(star => {
+        filteredReviewsByStars = filteredReviewsByStars.concat(getRatingsForStar(star));
+      });
+      return Object.assign({}, state, {
+        ...state,
+        ratingsFilter: [...filteredReviewsByStars],
+        starFilters: [...starSet]
       });
   }
   return state;

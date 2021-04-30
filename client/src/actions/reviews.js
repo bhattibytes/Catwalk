@@ -131,8 +131,14 @@ export function toggleFormModal(image) {
   }
 }
 
-export function moreReviews() {
+/**
+ * @param {integer} rating
+ * filterStarsByRating filters the reviews based off of ratings.
+ * It is designed to be addititve, each star must append to the next
+*/
+export function filterStarsByRatings(rating) {
   return {
-    type: 'MORE_REVIEWS'
+    type: 'FILTER_STARS_BY_RATING',
+    payload: rating
   }
 }
