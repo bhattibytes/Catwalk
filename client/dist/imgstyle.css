@@ -126,7 +126,6 @@ button {
   border-bottom: 2px solid rgb(233, 7, 132);
 }
 
-
 /* -----------------------Description -- Feature -----------------------------  */
 
 .prodDes {
@@ -145,14 +144,21 @@ button {
 
 .facebook {
   margin: 10px;
+  border-radius: 10px;
 }
 
 .twitter {
   margin: 10px;
+  border-radius: 10px;
 }
 
 .pin {
   margin: 10px;
+  border-radius: 20px;
+}
+
+.highlight {
+  background-color: rgb(233, 7, 132);
 }
 
 .social-button {
@@ -168,7 +174,6 @@ button {
 .description {
   grid-column-start: 1;
   grid-column-end: 4;
-  /* grid-row-start: 1; */
   grid-row-end: 2;
   display: grid;
   grid-template-rows: 50% 50%;
@@ -199,7 +204,6 @@ button {
 /* -----------------------Zoom Feature -----------------------------  */
 .zoom {
   transition: transform .2s;
-  /* transform-origin: top left; */
 }
 
 .zoom.clicked {
@@ -214,7 +218,6 @@ button {
 
 /* -----------------------FullScreen Feature-----------------------------  */
 .fullScreen {
-  /* grid-column: 1; */
   height: 350%;
   width: 100%;
   background-color: #000000cd;
@@ -257,7 +260,6 @@ body.bodyFull {
 .selectFull {
   max-width: 1000px;
   grid-column-start: 4;
-  /* grid-column-end: 4; */
   grid-row-start: 1;
 }
 
@@ -336,6 +338,21 @@ body.bodyFull {
   margin-top: 10px;
   margin-left: 5px;
   padding-bottom: 3px;
+}
+
+.style-picker-img {
+  position: relative;
+}
+
+.style-img {
+  position: absolute;
+  margin-right: 100px;
+}
+
+.labelSyt {
+ font-family: fantasy;
+ font-size: 16px;
+ font-weight: bolder;
 }
 
 .selQty {
@@ -440,13 +457,11 @@ button.fav-button {
   --height: 24px;
   --width: 10px;
   --borderColor: rgb(233, 7, 132);
-  z-index: 100;
 }
 
 body:root {
   position: absolute;
   display: inline;
-  z-index: 100;
   margin: 0;
   padding: 0;
 }

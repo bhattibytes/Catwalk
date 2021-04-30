@@ -5,7 +5,7 @@ import SelectStyleOption from './SelectStyleOption.js';
   return (
     <div className="style-picker">
       <div className="style-picker">
-        <label htmlFor="style">STYLE -></label>
+        <label className="labelSyt"htmlFor="style">--STYLE--</label>
         <select name="style" onChange={props.selectStyle}>
           <option defaultValue="default" disabled>Select Style</option>
           {

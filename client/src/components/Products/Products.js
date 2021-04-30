@@ -224,12 +224,14 @@ class Products extends React.Component {
       $('.selected-image-view').removeClass('select zoom').addClass('selectFull');
       $('button.forward').addClass('forward-full');
       $('button.back').addClass('back-full');
+      $('.checkDiv').hide();
 
     } else {
       $('.main-image-container').removeClass('fullScreen bodyFull').addClass('main-view');
       $('.selected-image-view').removeClass('selectFull').addClass('select zoom');
       $('button.forward').removeClass('forward-full');
       $('button.back').removeClass('back-full');
+      $('.checkDiv').show();
     }
   }
 
@@ -304,7 +306,7 @@ class Products extends React.Component {
             }
           </div>
         </div>
-        <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
+        <button className="slide-down"><img src={'https://www.pngfind.com/pngs/m/93-936844_down-arrow-png-image-background-down-arrow-icon.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} out={this.onSelectOut}/>
         <div className="product-info-right" >
           <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta}/>
@@ -323,13 +325,3 @@ class Products extends React.Component {
 });
 
 export default connect(mapStateToProps)(Products);
-
-
-
-// const handleZoomMove = (e) => {
-//   let zoomDiv = document.getElementById('zoomDiv');
-//   if(zoom) {
-//     zoomDiv.scrollTop = zoomDiv.scrollTop + e.movementY * 2.5;
-//     zoomDiv.scrollLeft = zoomDiv.scrollLeft + e.movementX * 2.5;
-//   }
-// }
