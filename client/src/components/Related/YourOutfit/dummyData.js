@@ -16,7 +16,7 @@ let dummyRelatedProducts = [
         "default_price": "140.00",
         "created_at": "2021-02-23T04:22:44.728Z",
         "updated_at": "2021-02-23T04:22:44.728Z",
-        "rating": "4",
+        "rating": "3.6",
         "features": [
             {
                 "feature": "Fabric",
@@ -34,6 +34,7 @@ let dummyRelatedProducts = [
             }
         ]
     }
+
   ];
 
 
