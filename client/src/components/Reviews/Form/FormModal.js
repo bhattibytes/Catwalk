@@ -220,7 +220,8 @@ class FormModal extends React.Component {
                 {(this.state.errors.characteristics) ? <p className='err-msg'>*Fill out characteristic</p> : ''}
               </div>
             </div>
-            <button onClick={this.submit}>Add Review</button>
+            <div className='add-review-button'
+              onClick={this.submit}>Add Review</div>
           </div>
         </div>
       </div>

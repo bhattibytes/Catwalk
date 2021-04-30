@@ -99,6 +99,7 @@ function reviewsReducer(state = initialState, action) {
       const star = action.payload;
       const starSet = new Set(state.starFilters);
       let filteredReviewsByStars = [];
+      // Helper function to get reviews based off of rating
       const getRatingsForStar = star => state.data.filter(review => review.rating === Number(star));
       // TOGGLE current star selected
       if (!starSet.has(star)) {
