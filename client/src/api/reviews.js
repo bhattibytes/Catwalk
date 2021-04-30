@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { GITHUB_TOKEN } from '../config.js';
 
 const getReviewsReq = (id = 17068, sort = 'relevant', page = 1, count = 2) =>
   axios({

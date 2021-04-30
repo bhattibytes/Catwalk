@@ -126,7 +126,6 @@ button {
   border-bottom: 2px solid rgb(233, 7, 132);
 }
 
-
 /* -----------------------Description -- Feature -----------------------------  */
 
 .prodDes {
@@ -137,6 +136,36 @@ button {
   grid-template-columns: 10% 60% 30%;
 }
 
+.social-shares {
+  grid-row: 2;
+  grid-column: 2;
+  margin: 10px;
+}
+
+.facebook {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.twitter {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.pin {
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.highlight {
+  background-color: rgb(233, 7, 132);
+}
+
+.social-button {
+  max-width: 40px;
+  max-height: 40px;
+}
+
 .prod-slogan {
   font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
@@ -145,7 +174,6 @@ button {
 .description {
   grid-column-start: 1;
   grid-column-end: 4;
-  /* grid-row-start: 1; */
   grid-row-end: 2;
   display: grid;
   grid-template-rows: 50% 50%;
@@ -170,17 +198,15 @@ button {
   padding: 0;
   grid-column: 3;
   display: grid;
-  border-left: 2px solid black;
   list-style: none;
 }
 
 /* -----------------------Zoom Feature -----------------------------  */
 .zoom {
   transition: transform .2s;
-  /* transform-origin: top left; */
 }
 
-.zoom:hover {
+.zoom.clicked {
   -ms-transform: scale(3.5);
   -webkit-transform: scale(3.5);
   transform: scale(3.5);
@@ -192,7 +218,6 @@ button {
 
 /* -----------------------FullScreen Feature-----------------------------  */
 .fullScreen {
-  /* grid-column: 1; */
   height: 350%;
   width: 100%;
   background-color: #000000cd;
@@ -204,6 +229,20 @@ button {
   left: 0;
   z-index: 100;
   scroll-snap-type: disabled;
+}
+
+.forward-full {
+  grid-column: 7;
+  grid-row: 2 !important;
+  opacity: .5;
+  z-index: 101;
+}
+
+.back-full {
+  grid-column: 2;
+  grid-row: 2 !important;
+  opacity: .5;
+  z-index: 101;
 }
 
 body.bodyFull {
@@ -221,7 +260,6 @@ body.bodyFull {
 .selectFull {
   max-width: 1000px;
   grid-column-start: 4;
-  /* grid-column-end: 4; */
   grid-row-start: 1;
 }
 
@@ -241,10 +279,18 @@ body.bodyFull {
 /* Inner */
 .product-info-container {
   display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% 20% 5% 25% 10% 10% 10% 10%;
   grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 7;
+}
+
+.product-star {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .read {
@@ -254,12 +300,6 @@ body.bodyFull {
   border-top: 1px solid black;
 }
 
-.product-star {
-  display: grid;
-  grid-column: 1;
-  grid-row: 1;
-}
-
 .main-header-title {
   display: grid;
   grid-column-start: 1;
@@ -267,20 +307,6 @@ body.bodyFull {
   grid-row: 2;
   margin: 0;
   padding: 0;
-}
-
-.strike-through-red {
-  text-decoration: line-through;
-  color: red;
-}
-
-.style-picker {
-  grid-column: 1;
-  grid-row: 3;
-  font-size: .5em;
-  margin-top: 0;
-  margin-left: 5px;
-  padding-bottom: 3px;
 }
 
 .cat {
@@ -296,8 +322,98 @@ body.bodyFull {
   font-size: xx-large;
 }
 
+.strike-through-red {
+  text-decoration: line-through;
+  color: red;
+}
+
 .placeholder {
   color: white;
+}
+
+.style-picker {
+  grid-column: 1;
+  grid-row: 3;
+  font-size: .5em;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding-bottom: 3px;
+}
+
+.style-picker-img {
+  position: relative;
+}
+
+.style-img {
+  position: absolute;
+  margin-right: 100px;
+}
+
+.labelSyt {
+ font-family: fantasy;
+ font-size: 16px;
+ font-weight: bolder;
+}
+
+.selQty {
+  display: flexbox;
+  margin-left: 5px;
+  grid-column: 1;
+  padding: 15px;
+  margin-left: 50px;
+}
+
+.selSize {
+  margin-top: 20px;
+  grid-row: 5;
+  display: inline-flex;
+  align-self: auto;
+  margin-left: 50px;
+  padding: 15px;
+}
+
+.AddToBag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.AddToBagBtn {
+  grid-row: 7;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background:black;
+  border: 1px solid  rgb(233, 7, 132);
+  border-radius: 10px;
+  color: white;
+  width: 75%;
+  table-layout: fixed;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.fav-button {
+  grid-row: 8;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background:black;
+  border: 1px solid  rgb(233, 7, 132);
+  border-radius: 10px;
+  color: white;
+  width: 75%;
+  table-layout: fixed;
+}
+
+.bag-hover {
+  color: rgb(233, 7, 132) !important;
 }
 
 /* -----------------------Circle Thumbnail Carousel Container-----------------------------  */
@@ -319,12 +435,19 @@ body.bodyFull {
   display: inline;
   float: left;
   border: .3px solid black;
-  /* margin: 8px; */
 }
 
 .circleImg {
   position: relative;
   display: inline-block;
+  margin: 5px;
+}
+
+.checkDiv {
+  position: absolute;
+  z-index: 102;
+  top: 0;
+  left: 65px;
 }
 
 /* -----------------------CheckMark-----------------------------  */
@@ -334,13 +457,11 @@ body.bodyFull {
   --height: 24px;
   --width: 10px;
   --borderColor: rgb(233, 7, 132);
-  z-index: 100;
 }
 
 body:root {
   position: absolute;
   display: inline;
-  z-index: 100;
   margin: 0;
   padding: 0;
 }
@@ -354,62 +475,6 @@ body:root {
   border-right: var(--borderWidth) solid var(--borderColor);
 }
 
-.selQty {
-  display: flexbox;
-  margin-left: 5px;
-  grid-column: 1;
-  padding: 15px;
-  margin-left: 50px;
-}
-
-.selSize {
-  display: inline-flex;
-  align-self: auto;
-  margin-left: 50px;
-  padding: 15px;
-}
-
-/* -----------------------AddToBag-----------------------------  */
-
-/* .labelAdd {
-  margin: 0;
-} */
-
-/* .labelFav {
-  margin: 0;
-} */
 
 
-.addFavOrBag {
-  transition: transform .2s; /* Animation */
-  width: 125px;
-  height: 125px;
-  margin: 0 auto;
-}
 
-.addFavOrBag:hover {
-  transform: scale(1.3);
-}
-
-button.AddToBagBtn {
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background:black;
-  border: 2px solid black;
-  color: white
-}
-
-.favAdd {
-  background: rgb(233, 7, 132);
-  border-radius: 50%;
-  background-size: 50%;
-  height: 100px;
-  width: 100px;
-}
-
-.favorite {
-  margin-top: 20px;
-  margin-left: 70px;
-}

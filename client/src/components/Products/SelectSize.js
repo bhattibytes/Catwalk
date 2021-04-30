@@ -11,7 +11,7 @@ import SelectSizeOption from './SelectSizeOption.js';
 
   return (
     <div className="selSize">
-       <label htmlFor="selSize">SIZE -></label>
+       <label className="labelSyt" htmlFor="selSize">--SIZE--</label>
        <select name="selSize" defaultValue="default" onChange={props.selectSize}>
         <option defaultValue="default" disabled>Select Size</option>
         {
