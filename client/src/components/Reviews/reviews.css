@@ -74,6 +74,48 @@
   width: fit-content;
 }
 
+.button:hover {
+  background-color: black;
+  color: white;
+  animation: changeBackgroundColor 1s infinite;
+}
+
+.add-review-button {
+  border: 1px solid black;
+  padding: 12px;
+  font-family: sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 3%;
+}
+
+.add-review-button:hover {
+  background-color: black;
+  color: white;
+  animation: changeBackgroundColor 1s infinite;
+}
+
 .action {
   cursor: pointer;
+}
+
+.select-sort {
+  -webkit-appearance: none;
+  border: none;
+  border-bottom: 2px solid grey;
+  font-size: 19px;
+  margin-left: 1%;
+}
+
+/* Animation for background color chage */
+@keyframes changeBackgroundColor {
+  from {
+    background-color: white;
+    color: black;
+  }
+  to {
+    background-color: black;
+    color: white;
+  }
 }

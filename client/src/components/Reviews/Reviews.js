@@ -28,7 +28,6 @@ class Reviews extends React.Component {
     const { reviews, product, dispatch } = this.props;
     const { isLoading, isModalOn, isFormModalOn, hasMoreReviews, starFilters, meta } = reviews;
     const reviewsData = (starFilters.length > 0) ? reviews.ratingsFilter : reviews.data;
-    console.log(starFilters)
     return (
       <div className='review-parent-container'>
         <hr />
