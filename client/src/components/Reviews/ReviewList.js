@@ -6,8 +6,9 @@ const ReviewList = ({ reviews, dispatch, hasMoreReviews }) => {
   return (
     <div>
       <div>
+        <b>sorted by</b>
         {/* Sort filter */}
-        <select onChange={(e) => dispatch(sortOrder(e.target.value))}>
+        <select onChange={(e) => dispatch(sortOrder(e.target.value))} className='select-sort '>
           <option>relevant</option>
           <option>newest</option>
           <option>helpful</option>

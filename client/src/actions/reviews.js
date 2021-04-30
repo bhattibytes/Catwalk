@@ -72,11 +72,11 @@ export function addReview(data) {
   return async function (dispatch, getState) {
     const response = await addReviewReq(data);
     if (response.status === 201) {
-      return {
+      alert('Review was saved.')
+      return dispatch({
         type: 'ADD_REVIEW',
         payload: response.status
-      }
-      alert('Saved review.')
+      })
     } else {
       alert('Failed saving review');
     }
@@ -131,8 +131,14 @@ export function toggleFormModal(image) {
   }
 }
 
-export function moreReviews() {
+/**
+ * @param {integer} rating
+ * filterStarsByRating filters the reviews based off of ratings.
+ * It is designed to be addititve, each star must append to the next
+*/
+export function filterStarsByRatings(rating) {
   return {
-    type: 'MORE_REVIEWS'
+    type: 'FILTER_STARS_BY_RATING',
+    payload: rating
   }
 }

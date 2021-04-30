@@ -3,7 +3,9 @@ import ProductCard from './ProductCard.js'
 import styles from './relatedItems.module.css'
 
 
+
 const RelatedProductCards = (props) => {
+  //Carousel
    // track left most card index
    const [leftIndex, setLeftIndex] = useState(0);
 
@@ -26,10 +28,10 @@ const RelatedProductCards = (props) => {
    };
 
   return (
-    <div id={styles.relatedProductsContainer}>
+    <div className={styles.relatedProducts}>
       {leftIndex === 0 ? <div></div> : <button className={styles.carouselButton} onClick={previousItem}><i className="fas fa-angle-double-left"></i></button>}
       {displayedItems.map((relatedId, index) => {
-        return <ProductCard relatedId={relatedId} image={props.dummyData.dummyProductStyles.results[1].photos[0].thumbnail_url} data={props.dummyData} movement={movement} key={index} index={index}/>
+        return <ProductCard relatedId={relatedId} data={props.dummyData} movement={movement} key={index} index={index}/>
       })}
       {leftIndex === relatedItems.length - 4 ?
         null : <button className={styles.carouselButton} onClick={nextItem}><i className="fas fa-angle-double-right"></i></button>
