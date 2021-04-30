@@ -117,12 +117,12 @@ class FormModal extends React.Component {
       // Remove unwanted properties in new review object
       delete newReview['characteristicsArray'];
       delete newReview['errors'];
+      delete newReview['images'];
       // Convert rating to integer
       newReview['rating'] = Number(newReview['rating']);
       // Convert recommend to boolean
       newReview['recommend'] = Boolean(newReview['recommend']);
       // Make dispatch to Redux
-      console.log(newReview)
       dispatch(addReview(newReview));
     }
   }
@@ -132,7 +132,7 @@ class FormModal extends React.Component {
     const { characteristicsArray, rating, reviewLength, images } = this.state;
     const emptyStar = String.fromCodePoint(9734);
     const filledStar = String.fromCodePoint(9733);
-
+    console.log(this.state)
     return (
       <div id="myModal" className="modal">
         <div className="modal-content">
