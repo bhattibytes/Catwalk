@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './relatedItems.module.css'
+import styles from './yourOutfit.module.css'
 
 const AddOutfit = () => {
   return (
