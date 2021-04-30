@@ -12,16 +12,28 @@ const ProductInfo = (props) => {
   let price = data.dummyRelatedProducts[index].default_price;
   let starRating = data.dummyRelatedProducts[index].rating;
 
-  return (
-    <div className={styles.productInfo}>
-      <div className={styles.category}>{category}</div>
-      <div className={styles.name}>{name}</div>
-      <div className={styles.price}>{price}</div>
-      <div className={styles.star}>
-        {/* <Star rating={starRating}/> */}
+  if (props.movement === 1) {
+    return (
+      <div className={styles.description}>
+        <div className={styles.category}>{category}</div>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.price}>{`$${price}`}</div>
+        <div className={styles.star}>
+          <Star rating={starRating}/>
+        </div>
       </div>
-    </div>
   )
+  } else {
+    return (
+      <div className={styles.productInfo}>
+        <div className={styles.category}>{category}</div>
+        <div className={styles.name}>{name}</div>
+        <div className={styles.price}>{price}</div>
+        <div className={styles.star}>
+          {/* <Star rating={starRating}/> */}
+        </div>
+      </div>
+    )}
 };
 
 export default ProductInfo;
