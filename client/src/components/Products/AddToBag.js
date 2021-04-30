@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
- var AddToBag = () => {
+ var AddToBag = (props) => {
 
   var mouseEnter = (e) => {
     $(e.target).addClass('bag-hover');
@@ -11,13 +11,9 @@ import $ from 'jquery';
   $(e.target).removeClass('bag-hover');
   }
 
-  var clickAddCart = (e) => {
-    console.log('add to bag was clicked!')
-  }
-
   return (
     <div className="AddToBag">
-      <button className="AddToBagBtn" onClick={clickAddCart} onMouseEnter={mouseEnter} onMouseOut={mouseOut}>ADD TO BAG</button>
+      <button className="AddToBagBtn" onClick={props.addToCart} onMouseEnter={mouseEnter} onMouseOut={mouseOut}>ADD TO BAG</button>
     </div>
   )
 }

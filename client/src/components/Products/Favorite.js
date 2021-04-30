@@ -12,7 +12,13 @@ import $ from 'jquery';
   }
 
   var clickFavorite = (e) => {
-    console.log('favorite was clicked!')
+    if ($(e.target).hasClass('added')) {
+      $(e.target).removeClass('added');
+      $(e.target).text('FAVORITE');
+    } else {
+      $(e.target).text('ADDED TO FAVORITES');
+      $(e.target).addClass('added');
+    }
   }
 
   return (
