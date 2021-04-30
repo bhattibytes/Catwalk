@@ -6,6 +6,7 @@ import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
 import ProductDescription from './ProductDescription.js';
+import ProductSocial from './ProductSocial.js';
 import $ from 'jquery';
 
 class Products extends React.Component {
@@ -38,7 +39,6 @@ class Products extends React.Component {
     this.scrollUp = this.scrollUp.bind(this);
     this.scrollDown = this.scrollDown.bind(this);
     this.showFullScreen = this.showFullScreen.bind(this);
-    this.onSelectEnter = this.onSelectEnter.bind(this);
     this.onSelectOut = this.onSelectOut.bind(this);
     this.selectStyle = this.selectStyle.bind(this);
     this.selectSize = this.selectSize.bind(this);
@@ -222,22 +222,25 @@ class Products extends React.Component {
     if ($('.main-image-container').hasClass('main-view')) {
       $('.main-image-container').removeClass('main-view').addClass('fullScreen bodyFull');
       $('.selected-image-view').removeClass('select zoom').addClass('selectFull');
+      $('button.forward').addClass('forward-full');
+      $('button.back').addClass('back-full');
+      $('.checkDiv').hide();
+
     } else {
       $('.main-image-container').removeClass('fullScreen bodyFull').addClass('main-view');
       $('.selected-image-view').removeClass('selectFull').addClass('select zoom');
+      $('button.forward').removeClass('forward-full');
+      $('button.back').removeClass('back-full');
+      $('.checkDiv').show();
     }
-  }
-
-  onSelectEnter (e) {
-    $('button.forward').hide();
-    $('button.back').hide();
-    $('.description').hide();
   }
 
   onSelectOut () {
     $('button.forward').show();
     $('button.back').show();
     $('.description').show();
+    $('img.select').removeClass('clicked');
+    $('.social-shares').show();
   }
 
   selectStyle (e) {
@@ -290,6 +293,7 @@ class Products extends React.Component {
       <div className="container">
         <div className="prodDes">
           <ProductDescription product={this.state.product} />
+          <ProductSocial />
         </div>
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
         <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>
@@ -302,8 +306,8 @@ class Products extends React.Component {
             }
           </div>
         </div>
-        <button className="slide-down"><img src={'https://www.vhv.rs/file/max/10/100888_down-arrows-png.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
-        <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} enter={this.onSelectEnter} out={this.onSelectOut}/>
+        <button className="slide-down"><img src={'https://www.pngfind.com/pngs/m/93-936844_down-arrow-png-image-background-down-arrow-icon.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
+        <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} out={this.onSelectOut}/>
         <div className="product-info-right" >
           <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta}/>
         </div>
@@ -321,13 +325,3 @@ class Products extends React.Component {
 });
 
 export default connect(mapStateToProps)(Products);
-
-
-
-// const handleZoomMove = (e) => {
-//   let zoomDiv = document.getElementById('zoomDiv');
-//   if(zoom) {
-//     zoomDiv.scrollTop = zoomDiv.scrollTop + e.movementY * 2.5;
-//     zoomDiv.scrollLeft = zoomDiv.scrollLeft + e.movementX * 2.5;
-//   }
-// }

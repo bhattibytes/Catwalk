@@ -43,10 +43,13 @@
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-/* .character-input-container {
+.thumbnail-preview-container {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-} */
+  grid-template-columns: 1fr 1fr;
+}
+.thumbnail-preview {
+  width: 100%;
+}
 
 .err-element {
   border: 1px solid red;

@@ -9,6 +9,7 @@ class FormModal extends React.Component {
     this.state = {
       characteristicsArray: [],
       photos: [],
+      images: [],
       errors: {}
     }
     this.handleChange = this.handleChange.bind(this);
@@ -42,13 +43,14 @@ class FormModal extends React.Component {
   }
 
   handlePhotosChange(e) {
-    const { photos } = this.state;
-    if (photos.length === 5) {
+    const { images, photos } = this.state;
+    if (images.length === 5) {
       alert('Reached max photos for upload');
     } else {
       this.setState({
         photos: [...photos, e.target.value]
       });
+      this.readImageFile(e.target);
     }
   }
 
@@ -61,6 +63,18 @@ class FormModal extends React.Component {
         [key]: Number(e.target.value)
       }
     });
+  }
+
+  readImageFile(input) {
+    if (input.files && input.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        this.setState({
+          images: [...this.state.images, e.target.result]
+        })
+      }.bind(this);
+      reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
   }
 
   submit() {
@@ -78,7 +92,7 @@ class FormModal extends React.Component {
     // Check if the body is less than 51 characters
     const bodyReview = this.state.body || '';
     if (bodyReview.length < 51) {
-      errorsObj['body']  = 'Please insert more than 50 characters';
+      errorsObj['body'] = 'Please insert more than 50 characters';
     }
 
     const characteristics = this.state.characteristics || {};
@@ -86,7 +100,7 @@ class FormModal extends React.Component {
     const charKeys = Object.keys(characteristics);
     // Check if all characteristic qualities have been filled out
     if (charKeys.length !== this.state.characteristicsArray.length) {
-      errorsObj['characteristics']  = 'Please fill all review characteristic';
+      errorsObj['characteristics'] = 'Please fill all review characteristic';
     }
     this.setState({
       errors: errorsObj
@@ -108,13 +122,14 @@ class FormModal extends React.Component {
       // Convert recommend to boolean
       newReview['recommend'] = Boolean(newReview['recommend']);
       // Make dispatch to Redux
+      console.log(newReview)
       dispatch(addReview(newReview));
     }
   }
 
   render() {
     const { dispatch, meta } = this.props;
-    const { characteristicsArray, rating, reviewLength } = this.state;
+    const { characteristicsArray, rating, reviewLength, images } = this.state;
     const emptyStar = String.fromCodePoint(9734);
     const filledStar = String.fromCodePoint(9733);
 
@@ -186,19 +201,15 @@ class FormModal extends React.Component {
               </div>
               <div>
                 <h3>Name (mandatory)</h3>
-                <input type='text' name='name' onChange={(e) => this.handleChange(e)} className={(!this.state.errors.name) ? '' : 'err-element'}/>
+                <input type='text' name='name' onChange={(e) => this.handleChange(e)} className={(!this.state.errors.name) ? '' : 'err-element'} />
                 {/* Error message for name */}
                 {(this.state.errors.name) ? <p className='err-msg'>*Insert name</p> : ''}
               </div>
               <div>
                 <h3>Email (mandatory)</h3>
-                <input type='email' name='email' onChange={(e) => this.handleChange(e)} className={(!this.state.errors.email) ? '' : 'err-element'}/>
+                <input type='email' name='email' onChange={(e) => this.handleChange(e)} className={(!this.state.errors.email) ? '' : 'err-element'} />
                 {/* Error message for email */}
                 {(this.state.errors.email) ? <p className='err-msg'>*Insert email</p> : ''}
-              </div>
-              <div>
-                <h3>Upload a photo</h3>
-                <input type='file' name='photos' onChange={(e) => this.handlePhotosChange(e)} />
               </div>
             </div>
             <div>
@@ -218,6 +229,18 @@ class FormModal extends React.Component {
                 )}
                 {/* Error message for body */}
                 {(this.state.errors.characteristics) ? <p className='err-msg'>*Fill out characteristic</p> : ''}
+              </div>
+              {/* File image upload */}
+              <div>
+                <h3>Upload a photo</h3>
+                <input type='file' multiple name='photos' onChange={(e) => this.handlePhotosChange(e)} />
+                <div className='thumbnail-preview-container'>
+                  {images.map((image, idx) =>
+                    <div key={idx}>
+                      <img src={image} className='thumbnail-preview' />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <div className='add-review-button'
