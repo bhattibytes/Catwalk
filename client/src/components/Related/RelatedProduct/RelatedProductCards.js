@@ -5,7 +5,6 @@ import styles from './relatedItems.module.css'
 
 
 const RelatedProductCards = (props) => {
-  // console.log(props);
   //Carousel
    // track left most card index
    const [leftIndex, setLeftIndex] = useState(0);
