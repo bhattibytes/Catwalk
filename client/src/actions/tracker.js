@@ -22,7 +22,6 @@ export function tracker(e, widget) {
       widget: widget,
       time: time
     }
-
     // Send the request , returns a promise
     postInteractionReq(data)
 
