@@ -1,7 +1,7 @@
 # Catwalk - A Front End Capstone Project
 Representative of a cloned fashion ecommerce site that enables customers the ability to search, browse, add to cart, and checkout items. This app was previously deployed on AWS using an EC2 instance.
 
-## How to Start
+## Getting Started
   **Installation**
   1. Clone the repo:
   ```sh
@@ -18,6 +18,9 @@ Representative of a cloned fashion ecommerce site that enables customers the abi
   to run two separate terminals and run these scripts for the server and client sides respectively
   1) `npm run dev` (Server side development w/ nodemon)
   2) `npm run dev:react` (Client side development w/ React)
+
+  **Testing** For this application the framework used for testing is Jest along with the Enzyme Library. Testing can be performed by running the following command in a separate terminal by typing.
+  `npm test`  <br />
 
 ## Primary Technologies
 - React
