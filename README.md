@@ -69,15 +69,15 @@ This feature gives client the ability to filter through all styles available for
 - Image gallery
 - Product information
 - Style selector
-- Add to cart
-![Alt text]('/client/src/Assests/OverviewWidget.png' "Overview")
+- Add to cart <br />
+![Alt text](/client/src/Assests/OverviewWidget.png "Overview")
 
 2. Related Products Widget
 Related Products provides clients with a carousel of products related to the overview product above. The functionality contained within this module can be divided into several pieces:
 - Related Products gallery
 - Comparision overlay
-- Your Outfit gallery
-![Alt text]('/client/src/Assests/RelatedProductWidget.png' "Related")
+- Your Outfit gallery <br />
+![Alt text](/client/src/Assests/RelatedProductWidget.png "Related")
 
 3. Ratings & Reviews Widget
 The Ratings & Reviews module was implemented to allow viewing and submission of reviews for a product selected. The functionality contained within this module can be divided into several pieces:
@@ -85,5 +85,5 @@ The Ratings & Reviews module was implemented to allow viewing and submission of 
 - Reviews List
 - Sorting
 - Rating Breakdown
-- Product Breakdown
-![Alt text]('/client/src/Assests/RatingsReviewsWidget.png' "Reviews")
+- Product Breakdown <br />
+![Alt text](/client/src/Assests/RatingsReviewsWidget.png "Reviews")
