@@ -18,4 +18,5 @@ import $ from 'jquery';
   )
 }
 
+
 export default AddToBag;
