@@ -14,20 +14,22 @@ const getAllProductStyles = (product_id) => {
   });
 };
 
-const getCartProductList = () => {
-  return axios({
-    method: 'GET',
-    url: `/cart`
-  });
-};
 
-const addToCart = (sku_id) => {
-  return axios({
-    method: 'POST',
-    url: `/cart/${sku_id}`
-  });
-};
+export { getAllProducts, getAllProductStyles };
 
 
 
-export { getAllProducts, getAllProductStyles, getCartProductList, addToCart };
+
+// const getCartProductList = () => {
+//   return axios({
+//     method: 'GET',
+//     url: `/cart`
+//   });
+// };
+
+// const addToCart = (sku_id) => {
+//   return axios({
+//     method: 'POST',
+//     url: `/cart/${sku_id}`
+//   });
+// };

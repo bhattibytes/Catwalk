@@ -1,4 +1,4 @@
-import { getAllProducts, getAllProductStyles, getCartProductList, addToCart } from '../api/products.js';
+import { getAllProducts, getAllProductStyles } from '../api/products.js';
 
 export function getProducts() {
   return async function (dispatch) {
@@ -24,26 +24,26 @@ export function getStyles() {
   }
 }
 
-export function getCart() {
-  return async function (dispatch) {
-    const response = await getCartProductList();
-    const cartProducts = response.data.results;
-    await dispatch({
-      type: 'GET_CART',
-      payload: cartProducts
-    });
-  }
-}
+// export function getCart() {
+//   return async function (dispatch) {
+//     const response = await getCartProductList();
+//     const cartProducts = response.data.results;
+//     await dispatch({
+//       type: 'GET_CART',
+//       payload: cartProducts
+//     });
+//   }
+// }
 
-export function postCart() {
-  return async function (dispatch, getState) {
-    const cartProducts = await addToCart('sku_id');
-    const response = await getAllProductStyles(cartProducts.data.id);
-    const sku_id = response.data.results
-    await dispatch({
-      type: 'POST_CART',
-      payload: sku_id
-    });
-  }
-}
+// export function postCart() {
+//   return async function (dispatch, getState) {
+//     const cartProducts = await addToCart('sku_id');
+//     const response = await getAllProductStyles(cartProducts.data.id);
+//     const sku_id = response.data.results
+//     await dispatch({
+//       type: 'POST_CART',
+//       payload: sku_id
+//     });
+//   }
+// }
 

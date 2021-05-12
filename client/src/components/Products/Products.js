@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProducts, getStyles, getCart, postCart} from '../../actions/products.js';
+import { getProducts, getStyles } from '../../actions/products.js';
 import { getMetaData } from '../../actions/reviews.js';
 import { tracker } from '../../actions/tracker.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
