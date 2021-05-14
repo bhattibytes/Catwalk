@@ -111,3 +111,4 @@ package-lock.json
 # AWS key pem
 hr-catwalk.pem
 HR-Catwalk.pem
+SDC-ProductsServer.pem
