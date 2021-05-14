@@ -1,4 +1,3 @@
-const db = require('../DB/database.js');
 const { Product, Feature,  Style, Sku, Photo, RelatedProduct } = require('../DB/allProducts.js');
 
 const getAllProducts = async (req, res) => {

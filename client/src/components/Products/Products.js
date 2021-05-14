@@ -110,7 +110,6 @@ class Products extends React.Component {
       selectedName: this.props.products.product.name,
       selectedPrice: this.props.products.styles[0].original_price
     })
-
     this.setBorder(initialThumbs[0]);
     $('img.slide-up').hide();
     var circleBox = $('ol.circleImgBox div:first').addClass('check')
@@ -160,7 +159,6 @@ class Products extends React.Component {
        $(elem).siblings()[0].classList.add('check')
       }
     });
-
   }
 
   fowardButton(e) {

@@ -2,14 +2,12 @@ import React from 'react';
 import $ from 'jquery';
 
  var ProductTitle = (props) => {
-  if (props.sale.sale !== null) {
+  if (props.sale.sale !== 'null') {
     $('p.placeholder').hide();
     $('p.sale-price').show();
     $('p.regular-price').addClass('strike-through-red');
-    // $('p.sale-price').addClass('no-margin');
   } else {
     $('p.regular-price').removeClass('strike-through-red');
-    // $('p.sale-price').removeClass('no-margin');
     $('p.sale-price').hide();
     $('p.placeholder').show();
   }

@@ -3,6 +3,7 @@ const database = new Sequelize('all_products', 'postgres', '1234', {
   host: '20.84.97.20',
   dialect: 'postgres',
   operatorAliases: false,
+  logging: false,
 
   pool: {
     max: 5,

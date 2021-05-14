@@ -8,11 +8,16 @@ router.get('/', async (req, res) => {
   res.status(200).send(res.data.results);
 });
 
+router.get('/products', async (req, res) => {
+  await getAllProducts(req, res)
+  res.status(200).send(res.data.results);
+});
+
 // Router for getting a single product by ID
 router.get('/:product_id', async (req, res) => {
   const { product_id } = req.params;
   await getProductById(req, res);
-  res.status(200).send(res);
+  res.status(200).send(res.data);
 })
 
 // Router for getting all products styles
@@ -26,7 +31,7 @@ router.get('/:product_id/styles', async (req, res) => {
 router.get('/:product_id/related', async (req, res) => {
   const { product_id } = req.params;
   await getRelatedProducts(req, res);
-  res.status(200).send(res);
+  res.status(200).send(res.data);
 });
 
 module.exports = router;
