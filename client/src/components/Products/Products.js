@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getProducts, getStyles } from '../../actions/products.js';
-import { getMetaData } from '../../actions/reviews.js';
-import { tracker } from '../../actions/tracker.js';
+// import { getMetaData } from '../../actions/reviews.js';
+// import { tracker } from '../../actions/tracker.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
 import MainImageView from './MainImageView.js';
 import ProductInfo from './ProductInfo.js';
@@ -59,7 +59,7 @@ class Products extends React.Component {
     // Get products, styles and meta from Atlier api
     await dispatch(getProducts());
     await dispatch(getStyles());
-    await dispatch(getMetaData());
+    // await dispatch(getMetaData());
 
     var styleData = this.props.products.styles;
     var styleImageArr = [];
@@ -79,7 +79,7 @@ class Products extends React.Component {
 
       for (var k = 0; k < allImages.length; k++) {
         thumbs.push(allImages[k].thumbnail_url)
-        full.push(allImages[k].url)
+        full.push(allImages[k].fullsize_url)
       }
 
       var currentPrice = { name: styleName, price: price, sale: salePrice };
@@ -102,12 +102,11 @@ class Products extends React.Component {
       qtyNSize: this.props.products.styles[0].skus,
       styles: this.props.products.styles,
       styleImageArr: styleImageArr,
-      maxQty: this.props.products.styles[0].skus.[522040].quantity,
+      maxQty: this.props.products.styles[0].skus.[1].quantity,
       saleOrNot: saleOrNot,
       saleOrDefaultPrice: saleOrNot[0],
-      meta: this.props.products.meta,
       cart: cartArr,
-      selectedSize: this.props.products.styles[0].skus[522040].size,
+      selectedSize: this.props.products.styles[0].skus[1].size,
       selectedQty: 1,
       selectedStyle: this.props.products.styles[0].name,
       selectedName: this.props.products.product.name,
@@ -378,7 +377,7 @@ class Products extends React.Component {
 
   render() {
     return(
-      <div className="container" onClick={(e) => {tracker(e, 'Products')}}>
+      <div className="container" >
          <div className="added-overlay hidden">
            <img className="x-out" src="https://cdn9.pngable.com/t/19/20/25/rpp6g3jpas/x.jpg" onClick={this.xOut}/>
            <h1 className="product-cart total">Subtotal: ${this.state.selectedPrice}</h1>

@@ -11,8 +11,10 @@ export function getReviews() {
     const { product } = getState('product');
     // Get the page and sort of reviews
     const { page, sort } = reviews;
+    console.log('IN the getReviews in actions for sort--->', sort, 'page--->', page)
     const response = await getReviewsReq(product.data.id, sort, page);
-    const reviewsData = response.data.results;
+    console.log('IN the getReviews in actions for response--->', response)
+    const reviewsData = response.data.results || [];
     // If reviews has less than 2, update hasMoreReviews state to false
     if (reviewsData.length < 2) {
       dispatch({
@@ -34,7 +36,8 @@ export function getMetaData() {
   return async function (dispatch, getState) {
     // Get current state of products
     const { product } = getState('product');
-    const response = await getReviewsMetaReq(product.data.id);
+    const response = await getReviewsMetaReq(product.data.id) || {};
+    console.log('In the getMetaData reviews actions for response--->', response)
     dispatch({
       type: 'GET_META-DATA',
       payload: response.data.meta

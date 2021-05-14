@@ -1,45 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const localhost = 'http://localhost:3000/';
+const axios = require('axios');
+const localhost = 'http://localhost:5000';
 const { getAllProducts, getProductById, getAllProductStyles, getRelatedProducts } = require('../../ProductsDatabase/API/products.js');
+const db = require('../../ProductsDatabase/DB/database.js');
 
 router.get('/:product_id', async (req, res) => {
-  // const { product_id } = req.params;
-  var results = await getProductById(req, res);
-  console.log('DOES THIS PRINT IN THE ROUTER!!!!!---->', results)
-  res.status(200).send(results);
+  const { product_id } = req.params;
+  await getProductById(req, res);
+  res.status(200).send(res);
 })
 
 // Router for getting all products
 router.get('/', async (req, res) => {
-  const { product_id } = req.params;
-  try {
-    const localResponse = await getAllProducts(req, res);
-    res.status(200).json({ success: true, results: localResponse.data });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Failed getting products.' });
-  }
+
+  await getAllProducts(req, res)
+  res.status(200).send(res.data.results);
+
 });
 
 // Router for getting all products styles
 router.get('/:product_id/styles', async (req, res) => {
   const { product_id } = req.params;
-  try {
-    const localResponse = await getAllProductStyles(req, res);
-    res.status(200).json({ success: true, data: localResponse.data.results });
-  } catch (err) {
-    res.status(500).json({ success: false, message: `Failed getting styles for product id ${product_id}` });
-  }
+
+  await getAllProductStyles(req, res);
+  res.status(200).send(res.data);
 });
 
 router.get('/:product_id/related', async (req, res) => {
   const { product_id } = req.params;
-  try {
-    const localData = await getRelatedProducts(req, res);
-    res.status(200).json({ success: true, data: localData.data });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Failed getting related product.' });
-  }
+
+  await getRelatedProducts(req, res);
+  res.status(200).send(res);
 });
 
 module.exports = router;

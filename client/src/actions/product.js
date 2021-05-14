@@ -7,7 +7,7 @@ export function getProduct() {
   return async function (dispatch) {
     const response = await getAllProducts();
     // Get the 1st item in the results array and set it to product
-    const product = response.data.results[0];
+    const product = response.data[0];
     await dispatch({
       type: 'SET_PRODUCT',
       payload: product

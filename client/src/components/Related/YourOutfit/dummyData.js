@@ -1,11 +1,5 @@
 
 let dummyRelatedProducts = [
-    {"photos": [
-        {
-        "thumbnail_url": null,
-        "url": null
-         }
-                ]},
     {
         "id": 17067,
         "campus": "hr-rfp",

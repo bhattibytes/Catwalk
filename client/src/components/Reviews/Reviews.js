@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getReviews, getMetaData } from '../../actions/reviews.js';
-import { tracker } from '../../actions/tracker.js';
+// import { tracker } from '../../actions/tracker.js';
 import ReviewList from './ReviewList.js';
 import Ratings from './Ratings/Ratings.js';
 import Star from '../Star/Star.js';
@@ -30,7 +30,7 @@ class Reviews extends React.Component {
     const { isLoading, isModalOn, isFormModalOn, hasMoreReviews, starFilters, meta, widget } = reviews;
     const reviewsData = (starFilters.length > 0) ? reviews.ratingsFilter : reviews.data;
     return (
-      <div className='review-parent-container' onClick={(e) => tracker(e, widget)}>
+      <div className='review-parent-container' >
         <hr />
         {(reviews.isLoading) ? '' :
           <div>

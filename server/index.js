@@ -5,7 +5,7 @@ const PORT = 3000;
 
 // Initialize dot env
 require('dotenv').config();
-const routes = require('../server/routes/products/productsDB.route.js');
+const routes = require('../server/routes/index.route.js');
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -1,24 +1,30 @@
 const db = require('../DB/database.js');
 const { Product, Feature,  Style, Sku, Photo, RelatedProduct } = require('../DB/allProducts.js');
 
-const getAllProducts = (req, res) => {
-  Product.findAll({
+const getAllProducts = async (req, res) => {
+  var response = {};
+  await Product.findAll({
     limit: 5
   }).catch(err => {
-    if (err) {
-      console.log('There was an error in getAllProducts--->', err)
-    }
-  }).then(data => {
-   console.log(data);
+    console.log('There was an error in getAllProducts within the find.All function--->', err);
+    return err;
+  }).then(async productData => {
    var productArr = [];
-   data.forEach(product => {
+   await productData.forEach(product => {
     productArr.push(product.dataValues)
-   }).catch(err => {
-      if (err) {
-        console.log('There was an error in getAllProducts--->', err)
-      }
-    })
-   res.send(productArr);
+   });
+   return productArr;
+  }).catch(err => {
+    console.log('There was an error in getAllProducts awaiting the loop for productData--->', err);
+    return err;
+  }).then(productArr => {
+    response.results = productArr;
+    return response;
+  }).then(response => {
+    res.data = response;
+    return res;
+  }).catch(err => {
+    return err;
   })
 };
 
@@ -27,16 +33,13 @@ const getProductById = async (req, res) => {
   if (typeof id !== 'number') {
     id = 1;
   }
-  console.log('Here is the id in the getproduct--->', id)
   var features = Feature.findAll({ attributes: ["feature", "value"], where: {'productId': id} }).catch(err => {
-    if (err) {
-      console.log('There was an error in getProductsById features--->', err)
-    }
+    console.log('There was an error in getProductsById features--->', err)
+    return err;
   })
   var product = Product.findOne({ where: { id: id } }).catch(err => {
-    if (err) {
-      console.log('There was an error in getProductsById product--->', err)
-    }
+    console.log('There was an error in getProductsById product--->', err)
+    return err;
   })
 
   await Promise.all([features, product])
@@ -58,14 +61,16 @@ const getProductById = async (req, res) => {
       copyProduct[key] = product.dataValues[key];
     }
     copyProduct.features = featuresArr;
-    console.log('DOES THIS PRINT copyproduct---->', copyProduct)
-
-    res.status(200).send(copyProduct);
+    res.data = copyProduct;
+    return copyProduct;
   })
 };
 
 const getAllProductStyles = async (req, res) => {
   var id = req.params.product_id;
+  if (typeof id !== 'number') {
+    id = 1;
+  }
   var response = {};
   response.product_id = id;
   var stylesArr = [];
@@ -95,16 +100,13 @@ const getAllProductStyles = async (req, res) => {
         style.dataValues.skus = skusObj;
         stylesArr.push(style);
         return stylesArr
-      }).catch(err => {
-        if (err) {
-          console.log('There was an error in getAllProductStyles--->', err)
-        }
       }).then(stylesArr => {
         response.results = stylesArr
         return response
       }).then(response => {
         if (style === styles[styles.length -1]) {
-          res.status(200).send(response);
+          res.data = response
+          return res;
         }
       }).catch(err => {
         if (err) {
@@ -126,7 +128,8 @@ const getRelatedProducts = async (req, res) => {
       return response;
     })
     .then(response => {
-      res.status(200).send(response);
+      res.data = response;
+      return response;
     })
     .catch(err => {
       if (err) {

@@ -11,10 +11,12 @@ app.use(express.json());
 app.use(express.static(__dirname + '../../client/dist'));
 
 app.get('/', async (req, res) => {
+  console.log('Here in the server.js at / is there a response--->', res)
   await getAllProducts(req, res);
 });
 
 app.get('/products', async (req, res) => {
+  console.log('Here in the server.js at /products is there a response--->', res)
   await getAllProducts(req, res);
 });
 

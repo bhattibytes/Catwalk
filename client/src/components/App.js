@@ -42,7 +42,7 @@ class App extends React.Component {
         <div>
           <Products />
           <Related />
-          <Reviews />
+          {/* <Reviews /> */}
         </div>
         }
       </div>
