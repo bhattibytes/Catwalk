@@ -88,8 +88,6 @@ class Products extends React.Component {
       styleImageArr.push(currentStyle);
     }
 
-    // console.log('Finding the thing I need--->', this.props.products.styles[0].original_price)
-
     var initialThumbs = styleImageArr[0].thumbNailImages;
     var initialFull = styleImageArr[0].fullSizeImage;
 
