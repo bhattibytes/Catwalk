@@ -4,7 +4,7 @@
   "description": "Selling cat items online",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node server/ProductsDatabase/server.js",
+    "start": "npm run node server/ProductsDatabase/server.js",
     "build": "webpack --mode=production",
     "dev:react": "webpack -w --mode=development",
     "dev": "nodemon server/ProductsDatabase/server.js dev:react",
