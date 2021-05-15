@@ -1,4 +1,5 @@
 const  popularStyles = require('../DB/popularStyles.js');
+const popularProducts = require('../DB/popularProducts.js');
 
 const isRelatedPopular = (id) => {
   if (id == 1) {
@@ -35,4 +36,23 @@ var isStylePopular = (id) => {
   return null;
 }
 
-module.exports = { isRelatedPopular, isStylePopular };
+var isProductPopular = (id) => {
+  if (id == 1) {
+    return popularProducts.popular[0];
+  }
+  if (id == 2) {
+    return popularProducts.popular[1];
+  }
+  if (id == 3) {
+    return popularProducts.popular[2];
+  }
+  if (id == 4) {
+    return popularProducts.popular[3];
+  }
+  if (id == 5) {
+    return popularProducts.popular[4];
+  }
+  return null;
+}
+
+module.exports = { isRelatedPopular, isStylePopular, isProductPopular };
