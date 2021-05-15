@@ -1,4 +1,5 @@
 const { Product, Feature,  Style, Sku, Photo, RelatedProduct } = require('../DB/allProducts.js');
+const { isRelatedPopular } = require('./apiHelpers.js');
 
 const getAllProducts = async (req, res) => {
   var response = {};
@@ -6,7 +7,7 @@ const getAllProducts = async (req, res) => {
     limit: 5
   }).catch(err => {
     console.log(err);
-    res.sendStatus(500);
+    res.status(500);
     return;
   }).then(productData => {
    var productArr = [];
@@ -16,7 +17,7 @@ const getAllProducts = async (req, res) => {
    return productArr;
   }).catch(err => {
     console.log(err);
-    res.sendStatus(500);
+    res.status(500);
     return;
   }).then(productArr => {
     response.results = productArr;
@@ -32,20 +33,20 @@ const getProductById = async (req, res) => {
   var features = Feature.findAll({ attributes: ["feature", "value"], where: {'productId': id} })
   .catch(err => {
     console.log(err);
-    res.sendStatus(500);
+    res.status(500);
     return;
   })
   var product = Product.findOne({ where: { id: id } })
   .catch(err => {
     console.log(err);
-    res.sendStatus(500);
+    res.status(500);
     return;
   })
 
   await Promise.all([features, product])
     .catch(err => {
     console.log(err);
-    res.sendStatus(500);
+    res.status(500);
     return;
   }).then(data => {
     var features = data[0];
@@ -82,7 +83,7 @@ const getAllProductStyles = async (req, res) => {
         return anotherArr;
       }).catch(err => {
         console.log(err);
-        res.sendStatus(500);
+        res.status(500);
         return;
       }).then(anotherArr => {
         style.dataValues.photos = anotherArr
@@ -108,7 +109,7 @@ const getAllProductStyles = async (req, res) => {
         }
       }).catch(err => {
         console.log(err);
-        res.sendStatus(500);
+        res.status(500);
         return;
       })
     }
@@ -126,7 +127,7 @@ const getRelatedProducts = async (req, res) => {
       return response;
     }).catch(err => {
       console.log(err);
-      res.sendStatus(500);
+      res.status(500);
       return;
     }).then(response => {
       res.data = response;

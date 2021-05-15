@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAllProducts, getProductById, getAllProductStyles, getRelatedProducts } = require('../../ProductsDatabase/API/products.js');
+const { isRelatedPopular } = require('../../ProductsDatabase/API/apiHelpers.js');
 
 // Router for getting all products
 router.get('/', async (req, res) => {
@@ -30,8 +31,14 @@ router.get('/:product_id/styles', async (req, res) => {
 // Router for getting related products
 router.get('/:product_id/related', async (req, res) => {
   const { product_id } = req.params;
-  await getRelatedProducts(req, res);
-  res.status(200).send(res.data);
+  var isPopular = await isRelatedPopular(product_id)
+
+  if (isPopular !== null) {
+    res.status(200).send(isPopular);
+  } else {
+    await getRelatedProducts(req, res);
+    res.status(200).send(res.data);
+  }
 });
 
 module.exports = router;
