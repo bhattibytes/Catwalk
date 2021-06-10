@@ -1,21 +1,36 @@
 import React from 'react';
 import $ from 'jquery';
 
- var AddToBag = (props) => {
+ class AddToBag extends React.Component {
 
-  var mouseEnter = (e) => {
-    $(e.target).addClass('bag-hover');
+  constructor(props) {
+    super(props);
+    this.state = {
+      mouseOver: false
+    }
+    this.mouseEnter = this.mouseEnter.bind(this);
+    this.mouseOut = this.mouseOut.bind(this);
   }
 
-  var mouseOut = (e) => {
-  $(e.target).removeClass('bag-hover');
+  mouseEnter(e) {
+    this.setState({
+      mouseOver: !this.state.mouseOver
+    });
   }
 
-  return (
-    <div className="AddToBag">
-      <button className="AddToBagBtn" onClick={props.addToCart} onMouseEnter={mouseEnter} onMouseOut={mouseOut}>ADD TO BAG</button>
-    </div>
-  )
+  mouseOut(e) {
+    this.setState({
+      mouseOver: !this.state.mouseOver
+    });
+  }
+  render (props) {
+    return (
+      <div className="AddToBag">
+        <button className={ "AddToBagBtn" + (this.state.mouseOver ? " bag-hover" : "")} onClick={this.props.addToCart} onMouseEnter={this.mouseEnter} onMouseOut={this.mouseOut}>ADD TO BAG</button>
+      </div>
+    )
+  }
 }
 
 export default AddToBag;
+
