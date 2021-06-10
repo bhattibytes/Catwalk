@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProducts, getStyles, getCart, postCart} from '../../actions/products.js';
+import { getProducts, getStyles, getCart, postCart, getFeatures} from '../../actions/products.js';
 import { getMetaData } from '../../actions/reviews.js';
 import { tracker } from '../../actions/tracker.js';
 import ThumbnailGallery from './ThumbnailGallery.js';
@@ -37,7 +37,8 @@ class Products extends React.Component {
       selectedQty: 0,
       selectedStyle: '',
       selectedName: '',
-      selectedPrice: 0
+      selectedPrice: 0,
+      slideUp: null
     };
     this.show = this.show.bind(this);
     this.fowardButton = this.fowardButton.bind(this);
@@ -60,6 +61,7 @@ class Products extends React.Component {
     await dispatch(getProducts());
     await dispatch(getStyles());
     await dispatch(getMetaData());
+    await dispatch(getFeatures());
 
     var styleData = this.props.products.styles;
     var styleImageArr = [];
@@ -111,11 +113,12 @@ class Products extends React.Component {
       selectedQty: 1,
       selectedStyle: this.props.products.styles[0].name,
       selectedName: this.props.products.product.name,
-      selectedPrice: this.props.products.styles[0].original_price
+      selectedPrice: this.props.products.styles[0].original_price,
+      slideUp: false
     })
 
     this.setBorder(initialThumbs[0]);
-    $('img.slide-up').hide();
+    // $('img.slide-up').hide();
     var circleBox = $('ol.circleImgBox div:first').addClass('check')
     this.render();
   }
@@ -219,8 +222,9 @@ class Products extends React.Component {
 
   scrollUp (e) {
     e.preventDefault();
-    $('img.slide-down').show();
-    $('img.slide-up').hide();
+    this.setState({
+      slideUp: !this.state.slideUp
+    })
     var viewportHeight = 0;
 
     $('.viewport').animate({
@@ -230,8 +234,9 @@ class Products extends React.Component {
 
   scrollDown (e) {
     e.preventDefault();
-    $('img.slide-down').hide();
-    $('img.slide-up').show();
+    this.setState({
+      slideUp: !this.state.slideUp
+    })
     var viewportHeight = $('.viewport').height();
 
     $('.viewport').animate({
@@ -392,7 +397,7 @@ class Products extends React.Component {
           <ProductSocial />
         </div>
         <img src={'https://cdn2.iconfinder.com/data/icons/video-player-interface/100/video_player-13-512.png'} width="40px" height="40px" className="full" onClick={this.showFullScreen}/>
-        <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button>
+        { this.state.slideUp ? <button className="slide-up"><img src={'https://listimg.pinclipart.com/picdir/s/373-3739729_caret-png-clipart-swipe-up-icon-png-transparent.png'} width="20px" height="10px" className="slide-up" onClick={this.scrollUp}/></button> : null }
         <div className="thumbnail-slider">
           <div className="viewport">
             {
@@ -402,7 +407,7 @@ class Products extends React.Component {
             }
           </div>
         </div>
-        <button className="slide-down"><img src={'https://www.pngfind.com/pngs/m/93-936844_down-arrow-png-image-background-down-arrow-icon.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button>
+        { !this.state.slideUp ? <button className="slide-down"><img src={'https://www.pngfind.com/pngs/m/93-936844_down-arrow-png-image-background-down-arrow-icon.png'} width="20px" height="10px" className="slide-down" onClick={this.scrollDown}/></button> : null }
         <MainImageView forward={this.fowardButton} back={this.backButton} select={this.state.selected} out={this.onSelectOut}/>
         <div className="product-info-right" >
           <ProductInfo images={this.state.thumbNailImages} show={this.show} selectStyle={this.selectStyle} selectSize={this.selectSize} selectQty={this.selectQty}product={this.state.product} qty={this.state.qtyNSize} styles={this.state.styleImageArr} max={this.state.maxQty} sale={this.state.saleOrDefaultPrice} meta={this.state.meta} addToCart={this.postToCart}/>

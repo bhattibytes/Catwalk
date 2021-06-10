@@ -16,7 +16,8 @@ const initialState = {
   saleOrNot: [{name: '', price: 0, sale: 0}],
   saleOrDefaultPrice: {name: '', price: 0, sale: 0},
   meta: {},
-  cart: [{sku_id: 0, count: 0}]
+  cart: [{sku_id: 0, count: 0}],
+  features: [{}]
 }
 
 function productsReducer(state = initialState, action) {
@@ -32,6 +33,12 @@ function productsReducer(state = initialState, action) {
     return Object.assign({}, state, {
       ...state,
       styles: action.payload
+    });
+
+    case 'GET_FEATURES':
+    return Object.assign({}, state, {
+      ...state,
+      features: action.payload
     });
 
     case 'GET_META-DATA':

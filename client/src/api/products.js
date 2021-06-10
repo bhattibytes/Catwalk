@@ -14,6 +14,13 @@ const getAllProductStyles = (product_id) => {
   });
 };
 
+const getProductFeatures = (product_id) => {
+  return axios({
+    method: 'GET',
+    url: `/products/${product_id}`
+  });
+}
+
 const getCartProductList = () => {
   return axios({
     method: 'GET',
@@ -30,4 +37,4 @@ const addToCart = (sku_id) => {
 
 
 
-export { getAllProducts, getAllProductStyles, getCartProductList, addToCart };
+export { getAllProducts, getAllProductStyles, getCartProductList, addToCart, getProductFeatures };

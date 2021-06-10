@@ -1,4 +1,4 @@
-import { getAllProducts, getAllProductStyles, getCartProductList, addToCart } from '../api/products.js';
+import { getAllProducts, getAllProductStyles, getCartProductList, addToCart, getProductFeatures } from '../api/products.js';
 
 export function getProducts() {
   return async function (dispatch) {
@@ -20,6 +20,19 @@ export function getStyles() {
     await dispatch({
       type: 'GET_STYLES',
       payload: styles
+    });
+  }
+}
+
+export function getFeatures() {
+  return async function (dispatch, getState) {
+    const products = await getState('products');
+    const { product } = await getState('product')
+    const response = await getProductFeatures(product.data.id);
+    const features = response.data.data;
+    await dispatch({
+      type: 'GET_FEATURES',
+      payload: features
     });
   }
 }
