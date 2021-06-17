@@ -19,7 +19,9 @@ Representative of a cloned fashion ecommerce site that enables customers the abi
   1) `npm run dev` (Server side development w/ nodemon)
   2) `npm run dev:react` (Client side development w/ React)
 
-  **Testing:** For this application the framework used for testing is Jest along with the Enzyme Library. Testing can be performed by running the following command in a separate terminal by typing.
+
+  **Testing** For this application the framework used for testing is Jest along with the Enzyme Library. Testing can be performed by running the following command in a separate terminal by typing.
+
   `npm test`  <br />
 
 ## Primary Technologies
